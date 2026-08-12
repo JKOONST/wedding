@@ -126,10 +126,16 @@ body{
 }
 
 /* ═══════════════ 인사말 ═══════════════ */
+/* 네 행이 각각 한 덩어리로 읽히도록 행 사이를 띄운다.
+   줄바꿈이 일어나도 행 구분이 무너지지 않는다. */
 .greet{
-  font-family:var(--f-myeongjo); font-size:14.5px; line-height:2.4;
+  font-family:var(--f-myeongjo); font-size:14.5px; line-height:2.05;
   text-align:center; color:var(--ink);
 }
+.greet p{ margin:0; }
+.greet p + p{ margin-top:15px; }
+/* 준 · 혁 · 은 · 수 — 종이 청첩장과 같은 방식으로 해당 글자만 짚어준다 */
+.greet .pt{ color:var(--gold-deep); font-weight:700; }
 .parents{
   margin-top:6px; display:flex; flex-direction:column; gap:10px;
   font-size:13px; text-align:center; color:var(--ink-2);
@@ -267,10 +273,23 @@ body{
 .tbd{ font-family:"Courier New",monospace; font-size:10.5px; letter-spacing:.09em; color:var(--olive-deep); opacity:.8; }
 
 /* ═══════════════ 참석 여부 ═══════════════ */
-.rsvp-intro{ text-align:center; font-size:13px; line-height:2.05; color:var(--ink-2); margin:0 0 28px; }
+.rsvp-intro{ text-align:center; font-size:13px; line-height:2.05; color:var(--ink-2); margin:0 0 16px; }
+.rsvp-ask{
+  text-align:center; font-size:12.5px; line-height:1.95; color:var(--brick-deep);
+  background:#FBF3E7; border:1px solid var(--warm-line); border-radius:5px;
+  padding:15px 16px; margin:0 0 26px;
+}
+.rsvp-ask b{ font-weight:600; }
+
 .q{ border-top:1px solid var(--line); padding:20px 0 4px; }
 .q:last-of-type{ border-bottom:1px solid var(--line); margin-bottom:22px; }
-.q .qt{ font-size:13.5px; margin-bottom:4px; letter-spacing:.03em; }
+.q .qt{ font-size:13.5px; margin-bottom:4px; letter-spacing:.03em; display:flex; align-items:center; gap:7px; }
+.must{
+  font-size:10px; font-weight:500; letter-spacing:.02em;
+  padding:2px 8px; border-radius:11px; white-space:nowrap;
+}
+.q--brick .must{ background:#F3E2CE; color:var(--brick-deep); }
+.q--olive .must{ background:#E6EBD8; color:var(--olive-deep); }
 .q .qs{ font-size:11.5px; color:var(--ink-3); margin-bottom:14px; line-height:1.7; }
 .opts{ display:flex; gap:7px; }
 .opt{
@@ -397,14 +416,12 @@ textarea::placeholder{ color:var(--ink-3); }
       <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
         <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
       </svg>
-      <p class="greet">
-        서로 다른 길을 걸어온 두 사람이<br>
-        이제 같은 길을 함께 걸으려 합니다.<br><br>
-        늘 곁에서 지켜봐 주신 고마운 분들을 모시고<br>
-        저희 두 사람 첫걸음을 내딛습니다.<br><br>
-        오셔서 따뜻한 축복으로<br>
-        자리를 빛내 주시면 감사하겠습니다.
-      </p>
+      <div class="greet">
+        <p><b class="pt">준</b>비된 듯 서로의 세상에<br>운명처럼 빠져들었습니다.</p>
+        <p>준<b class="pt">혁</b>이가 걸어온 단단한 삶 옆에<br>은수가 따스하게 스며들고</p>
+        <p><b class="pt">은</b>수가 그려온 다채로운 삶 곁을<br>준혁이가 든든하게 감싸며</p>
+        <p><b class="pt">수</b>놓아갈 우리의 모든 날을<br>모두 함께 축복해주세요.</p>
+      </div>
       <div class="hr-sprig">
         <svg width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
           <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
@@ -413,8 +430,8 @@ textarea::placeholder{ color:var(--ink-3); }
         </svg>
       </div>
       <div class="parents">
-        <div><b>최상귀 · 이미선</b> <span>의 아들</span> <b>준혁</b></div>
-        <div><b>이천학 · 정효정</b> <span>의 딸</span> <b>은수</b></div>
+        <div><b>최상귀 · 이미선</b> <span>의 장남</span> <b>최준혁</b></div>
+        <div><b>이천학 · 정효정</b> <span>의 장녀</span> <b>이은수</b></div>
       </div>
     </section>
 
@@ -558,9 +575,10 @@ textarea::placeholder{ color:var(--ink-3); }
         <span class="tag">After Party</span>
         <h4>뒷풀이</h4>
         <p>
-          예식이 끝나고 편한 사람들끼리<br>
-          한 잔 더 하려고 합니다.<br>
-          오래 못 본 얼굴들 보고 가세요.
+          예식만 보고 헤어지기 아쉬워<br>
+          따로 자리를 마련했습니다.<br><br>
+          오래 못 본 얼굴들,<br>
+          천천히 보다 가세요.
         </p>
         <div class="when-box">
           <span class="tbd">일시 · 장소 미정 — 확정 후 업데이트</span>
@@ -579,6 +597,11 @@ textarea::placeholder{ color:var(--ink-3); }
         자리를 준비하는 데 큰 도움이 됩니다.<br>
         해당하는 자리만 눌러 주세요.
       </p>
+      <p class="rsvp-ask">
+        <b>제천 피로연</b>과 <b>뒷풀이</b>는<br>
+        식사와 자리를 미리 맞춰야 해서<br>
+        가능하시면 꼭 남겨 주시면 감사하겠습니다.
+      </p>
 
       <div class="q">
         <div class="qt">본식</div>
@@ -591,7 +614,7 @@ textarea::placeholder{ color:var(--ink-3); }
       </div>
 
       <div class="q q--brick">
-        <div class="qt">제천 피로연</div>
+        <div class="qt">제천 피로연 <span class="must">꼭 부탁드려요</span></div>
         <div class="qs">10월 31일(토) 오후 6시 · 더그랜드컨벤션센터</div>
         <div class="opts" role="group" aria-label="제천 피로연 참석 여부">
           <button class="opt" aria-pressed="false">참석</button>
@@ -601,7 +624,7 @@ textarea::placeholder{ color:var(--ink-3); }
       </div>
 
       <div class="q q--olive">
-        <div class="qt">뒷풀이</div>
+        <div class="qt">뒷풀이 <span class="must">꼭 부탁드려요</span></div>
         <div class="qs">예식 당일 저녁 · 장소 확정 후 안내</div>
         <div class="opts" role="group" aria-label="뒷풀이 참석 여부">
           <button class="opt" aria-pressed="false">참석</button>
@@ -657,6 +680,16 @@ textarea::placeholder{ color:var(--ink-3); }
           <span class="who">신부</span>
           <span class="no"><em>이은수</em>농협 174745-56-004731</span>
           <button class="copy" data-no="174745-56-004731">복사</button>
+        </div>
+        <div class="acct">
+          <span class="who">아버지</span>
+          <span class="no"><em>이천학</em>농협 404-02-014122</span>
+          <button class="copy" data-no="404-02-014122">복사</button>
+        </div>
+        <div class="acct">
+          <span class="who">어머니</span>
+          <span class="no"><em>정효정</em>농협 356-0289-7386-63</span>
+          <button class="copy" data-no="356-0289-7386-63">복사</button>
         </div>
       </details>
     </section>
