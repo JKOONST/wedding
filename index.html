@@ -11,10 +11,12 @@
 <meta property="og:url" content="https://jkoonst.github.io/wedding/">
 <meta property="og:title" content="최준혁 · 이은수 결혼합니다">
 <meta property="og:description" content="2026년 11월 14일 토요일 오전 11시 · 천안 더포레웨딩홀 4층 5층">
-<meta property="og:image" content="https://jkoonst.github.io/wedding/cover.jpg">
-<meta property="og:image:width" content="1054">
-<meta property="og:image:height" content="1492">
+<meta property="og:image" content="https://jkoonst.github.io/wedding/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jkoonst.github.io/wedding/share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Parisienne&display=swap">
@@ -304,8 +306,9 @@ details[open] summary::after{ content:"－"; }
   display:flex; justify-content:space-between; align-items:center; gap:10px;
   padding:11px 4px 11px 14px; font-size:12px; border-top:1px solid var(--line);
 }
-.acct .who{ color:var(--ink-3); flex:0 0 56px; font-size:11.5px; }
-.acct .no{ flex:1; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+.acct .who{ color:var(--ink-3); flex:0 0 50px; font-size:11.5px; }
+.acct .no{ flex:1; color:var(--ink-2); font-variant-numeric:tabular-nums; letter-spacing:.01em; }
+.acct .no em{ font-style:normal; color:var(--ink); margin-right:7px; }
 .copy{
   border:1px solid var(--line); background:transparent; border-radius:14px;
   padding:5px 11px; font-size:10.5px; font-family:inherit; color:var(--ink-3); cursor:pointer;
@@ -632,17 +635,30 @@ textarea::placeholder{ color:var(--ink-3); }
 
       <details>
         <summary>신랑측</summary>
-        <div class="acct"><span class="who">신랑</span><span class="no">최준혁 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
-        <div class="acct"><span class="who">아버지</span><span class="no">최상귀 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
-        <div class="acct"><span class="who">어머니</span><span class="no">이미선 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+        <div class="acct">
+          <span class="who">신랑</span>
+          <span class="no"><em>최준혁</em>농협 312-0089-6571-61</span>
+          <button class="copy" data-no="312-0089-6571-61">복사</button>
+        </div>
+        <div class="acct">
+          <span class="who">아버지</span>
+          <span class="no"><em>최상귀</em>농협 312-02-035734</span>
+          <button class="copy" data-no="312-02-035734">복사</button>
+        </div>
+        <div class="acct">
+          <span class="who">어머니</span>
+          <span class="no"><em>이미선</em>농협 173283-52-069981</span>
+          <button class="copy" data-no="173283-52-069981">복사</button>
+        </div>
       </details>
       <details>
         <summary>신부측</summary>
-        <div class="acct"><span class="who">신부</span><span class="no">이은수 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
-        <div class="acct"><span class="who">아버지</span><span class="no">이천학 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
-        <div class="acct"><span class="who">어머니</span><span class="no">정효정 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+        <div class="acct">
+          <span class="who">신부</span>
+          <span class="no"><em>이은수</em>농협 174745-56-004731</span>
+          <button class="copy" data-no="174745-56-004731">복사</button>
+        </div>
       </details>
-      <p class="pending">계좌번호는 알려주시는 대로 채워 넣겠습니다</p>
     </section>
 
     <!-- ───────── 방명록 ───────── -->
@@ -1115,13 +1131,14 @@ document.getElementById('copyAddr').addEventListener('click', (e) => {
 });
 
 /* ── 계좌 복사 ── */
+/* 화면에는 하이픈을 두고, 복사되는 값에서만 숫자를 뽑는다.
+   손으로 옮겨 적지 않으므로 표시값과 어긋날 일이 없다. */
 document.querySelectorAll('.copy').forEach(btn => {
   btn.addEventListener('click', () => {
-    const no = btn.parentElement.querySelector('.no').textContent;
-    navigator.clipboard?.writeText(no);
-    const prev = btn.textContent;
+    const digits = (btn.dataset.no || '').replace(/\D/g, '');
+    navigator.clipboard?.writeText(digits);
     btn.textContent = '복사됨';
-    setTimeout(() => { btn.textContent = prev; }, 1400);
+    setTimeout(() => { btn.textContent = '복사'; }, 1400);
   });
 });
 
