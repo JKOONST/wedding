@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>최준혁 · 이은수 결혼합니다</title>
+<meta name="description" content="2026년 11월 14일 토요일 오전 11시 · 천안 더포레웨딩홀">
+<meta name="theme-color" content="#FAF5ED">
+<meta property="og:type" content="website">
+<meta property="og:title" content="최준혁 · 이은수 결혼합니다">
+<meta property="og:description" content="2026년 11월 14일 토요일 오전 11시&#10;천안 더포레웨딩홀 4층 · 5층">
+<meta property="og:image" content="">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body><style>
+/* ═══════════════ 페이지 배경 (뷰어 테마 대응) ═══════════════ */
+:root{ --backdrop:#DFD8CC; --backdrop-ink:#6E6659; }
+@media (prefers-color-scheme: dark){ :root{ --backdrop:#151310; --backdrop-ink:#847A6C; } }
+:root[data-theme="dark"]{ --backdrop:#151310; --backdrop-ink:#847A6C; }
+:root[data-theme="light"]{ --backdrop:#DFD8CC; --backdrop-ink:#6E6659; }
+
+/* ═══════════════ 청첩장 팔레트 — 기본 청첩장에서 추출 ═══════════════
+   크림 바탕 · 금색 아치선 · 부케의 코랄 · 잎사귀 올리브 · 벽돌 테라코타
+   단일 테마 고정 (종이 청첩장과 같은 세계)                          */
+.card{
+  --paper:#FAF5ED;
+  --paper-2:#F4EADB;
+  --ink:#3A332C;
+  --ink-2:#6B6154;
+  --ink-3:#9C9182;
+
+  --gold:#C9A16B;
+  --gold-deep:#A87F45;
+  --line:#E6DBC8;
+
+  --rose:#DD6A32;
+  --rose-soft:#EE9A63;
+
+  --olive:#8B9A6B;
+  --olive-deep:#67754A;
+  --olive-line:#DCE0CC;
+
+  --brick:#BE8158;
+  --brick-deep:#95603B;
+  --brick-line:#EBD9C6;
+
+  --f-sans:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+  --f-myeongjo:"Nanum Myeongjo",Batang,"바탕","Apple Myungjo",serif;
+  --f-serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --f-script:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  background:var(--backdrop);
+  margin:0;
+  font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+.stage{ padding:0 0 40px; display:flex; flex-direction:column; align-items:center; }
+
+.card{
+  width:100%; max-width:430px;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-sans);
+  line-height:1.75;
+  box-shadow:0 20px 60px -24px rgba(58,45,30,.45);
+  overflow:hidden;
+  position:relative;
+}
+
+.note-bar{
+  max-width:430px; width:100%;
+  font-family:"Courier New",monospace; font-size:11px; letter-spacing:.08em;
+  color:var(--backdrop-ink); padding:16px 22px; text-align:center;
+}
+
+/* ═══════════════ 공통 조판 ═══════════════ */
+.sec{ padding:54px 30px; position:relative; }
+.sec--tint{ background:var(--paper-2); }
+.sec--tint + .sec--tint{ padding-top:0; }
+
+.script{ font-family:var(--f-script); color:var(--gold-deep); line-height:1.15; }
+.label{
+  font-family:var(--f-serif); font-size:9.5px; letter-spacing:.44em;
+  text-transform:uppercase; color:var(--gold); text-align:center;
+  display:block; margin-bottom:10px;
+}
+.sec-title{
+  font-family:var(--f-myeongjo); font-weight:400; font-size:20px;
+  letter-spacing:.14em; text-align:center; margin:0 0 8px;
+}
+/* 섹션 제목 아래 금색 아치 — 표지의 아치선을 축소해 반복 */
+.archline{ display:block; margin:0 auto 28px; }
+
+.hr-sprig{ display:flex; align-items:center; justify-content:center; margin:28px 0; }
+
+.ph{
+  position:relative;
+  background:linear-gradient(168deg,#F0E3D1 0%,#D5B092 46%,#9BA67D 100%);
+  display:flex; align-items:center; justify-content:center;
+}
+.ph span{
+  font-family:"Courier New",monospace; font-size:9.5px; letter-spacing:.24em;
+  color:rgba(255,252,246,.9); text-align:center; line-height:1.9;
+}
+
+/* ═══════════════ 커버 — 종이 청첩장 구성을 그대로 ═══════════════ */
+.cover{ padding:34px 26px 40px; text-align:center; position:relative; }
+.arch-frame{
+  border:1px solid var(--gold);
+  border-radius:1000px 1000px 7px 7px;
+  padding:11px;
+  position:relative;
+}
+.arch-frame .inner{
+  position:relative; overflow:hidden;
+  border-radius:1000px 1000px 4px 4px;
+  aspect-ratio:3/4.15;
+}
+.arch-frame .ph{ position:absolute; inset:0; }
+/* 사진 하단을 크림으로 녹여 표지 문구를 얹는다 */
+.arch-frame .veil{
+  position:absolute; left:0; right:0; bottom:0; height:47%;
+  background:linear-gradient(to top,#FAF5ED 34%,rgba(250,245,237,.86) 58%,rgba(250,245,237,0));
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:0 18px 26px; gap:11px;
+}
+.cover-script{ font-size:26px; }
+.cover-date{
+  font-size:12.5px; letter-spacing:.13em; color:var(--ink-2);
+  font-variant-numeric:tabular-nums;
+}
+.cover-names{
+  font-family:var(--f-myeongjo); font-size:17px; letter-spacing:.42em;
+  color:var(--ink); text-indent:.42em;
+}
+.cover-names em{ font-style:normal; color:var(--gold-deep); letter-spacing:0; padding:0 2px; }
+.cover-venue{
+  margin-top:20px; font-size:11.5px; letter-spacing:.08em; color:var(--ink-3);
+}
+
+/* 표지 좌우 잎사귀 */
+.leaf-l,.leaf-r{ position:absolute; top:16%; opacity:.9; pointer-events:none; }
+.leaf-l{ left:-14px; }
+.leaf-r{ right:-14px; transform:scaleX(-1); }
+
+/* ═══════════════ 인사말 ═══════════════ */
+.greet{
+  font-family:var(--f-myeongjo); font-size:14.5px; line-height:2.4;
+  text-align:center; color:var(--ink);
+}
+.parents{
+  margin-top:6px; display:flex; flex-direction:column; gap:10px;
+  font-size:13px; text-align:center; color:var(--ink-2);
+}
+.parents span{ color:var(--ink-3); font-size:11.5px; padding:0 4px; }
+.parents b{ font-weight:400; color:var(--ink); letter-spacing:.03em; }
+
+/* ═══════════════ 일정 ═══════════════ */
+.info-lines{ text-align:center; font-size:13.5px; line-height:2.1; color:var(--ink-2); }
+.info-lines b{ font-weight:600; color:var(--ink); font-size:15px; letter-spacing:.03em; }
+
+.cal{ margin:26px auto 0; border-collapse:collapse; font-size:12.5px; }
+.cal th{ font-weight:400; color:var(--ink-3); font-size:10.5px; letter-spacing:.1em; padding:0 0 11px; }
+.cal td{ width:35px; height:32px; text-align:center; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+.cal td.off{ color:#CFC4B1; }
+.cal td.day span{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:50%;
+  background:var(--rose); color:#FFF8F1; font-weight:600;
+}
+
+/* ═══════════════ 목록형 상세 ═══════════════ */
+.detail{ margin-top:24px; display:flex; flex-direction:column; }
+.detail div{
+  display:flex; gap:16px; justify-content:space-between;
+  border-bottom:1px solid var(--line); padding:12px 0; font-size:12.5px;
+}
+.detail dt{ margin:0; color:var(--ink-3); flex:0 0 76px; letter-spacing:.04em; }
+.detail dd{ margin:0; text-align:right; color:var(--ink-2); line-height:1.7; }
+.detail dd em{ font-style:normal; color:var(--brick-deep); font-size:11.5px; }
+
+.map{ height:152px; margin-top:22px; border-radius:4px; }
+
+.btn-row{ display:flex; gap:7px; margin-top:12px; }
+.btn{
+  flex:1; padding:12px 6px; font-family:inherit; font-size:12px; letter-spacing:.05em;
+  border:1px solid var(--gold); background:transparent; color:var(--gold-deep);
+  border-radius:24px; cursor:pointer; transition:background .15s,color .15s;
+}
+.btn:hover{ background:var(--gold); color:var(--paper); }
+.btn--solid{ background:var(--rose); border-color:var(--rose); color:#FFF8F1; }
+.btn--solid:hover{ background:#C55A26; border-color:#C55A26; color:#FFF8F1; }
+
+/* ═══════════════ 갤러리 ═══════════════ */
+.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.grid .ph{ aspect-ratio:1; border-radius:3px; }
+.grid .ph:nth-child(3n+2){ background:linear-gradient(168deg,#EADAC4,#C29A79 50%,#8E9A70); }
+.grid .ph:nth-child(3n+3){ background:linear-gradient(168deg,#F3E8D9,#DEBFA2 50%,#AAB48D); }
+.pending{ margin-top:18px; text-align:center; font-size:11.5px; color:var(--ink-3); letter-spacing:.03em; }
+
+/* ═══════════════ 피로연 · 뒷풀이 ═══════════════ */
+.event{ padding:30px 26px; border-radius:5px; border:1px solid; }
+.event + .event{ margin-top:14px; }
+.event .tag{
+  font-family:var(--f-serif); font-size:9px; letter-spacing:.36em;
+  text-transform:uppercase; display:block; margin-bottom:10px;
+}
+.event h4{
+  font-family:var(--f-myeongjo); font-weight:400; font-size:18px;
+  margin:0 0 15px; letter-spacing:.1em;
+}
+.event p{ margin:0; font-size:13px; line-height:2.1; }
+.event .when-box{ margin-top:19px; padding-top:17px; font-size:12.5px; line-height:2; }
+.event .when-box b{ font-weight:600; }
+
+.event--brick{ background:#FBF1E6; border-color:var(--brick-line); color:#6A4E37; }
+.event--brick .tag{ color:var(--brick); }
+.event--brick h4{ color:#553D28; }
+.event--brick .when-box{ border-top:1px solid var(--brick-line); }
+.event--brick .when-box b{ color:var(--brick-deep); }
+
+.event--olive{ background:#F5F6EC; border-color:var(--olive-line); color:#4E563C; }
+.event--olive .tag{ color:var(--olive); }
+.event--olive h4{ color:#3E462E; }
+.event--olive .when-box{ border-top:1px solid var(--olive-line); }
+.event--olive .when-box b{ color:var(--olive-deep); }
+
+.tbd{ font-family:"Courier New",monospace; font-size:10.5px; letter-spacing:.09em; color:var(--olive-deep); opacity:.8; }
+
+/* ═══════════════ 참석 여부 ═══════════════ */
+.rsvp-intro{ text-align:center; font-size:13px; line-height:2.05; color:var(--ink-2); margin:0 0 28px; }
+.q{ border-top:1px solid var(--line); padding:20px 0 4px; }
+.q:last-of-type{ border-bottom:1px solid var(--line); margin-bottom:22px; }
+.q .qt{ font-size:13.5px; margin-bottom:4px; letter-spacing:.03em; }
+.q .qs{ font-size:11.5px; color:var(--ink-3); margin-bottom:14px; line-height:1.7; }
+.opts{ display:flex; gap:7px; }
+.opt{
+  flex:1; padding:10px 4px; text-align:center; font-size:12px;
+  border:1px solid var(--line); border-radius:22px; background:var(--paper);
+  color:var(--ink-2); cursor:pointer; font-family:inherit;
+}
+.opt[aria-pressed="true"]{ background:var(--rose); border-color:var(--rose); color:#FFF8F1; }
+.q--brick .opt[aria-pressed="true"]{ background:var(--brick-deep); border-color:var(--brick-deep); color:#FFF8F1; }
+.q--olive .opt[aria-pressed="true"]{ background:var(--olive-deep); border-color:var(--olive-deep); color:#FFF8F1; }
+
+.field{ display:flex; gap:9px; margin-bottom:11px; }
+.field input{
+  flex:1; min-width:0; padding:11px 13px; font-family:inherit; font-size:12.5px;
+  border:1px solid var(--line); border-radius:4px; background:var(--paper); color:var(--ink);
+}
+.field input::placeholder{ color:var(--ink-3); }
+
+/* ═══════════════ 마음 전하실 곳 ═══════════════ */
+.gift-note{ text-align:center; font-size:12.5px; line-height:2.1; color:var(--ink-2); margin:0 0 26px; }
+.gift-note em{ font-style:normal; color:var(--brick-deep); }
+
+details{ border-bottom:1px solid var(--line); }
+details:first-of-type{ border-top:1px solid var(--line); }
+summary{
+  padding:15px 4px; font-size:13px; cursor:pointer; list-style:none;
+  display:flex; justify-content:space-between; align-items:center; letter-spacing:.04em;
+}
+summary::-webkit-details-marker{ display:none; }
+summary::after{ content:"＋"; color:var(--gold); font-size:13px; }
+details[open] summary::after{ content:"－"; }
+.acct{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding:11px 4px 11px 14px; font-size:12px; border-top:1px solid var(--line);
+}
+.acct .who{ color:var(--ink-3); flex:0 0 56px; font-size:11.5px; }
+.acct .no{ flex:1; color:var(--ink-2); font-variant-numeric:tabular-nums; }
+.copy{
+  border:1px solid var(--line); background:transparent; border-radius:14px;
+  padding:5px 11px; font-size:10.5px; font-family:inherit; color:var(--ink-3); cursor:pointer;
+}
+.copy:hover{ border-color:var(--gold); color:var(--gold-deep); }
+
+/* ═══════════════ 방명록 ═══════════════ */
+.gb-list{ display:flex; flex-direction:column; gap:11px; margin-bottom:20px; }
+.gb-item{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:14px 16px; }
+.gb-item .gh{ display:flex; justify-content:space-between; font-size:11.5px; color:var(--ink-3); margin-bottom:6px; }
+.gb-item .gh b{ color:var(--ink); font-weight:600; font-size:12.5px; }
+.gb-item p{ margin:0; font-size:12.5px; line-height:1.9; color:var(--ink-2); }
+textarea{
+  width:100%; padding:12px 13px; font-family:inherit; font-size:12.5px; line-height:1.8;
+  border:1px solid var(--line); border-radius:4px; resize:vertical; min-height:76px;
+  background:var(--paper); color:var(--ink); margin-bottom:10px;
+}
+textarea::placeholder{ color:var(--ink-3); }
+
+/* ═══════════════ 배경음악 ═══════════════ */
+.bgm{
+  position:fixed; top:14px; right:14px; z-index:20;
+  display:flex; align-items:center; gap:7px;
+  background:rgba(250,245,237,.95); border:1px solid #E6DBC8; border-radius:22px;
+  padding:7px 13px 7px 10px; cursor:pointer; font-family:inherit;
+  box-shadow:0 4px 14px -6px rgba(58,45,30,.35);
+}
+.bgm .eq{ display:flex; align-items:flex-end; gap:2px; height:11px; }
+.bgm .eq i{ width:2px; background:#DD6A32; height:4px; display:block; }
+.bgm[data-playing="true"] .eq i{ animation:eq .9s ease-in-out infinite; }
+.bgm[data-playing="true"] .eq i:nth-child(2){ animation-delay:.18s; }
+.bgm[data-playing="true"] .eq i:nth-child(3){ animation-delay:.36s; }
+@keyframes eq{ 0%,100%{height:3px} 50%{height:11px} }
+.bgm .t{ font-size:10.5px; letter-spacing:.05em; color:#A87F45; white-space:nowrap; }
+
+/* ═══════════════ 하객 사진 ═══════════════ */
+.up-note{ text-align:center; font-size:12.5px; line-height:2.05; color:var(--ink-2); margin:0 0 22px; }
+.up-drop{
+  border:1px dashed var(--gold); border-radius:6px; background:var(--paper);
+  padding:28px 18px; text-align:center; cursor:pointer; display:block; width:100%;
+  font-family:inherit; color:var(--ink-2); transition:background .15s;
+}
+.up-drop:hover{ background:#FFFCF6; }
+.up-drop .big{ display:block; font-size:13px; color:var(--ink); margin-top:10px; }
+.up-drop .sub{ display:block; font-size:11px; color:var(--ink-3); margin-top:5px; }
+.up-list{ margin-top:16px; }
+.up-row{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  font-size:11.5px; padding:9px 2px; border-bottom:1px solid var(--line);
+}
+.up-row .fn{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink-2); }
+.up-row .st{ color:var(--ink-3); flex:0 0 auto; }
+.up-row .st.ok{ color:var(--olive-deep); }
+.up-row .st.err{ color:#BC4E24; }
+.up-bar{ height:2px; background:var(--line); margin-top:14px; border-radius:2px; overflow:hidden; }
+.up-bar i{ display:block; height:100%; width:0; background:var(--rose); transition:width .25s ease; }
+
+/* ═══════════════ 푸터 ═══════════════ */
+.foot{ background:#EBDCC5; padding:40px 30px 44px; text-align:center; border-top:1px solid #DFCDB2; }
+.foot .script{ font-size:23px; }
+.foot p{ margin:14px 0 0; font-size:11.5px; letter-spacing:.12em; line-height:2; color:var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+:focus-visible{ outline:2px solid #A87F45; outline-offset:2px; }
+</style>
+
+<button class="bgm" id="bgm" data-playing="false" aria-label="배경음악 재생">
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="t" id="bgmLabel">사랑은 마치</span>
+</button>
+
+<div class="stage">
+  <div class="note-bar">DRAFT v5 · 시트 · 드라이브 연결됨 · 계좌번호 · 뒷풀이 · 음원 미확정</div>
+
+  <main class="card">
+
+    <!-- ───────── 커버 ───────── -->
+    <header class="cover">
+      <svg class="leaf-l" width="70" height="190" viewBox="0 0 70 190" fill="none" aria-hidden="true">
+        <path d="M62 6C46 40 36 84 34 126c-1 26 2 44 6 58" stroke="#B6C098" stroke-width="1.1" fill="none"/>
+        <g fill="#9DAC7B" opacity=".85">
+          <ellipse cx="47" cy="34" rx="14" ry="6" transform="rotate(-32 47 34)"/>
+          <ellipse cx="38" cy="62" rx="15" ry="6.5" transform="rotate(-18 38 62)"/>
+          <ellipse cx="34" cy="93" rx="14" ry="6" transform="rotate(-6 34 93)"/>
+          <ellipse cx="35" cy="124" rx="12" ry="5.5" transform="rotate(6 35 124)"/>
+          <ellipse cx="39" cy="152" rx="10" ry="5" transform="rotate(18 39 152)"/>
+        </g>
+        <g fill="#C4CFA8" opacity=".7">
+          <ellipse cx="57" cy="48" rx="10" ry="4.5" transform="rotate(-46 57 48)"/>
+          <ellipse cx="50" cy="79" rx="10" ry="4.5" transform="rotate(-34 50 79)"/>
+          <ellipse cx="48" cy="110" rx="9" ry="4" transform="rotate(-22 48 110)"/>
+        </g>
+      </svg>
+      <svg class="leaf-r" width="70" height="190" viewBox="0 0 70 190" fill="none" aria-hidden="true">
+        <path d="M62 6C46 40 36 84 34 126c-1 26 2 44 6 58" stroke="#B6C098" stroke-width="1.1" fill="none"/>
+        <g fill="#9DAC7B" opacity=".85">
+          <ellipse cx="47" cy="34" rx="14" ry="6" transform="rotate(-32 47 34)"/>
+          <ellipse cx="38" cy="62" rx="15" ry="6.5" transform="rotate(-18 38 62)"/>
+          <ellipse cx="34" cy="93" rx="14" ry="6" transform="rotate(-6 34 93)"/>
+          <ellipse cx="35" cy="124" rx="12" ry="5.5" transform="rotate(6 35 124)"/>
+          <ellipse cx="39" cy="152" rx="10" ry="5" transform="rotate(18 39 152)"/>
+        </g>
+        <g fill="#C4CFA8" opacity=".7">
+          <ellipse cx="57" cy="48" rx="10" ry="4.5" transform="rotate(-46 57 48)"/>
+          <ellipse cx="50" cy="79" rx="10" ry="4.5" transform="rotate(-34 50 79)"/>
+          <ellipse cx="48" cy="110" rx="9" ry="4" transform="rotate(-22 48 110)"/>
+        </g>
+      </svg>
+
+      <div class="arch-frame">
+        <div class="inner">
+          <div class="ph"><span>대표 사진<br>다음 주 업로드</span></div>
+          <div class="veil">
+            <div class="script cover-script">Our Wedding Day</div>
+            <div class="cover-date">2026. 11. 14. 오전 11시</div>
+            <div class="cover-names">최준혁 <em>&amp;</em> 이은수</div>
+          </div>
+        </div>
+      </div>
+      <div class="cover-venue">천안 더포레웨딩홀 4층 · 5층</div>
+    </header>
+
+    <!-- ───────── 인사말 ───────── -->
+    <section class="sec sec--tint">
+      <span class="label">Invitation</span>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <p class="greet">
+        서로 다른 길을 걸어온 두 사람이<br>
+        이제 같은 길을 함께 걸으려 합니다.<br><br>
+        늘 곁에서 지켜봐 주신 고마운 분들을 모시고<br>
+        저희 두 사람 첫걸음을 내딛습니다.<br><br>
+        오셔서 따뜻한 축복으로<br>
+        자리를 빛내 주시면 감사하겠습니다.
+      </p>
+      <div class="hr-sprig">
+        <svg width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+          <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+          <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+          <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
+        </svg>
+      </div>
+      <div class="parents">
+        <div><b>최상귀 · 이미선</b> <span>의 아들</span> <b>준혁</b></div>
+        <div><b>이천학 · 정효정</b> <span>의 딸</span> <b>은수</b></div>
+      </div>
+    </section>
+
+    <!-- ───────── 예식 안내 ───────── -->
+    <section class="sec">
+      <span class="label">Ceremony</span>
+      <h3 class="sec-title">예식 안내</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <p class="info-lines">
+        <b>2026년 11월 14일 토요일 오전 11시</b><br>
+        천안 더포레웨딩홀 4층 · 5층
+      </p>
+      <table class="cal" aria-label="2026년 11월">
+        <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
+        <tbody>
+          <tr><td class="off">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="off">8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td class="day"><span>14</span></td></tr>
+          <tr><td class="off">15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="off">22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+          <tr><td class="off">29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ───────── 갤러리 ───────── -->
+    <section class="sec sec--tint">
+      <span class="label">Gallery</span>
+      <h3 class="sec-title">우리의 순간</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <div class="grid">
+        <div class="ph"><span>1</span></div><div class="ph"><span>2</span></div><div class="ph"><span>3</span></div>
+        <div class="ph"><span>4</span></div><div class="ph"><span>5</span></div><div class="ph"><span>6</span></div>
+        <div class="ph"><span>7</span></div><div class="ph"><span>8</span></div><div class="ph"><span>9</span></div>
+      </div>
+      <p class="pending">사진은 다음 주에 올라올 예정입니다</p>
+    </section>
+
+    <!-- ───────── 오시는 길 ───────── -->
+    <section class="sec">
+      <span class="label">Location</span>
+      <h3 class="sec-title">오시는 길</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <p class="info-lines">
+        <b>천안 더포레웨딩홀</b><br>
+        충남 천안시 동남구 다가말2길 104
+      </p>
+      <div class="ph map"><span>지도</span></div>
+      <div class="btn-row">
+        <button class="btn">네이버지도</button>
+        <button class="btn">카카오내비</button>
+        <button class="btn">T map</button>
+      </div>
+      <dl class="detail">
+        <div><dt>지하철</dt><dd>1호선 봉명역 1번 출구<br>도보 약 15분 (1km)</dd></div>
+        <div><dt>주차</dt><dd>건물 주차장 500대<br><em>하객 무료 여부 확인 필요</em></dd></div>
+        <div><dt>셔틀버스</dt><dd><em>운행 여부 확인 후 기재</em></dd></div>
+      </dl>
+    </section>
+
+    <!-- ───────── 피로연 · 뒷풀이 ───────── -->
+    <section class="sec sec--tint">
+      <span class="label">Also</span>
+      <h3 class="sec-title">예식 외에 마련한 자리</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+
+      <div class="event event--brick">
+        <span class="tag">Reception · Jecheon</span>
+        <h4>제천 피로연</h4>
+        <p>
+          예식이 천안에서 열리는 탓에<br>
+          제천에 계신 분들께서는 걸음이 쉽지 않으실 듯합니다.<br><br>
+          그래서 결혼식에 앞서<br>
+          제천에 따로 자리를 마련했습니다.<br><br>
+          부담 없이 오셔서 편히 식사하시고<br>
+          축하 한마디만 남겨 주시면 충분합니다.
+        </p>
+        <div class="when-box">
+          <b>2026년 10월 31일 토요일 오후 6시</b><br>
+          제천 더그랜드컨벤션센터<br>
+          충북 제천시 청전대로 51 · 043-652-3000
+        </div>
+      </div>
+
+      <div class="event event--olive">
+        <span class="tag">After Party</span>
+        <h4>뒷풀이</h4>
+        <p>
+          예식이 끝나고 편한 사람들끼리<br>
+          한 잔 더 하려고 합니다.<br>
+          오래 못 본 얼굴들 보고 가세요.
+        </p>
+        <div class="when-box">
+          <span class="tbd">일시 · 장소 미정 — 확정 후 업데이트</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── 참석 여부 ───────── -->
+    <section class="sec">
+      <span class="label">R.S.V.P</span>
+      <h3 class="sec-title">참석 여부</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <p class="rsvp-intro">
+        자리를 준비하는 데 큰 도움이 됩니다.<br>
+        해당하는 자리만 눌러 주세요.
+      </p>
+
+      <div class="q">
+        <div class="qt">본식</div>
+        <div class="qs">11월 14일(토) 오전 11시 · 천안 더포레웨딩홀</div>
+        <div class="opts" role="group" aria-label="본식 참석 여부">
+          <button class="opt" aria-pressed="false">참석</button>
+          <button class="opt" aria-pressed="false">미정</button>
+          <button class="opt" aria-pressed="false">어려움</button>
+        </div>
+      </div>
+
+      <div class="q q--brick">
+        <div class="qt">제천 피로연</div>
+        <div class="qs">10월 31일(토) 오후 6시 · 더그랜드컨벤션센터</div>
+        <div class="opts" role="group" aria-label="제천 피로연 참석 여부">
+          <button class="opt" aria-pressed="false">참석</button>
+          <button class="opt" aria-pressed="false">미정</button>
+          <button class="opt" aria-pressed="false">어려움</button>
+        </div>
+      </div>
+
+      <div class="q q--olive">
+        <div class="qt">뒷풀이</div>
+        <div class="qs">예식 당일 저녁 · 장소 확정 후 안내</div>
+        <div class="opts" role="group" aria-label="뒷풀이 참석 여부">
+          <button class="opt" aria-pressed="false">참석</button>
+          <button class="opt" aria-pressed="false">미정</button>
+          <button class="opt" aria-pressed="false">어려움</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <input type="text" id="rsvpName" placeholder="성함" aria-label="성함">
+        <input type="text" id="rsvpCount" placeholder="동반 인원" aria-label="동반 인원" inputmode="numeric">
+      </div>
+      <button class="btn btn--solid" id="rsvpBtn" style="width:100%">참석 여부 전하기</button>
+      <p class="pending" id="rsvpMsg" hidden></p>
+    </section>
+
+    <!-- ───────── 마음 전하실 곳 ───────── -->
+    <section class="sec sec--tint">
+      <span class="label">Gifts</span>
+      <h3 class="sec-title">마음 전하실 곳</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <p class="gift-note">
+        참석이 어려우시거나<br>
+        당일의 번거로움을 덜고 싶으신 분들은<br>
+        <em>아래 계좌로 마음 전해 주셔도 좋습니다.</em><br><br>
+        어떤 방법이든 저희에게는<br>
+        똑같이 귀한 축하입니다.
+      </p>
+
+      <details>
+        <summary>신랑측</summary>
+        <div class="acct"><span class="who">신랑</span><span class="no">최준혁 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+        <div class="acct"><span class="who">아버지</span><span class="no">최상귀 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+        <div class="acct"><span class="who">어머니</span><span class="no">이미선 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+      </details>
+      <details>
+        <summary>신부측</summary>
+        <div class="acct"><span class="who">신부</span><span class="no">이은수 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+        <div class="acct"><span class="who">아버지</span><span class="no">이천학 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+        <div class="acct"><span class="who">어머니</span><span class="no">정효정 · 은행 000-0000-0000</span><button class="copy">복사</button></div>
+      </details>
+      <p class="pending">계좌번호는 알려주시는 대로 채워 넣겠습니다</p>
+    </section>
+
+    <!-- ───────── 방명록 ───────── -->
+    <section class="sec">
+      <span class="label">Guestbook</span>
+      <h3 class="sec-title">축하 한마디</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <div class="gb-list" id="gbList"></div>
+      <div class="field">
+        <input type="text" id="gbName" placeholder="이름" aria-label="이름">
+      </div>
+      <textarea id="gbText" placeholder="축하 메시지를 남겨 주세요"></textarea>
+      <button class="btn btn--solid" id="gbBtn" style="width:100%">등록</button>
+    </section>
+
+    <!-- ───────── 하객 사진 ───────── -->
+    <section class="sec sec--tint">
+      <span class="label">Your Photos</span>
+      <h3 class="sec-title">사진 보내주세요</h3>
+      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      </svg>
+      <p class="up-note">
+        오늘 찍어주신 사진을 남겨 주세요.<br>
+        저희가 못 본 순간들이 훨씬 많을 겁니다.<br><br>
+        <span style="color:var(--ink-3);font-size:11.5px">
+          로그인 없이 바로 올라갑니다 · 여러 장 한 번에 가능
+        </span>
+      </p>
+
+      <div class="field">
+        <input type="text" id="upName" placeholder="보내시는 분 (선택)" aria-label="보내시는 분">
+      </div>
+
+      <input type="file" id="upInput" accept="image/*" multiple hidden>
+      <button class="up-drop" id="upDrop" type="button">
+        <svg width="30" height="26" viewBox="0 0 30 26" fill="none" aria-hidden="true">
+          <rect x="1.5" y="5.5" width="27" height="19" rx="3" stroke="#C9A16B" stroke-width="1.2"/>
+          <path d="M9.5 5.5l2-4h7l2 4" stroke="#C9A16B" stroke-width="1.2" fill="none"/>
+          <circle cx="15" cy="15" r="5.5" stroke="#DD6A32" stroke-width="1.2"/>
+        </svg>
+        <span class="big">사진 고르기</span>
+        <span class="sub">JPG · PNG · 한 장씩 차례로 올라갑니다</span>
+      </button>
+
+      <div class="up-bar" id="upBar" hidden><i></i></div>
+      <div class="up-list" id="upList"></div>
+    </section>
+
+    <footer class="foot">
+      <div class="script">Thank you</div>
+      <p>최준혁 · 이은수<br>2026 . 11 . 14</p>
+    </footer>
+
+  </main>
+
+  <div class="note-bar">배경음악 · 사랑은 마치 (뮤지컬 레드북) — 음원 파일 연결 예정</div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   설정 — 이 두 줄만 채우면 전부 동작합니다
+   ═══════════════════════════════════════════════════════ */
+
+/* 구글 Apps Script 웹 앱 URL. 비워두면 응답이 기기에만 저장됩니다. */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzlh8IHtKFzhfUCKeneZ2BvYS8tcQGKEQaU2Hx2gIuBsn1GEzZqcygl8_QYRQHVFww6/exec";
+
+/* 배경음악 파일 (base64 data URI). 비워두면 재생 버튼이 안내만 띄웁니다. */
+const BGM_SRC = "";
+
+const bgm = document.getElementById('bgm');
+const bgmLabel = document.getElementById('bgmLabel');
+let audio = null;
+
+bgm.addEventListener('click', () => {
+  if (!BGM_SRC) {
+    bgmLabel.textContent = '음원 연결 예정';
+    setTimeout(() => { bgmLabel.textContent = '사랑은 마치'; }, 1800);
+    return;
+  }
+  if (!audio) { audio = new Audio(BGM_SRC); audio.loop = true; }
+  if (audio.paused) { audio.play(); bgm.dataset.playing = 'true'; }
+  else { audio.pause(); bgm.dataset.playing = 'false'; }
+});
+
+/* ── 서버 전송 ──
+   이 파일은 두 곳에서 그대로 돌아간다.
+   ① Apps Script 가 직접 띄운 경우 → google.script.run 으로 바로 호출 (동일 출처)
+   ② 일반 웹호스팅에 올린 경우      → ENDPOINT 로 fetch
+   Apps Script 웹 앱은 사전 요청(preflight)을 못 받으므로
+   ②에서는 text/plain 으로 보내 단순 요청으로 만든다. 본문은 그대로 JSON. */
+const ON_GAS = typeof google !== 'undefined' && google.script && !!google.script.run;
+
+function callGas(fn, arg){
+  return new Promise((resolve, reject) => {
+    google.script.run.withSuccessHandler(resolve).withFailureHandler(reject)[fn](arg);
+  });
+}
+
+const GAS_FN = { rsvp:'apiSaveRsvp', guestbook:'apiSaveGuestbook', photo:'apiSavePhoto' };
+
+async function sendToSheet(payload){
+  if (ON_GAS){
+    try { const r = await callGas(GAS_FN[payload.type], payload); return !!(r && r.ok); }
+    catch { return false; }
+  }
+  if (!ENDPOINT) return false;
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    const out = await res.json();
+    return !!(out && out.ok);
+  } catch {
+    try {
+      await fetch(ENDPOINT, { method:'POST', mode:'no-cors', body: JSON.stringify(payload) });
+      return true;
+    } catch { return false; }
+  }
+}
+
+/* ── 참석 여부 ── 항목별 단일 선택 + 기기에 저장 */
+const RSVP_KEY = 'rsvp.junhyuk-eunsu';
+const groups = [...document.querySelectorAll('.opts')];
+const EVENT_KEYS = ['ceremony', 'reception', 'afterparty'];
+
+groups.forEach(group => {
+  group.addEventListener('click', e => {
+    const btn = e.target.closest('.opt');
+    if (!btn) return;
+    group.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+  });
+});
+
+function restoreRsvp(){
+  let saved;
+  try { saved = JSON.parse(localStorage.getItem(RSVP_KEY) || 'null'); } catch { return; }
+  if (!saved || !Array.isArray(saved.answers)) return;
+  groups.forEach((group, i) => {
+    const pick = saved.answers[i];
+    if (pick == null) return;
+    const btns = group.querySelectorAll('.opt');
+    if (btns[pick]) btns[pick].setAttribute('aria-pressed', 'true');
+  });
+  document.getElementById('rsvpName').value = saved.name || '';
+  document.getElementById('rsvpCount').value = saved.count || '';
+  showRsvpMsg('이미 전달해 주셨습니다. 수정하시면 다시 저장됩니다.');
+}
+
+function showRsvpMsg(text){
+  const msg = document.getElementById('rsvpMsg');
+  msg.hidden = false;
+  msg.textContent = text;
+}
+
+const rsvpBtn = document.getElementById('rsvpBtn');
+rsvpBtn.addEventListener('click', async () => {
+  const name = document.getElementById('rsvpName').value.trim();
+  if (!name) { showRsvpMsg('성함을 입력해 주세요.'); return; }
+
+  const count = document.getElementById('rsvpCount').value.trim();
+  const answers = groups.map(g => {
+    const btns = [...g.querySelectorAll('.opt')];
+    return btns.findIndex(b => b.getAttribute('aria-pressed') === 'true');
+  }).map(i => i === -1 ? null : i);
+
+  try { localStorage.setItem(RSVP_KEY, JSON.stringify({ name, count, answers })); } catch {}
+
+  const payload = { type: 'rsvp', name, count };
+  answers.forEach((pick, i) => {
+    payload[EVENT_KEYS[i]] = pick == null ? '무응답' : groups[i].querySelectorAll('.opt')[pick].textContent;
+  });
+
+  rsvpBtn.disabled = true;
+  rsvpBtn.textContent = '보내는 중…';
+  await sendToSheet(payload);
+  rsvpBtn.disabled = false;
+  rsvpBtn.textContent = '참석 여부 전하기';
+  showRsvpMsg('전달되었습니다. 감사합니다.');
+});
+
+/* ── 방명록 ── 기기에 저장 */
+const GB_KEY = 'guestbook.junhyuk-eunsu';
+const gbList = document.getElementById('gbList');
+
+function loadGb(){
+  try { return JSON.parse(localStorage.getItem(GB_KEY) || '[]'); } catch { return []; }
+}
+/* 스프레드시트에 쌓인 전체 방명록을 불러온다. 실패하면 기기 저장분을 쓴다. */
+async function fetchGb(){
+  try {
+    if (ON_GAS){
+      const data = await callGas('apiGetGuestbook');
+      if (data && data.ok && Array.isArray(data.entries)) renderGb(data.entries);
+      return;
+    }
+    if (!ENDPOINT) return;
+    const res = await fetch(ENDPOINT + '?api=guestbook');
+    const data = await res.json();
+    if (data && data.ok && Array.isArray(data.entries)) renderGb(data.entries);
+  } catch {}
+}
+function renderGb(list){
+  const entries = list || loadGb();
+  gbList.replaceChildren();
+  if (!entries.length){
+    const empty = document.createElement('p');
+    empty.className = 'pending';
+    empty.style.margin = '0 0 4px';
+    empty.textContent = '첫 번째 축하 메시지를 남겨 주세요';
+    gbList.append(empty);
+    return;
+  }
+  entries.forEach(en => {
+    const item = document.createElement('div');
+    item.className = 'gb-item';
+    const head = document.createElement('div');
+    head.className = 'gh';
+    const b = document.createElement('b'); b.textContent = en.name;
+    const s = document.createElement('span'); s.textContent = en.date;
+    head.append(b, s);
+    const p = document.createElement('p'); p.textContent = en.text;
+    item.append(head, p);
+    gbList.append(item);
+  });
+}
+
+const gbBtn = document.getElementById('gbBtn');
+gbBtn.addEventListener('click', async () => {
+  const name = document.getElementById('gbName');
+  const text = document.getElementById('gbText');
+  if (!name.value.trim() || !text.value.trim()) return;
+
+  const entry = {
+    name: name.value.trim(),
+    text: text.value.trim(),
+    date: (() => { const d = new Date();
+      return String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0'); })()
+  };
+
+  const entries = loadGb();
+  entries.unshift(entry);
+  try { localStorage.setItem(GB_KEY, JSON.stringify(entries)); } catch {}
+  name.value = ''; text.value = '';
+  renderGb();
+
+  gbBtn.disabled = true;
+  gbBtn.textContent = '등록 중…';
+  await sendToSheet({ type: 'guestbook', name: entry.name, text: entry.text });
+  gbBtn.disabled = false;
+  gbBtn.textContent = '등록';
+  fetchGb();
+});
+
+/* ═══════════════ 하객 사진 업로드 ═══════════════
+   원본은 용량이 커서 전송이 자주 실패한다. 긴 변 2400px, JPEG 90%로
+   줄여 보낸다. 인화용이 아니라 기록용이므로 이 정도면 충분하다. */
+const MAX_SIDE = 2400;
+const JPEG_QUALITY = 0.9;
+const MAX_BYTES = 7 * 1024 * 1024;
+
+const upInput = document.getElementById('upInput');
+const upDrop  = document.getElementById('upDrop');
+const upList  = document.getElementById('upList');
+const upBar   = document.getElementById('upBar');
+
+upDrop.addEventListener('click', () => upInput.click());
+upInput.addEventListener('change', () => {
+  const files = [...upInput.files];
+  upInput.value = '';
+  if (files.length) uploadAll(files);
+});
+
+async function shrink(file){
+  const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+  const scale = Math.min(1, MAX_SIDE / Math.max(bitmap.width, bitmap.height));
+  const w = Math.round(bitmap.width * scale);
+  const h = Math.round(bitmap.height * scale);
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  canvas.getContext('2d').drawImage(bitmap, 0, 0, w, h);
+  bitmap.close?.();
+  const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', JPEG_QUALITY));
+  return blob || file;
+}
+
+function toBase64(blob){
+  return new Promise((resolve, reject) => {
+    const fr = new FileReader();
+    fr.onload = () => resolve(String(fr.result).split(',')[1]);
+    fr.onerror = reject;
+    fr.readAsDataURL(blob);
+  });
+}
+
+function addRow(name){
+  const row = document.createElement('div');
+  row.className = 'up-row';
+  const fn = document.createElement('span');
+  fn.className = 'fn'; fn.textContent = name;
+  const st = document.createElement('span');
+  st.className = 'st'; st.textContent = '대기';
+  row.append(fn, st);
+  upList.append(row);
+  return st;
+}
+
+async function uploadAll(files){
+  if (!ON_GAS && !ENDPOINT){
+    addRow(files[0].name).textContent = '연결 전';
+    return;
+  }
+  const who = document.getElementById('upName').value.trim();
+  const rows = files.map(f => addRow(f.name));
+
+  upBar.hidden = false;
+  const fill = upBar.querySelector('i');
+  fill.style.width = '0%';
+  upDrop.disabled = true;
+
+  for (let i = 0; i < files.length; i++){
+    const st = rows[i];
+    st.textContent = '올리는 중';
+    try {
+      let blob;
+      try { blob = await shrink(files[i]); }
+      catch { blob = files[i]; }
+
+      if (blob.size > MAX_BYTES){
+        st.textContent = '용량 초과';
+        st.className = 'st err';
+        continue;
+      }
+
+      const ok = await sendToSheet({
+        type: 'photo',
+        name: who,
+        mime: blob.type || 'image/jpeg',
+        data: await toBase64(blob)
+      });
+      st.textContent = ok ? '완료' : '실패';
+      st.className = 'st ' + (ok ? 'ok' : 'err');
+
+    } catch {
+      st.textContent = '실패';
+      st.className = 'st err';
+    }
+    fill.style.width = Math.round(((i + 1) / files.length) * 100) + '%';
+  }
+
+  upDrop.disabled = false;
+  setTimeout(() => { upBar.hidden = true; }, 1200);
+}
+
+/* ── 계좌 복사 ── */
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const no = btn.parentElement.querySelector('.no').textContent;
+    navigator.clipboard?.writeText(no);
+    const prev = btn.textContent;
+    btn.textContent = '복사됨';
+    setTimeout(() => { btn.textContent = prev; }, 1400);
+  });
+});
+
+restoreRsvp();
+renderGb();
+fetchGb();
+</script>
+
+</body>
+</html>
