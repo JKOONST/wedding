@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jkoonst.github.io/wedding/">
 <meta property="og:title" content="최준혁 · 이은수 결혼합니다">
-<meta property="og:description" content="2026년 11월 14일 토요일 오전 11시 · 천안 더포레웨딩홀 4층 5층">
+<meta property="og:description" content="2026년 11월 14일 토요일 오전 11시 · 천안 더포레웨딩홀 5층 예식장">
 <meta property="og:image" content="https://jkoonst.github.io/wedding/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -136,9 +136,18 @@ body{
 .greet p + p{ margin-top:15px; }
 /* 준 · 혁 · 은 · 수 — 종이 청첩장과 같은 방식으로 해당 글자만 짚어준다 */
 .greet .pt{ color:var(--gold-deep); font-weight:700; }
+/* 혼주 이름 양옆에 신랑·신부 캐릭터. 좁은 화면에서는 폭을 조금 줄인다. */
+.parents-row{
+  margin-top:6px; display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.char{ width:52px; height:auto; flex:0 0 auto; }
 .parents{
-  margin-top:6px; display:flex; flex-direction:column; gap:10px;
+  display:flex; flex-direction:column; gap:10px;
   font-size:13px; text-align:center; color:var(--ink-2);
+}
+@media (max-width:380px){
+  .char{ width:42px; }
+  .parents{ font-size:12px; }
 }
 .parents span{ color:var(--ink-3); font-size:11.5px; padding:0 4px; }
 .parents b{ font-weight:400; color:var(--ink); letter-spacing:.03em; }
@@ -185,12 +194,12 @@ body{
 .route .hi{ color:var(--gold-deep); }
 
 .route--shuttle{
-  background:#FBF3E7; border:1px solid var(--warm-line);
+  background:#FBF3E7; border:1px solid var(--brick-line);
   border-radius:5px; padding:22px 20px;
 }
 .route--shuttle h5::before{ background:var(--rose); }
-.stops{ margin-top:13px; border-top:1px solid var(--warm-line); }
-.stop{ display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--warm-line); font-size:12px; }
+.stops{ margin-top:13px; border-top:1px solid var(--brick-line); }
+.stop{ display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--brick-line); font-size:12px; }
 .stop:last-child{ border-bottom:none; padding-bottom:0; }
 .stop .t{ flex:0 0 74px; color:var(--brick-deep); font-variant-numeric:tabular-nums; }
 .stop .w{ flex:1; color:var(--ink-2); line-height:1.7; }
@@ -243,7 +252,7 @@ body{
   color:rgba(255,250,244,.66); font-variant-numeric:tabular-nums;
 }
 
-/* ═══════════════ 피로연 · 뒷풀이 ═══════════════ */
+/* ═══════════════ 피로연 · 뒤풀이 ═══════════════ */
 .event{ padding:30px 26px; border-radius:5px; border:1px solid; }
 .event + .event{ margin-top:14px; }
 .event .tag{
@@ -276,7 +285,7 @@ body{
 .rsvp-intro{ text-align:center; font-size:13px; line-height:2.05; color:var(--ink-2); margin:0 0 16px; }
 .rsvp-ask{
   text-align:center; font-size:12.5px; line-height:1.95; color:var(--brick-deep);
-  background:#FBF3E7; border:1px solid var(--warm-line); border-radius:5px;
+  background:#FBF3E7; border:1px solid var(--brick-line); border-radius:5px;
   padding:15px 16px; margin:0 0 26px;
 }
 .rsvp-ask b{ font-weight:600; }
@@ -364,7 +373,13 @@ textarea::placeholder{ color:var(--ink-3); }
 .bgm .t{ font-size:10.5px; letter-spacing:.05em; color:#A87F45; white-space:nowrap; }
 
 /* ═══════════════ 하객 사진 ═══════════════ */
-.up-note{ text-align:center; font-size:12.5px; line-height:2.05; color:var(--ink-2); margin:0 0 22px; }
+.up-note{ text-align:center; font-size:12.5px; line-height:2.05; color:var(--ink-2); margin:0 0 16px; }
+.up-prize{
+  text-align:center; font-size:12.5px; line-height:1.95; color:var(--brick-deep);
+  background:#FBF1E6; border:1px solid var(--brick-line); border-radius:5px;
+  padding:14px 16px; margin:0 0 22px;
+}
+.up-prize b{ font-weight:600; }
 .up-drop{
   border:1px dashed var(--gold); border-radius:6px; background:var(--paper);
   padding:28px 18px; text-align:center; cursor:pointer; display:block; width:100%;
@@ -407,20 +422,22 @@ textarea::placeholder{ color:var(--ink-3); }
       <img class="cover-img" src="cover.jpg"
            alt="최준혁과 이은수의 청첩장 표지. Our Wedding Day, 2026년 11월 14일 오전 11시."
            width="1054" height="1492">
-      <div class="cover-venue">천안 더포레웨딩홀 4층 · 5층</div>
+      <div class="cover-venue">천안 더포레웨딩홀 5층 예식장</div>
     </header>
 
     <!-- ───────── 인사말 ───────── -->
     <section class="sec sec--tint">
       <span class="label">Invitation</span>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <div class="greet">
-        <p><b class="pt">준</b>비된 듯 서로의 세상에<br>운명처럼 빠져들었습니다.</p>
+        <p><b class="pt">준</b>비된 만남인 듯 서로의 세상에<br>운명처럼 빠져 들었습니다.</p>
         <p>준<b class="pt">혁</b>이가 걸어온 단단한 삶 옆에<br>은수가 따스하게 스며들고</p>
         <p><b class="pt">은</b>수가 그려온 다채로운 삶 곁을<br>준혁이가 든든하게 감싸며</p>
-        <p><b class="pt">수</b>놓아갈 우리의 모든 날을<br>모두 함께 축복해주세요.</p>
+        <p><b class="pt">수</b>놓아 갈 우리의 모든 날을<br>함께 축복해 주세요.</p>
       </div>
       <div class="hr-sprig">
         <svg width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
@@ -429,9 +446,13 @@ textarea::placeholder{ color:var(--ink-3); }
           <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
         </svg>
       </div>
-      <div class="parents">
-        <div><b>최상귀 · 이미선</b> <span>의 장남</span> <b>최준혁</b></div>
-        <div><b>이천학 · 정효정</b> <span>의 장녀</span> <b>이은수</b></div>
+      <div class="parents-row">
+        <img class="char" src="char-groom.png" alt="" width="150" height="294">
+        <div class="parents">
+          <div><b>최상귀 · 이미선</b> <span>의 장남</span> <b>최준혁</b></div>
+          <div><b>이천학 · 정효정</b> <span>의 장녀</span> <b>이은수</b></div>
+        </div>
+        <img class="char" src="char-bride.png" alt="" width="150" height="326">
       </div>
     </section>
 
@@ -439,12 +460,15 @@ textarea::placeholder{ color:var(--ink-3); }
     <section class="sec">
       <span class="label">Ceremony</span>
       <h3 class="sec-title">예식 안내</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <p class="info-lines">
         <b>2026년 11월 14일 토요일 오전 11시</b><br>
-        천안 더포레웨딩홀 4층 · 5층
+        천안 더포레웨딩홀<br>
+        <span style="font-size:12.5px">4층 축의대 · 5층 예식장</span>
       </p>
       <table class="cal" aria-label="2026년 11월">
         <thead><tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr></thead>
@@ -462,8 +486,10 @@ textarea::placeholder{ color:var(--ink-3); }
     <section class="sec sec--tint">
       <span class="label">Gallery</span>
       <h3 class="sec-title">우리의 순간</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <div class="grid" id="gallery">
         <button type="button"><img src="photo1.jpg" alt="웨딩 사진 1" loading="lazy"></button>
@@ -482,11 +508,14 @@ textarea::placeholder{ color:var(--ink-3); }
     <section class="sec">
       <span class="label">Location</span>
       <h3 class="sec-title">오시는 길</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <p class="info-lines">
-        <b>천안 더포레웨딩홀</b> 4층 · 5층<br>
+        <b>천안 더포레웨딩홀</b><br>
+        4층 축의대 · 5층 예식장<br>
         충남 천안시 동남구 다가말2길 104<br>
         <span style="font-size:11.5px;color:var(--ink-3)">지번 · 다가동 405-6</span>
       </p>
@@ -545,12 +574,14 @@ textarea::placeholder{ color:var(--ink-3); }
       </div>
     </section>
 
-    <!-- ───────── 피로연 · 뒷풀이 ───────── -->
+    <!-- ───────── 피로연 · 뒤풀이 ───────── -->
     <section class="sec sec--tint">
       <span class="label">Also</span>
       <h3 class="sec-title">예식 외에 마련한 자리</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
 
       <div class="event event--brick">
@@ -566,14 +597,14 @@ textarea::placeholder{ color:var(--ink-3); }
         </p>
         <div class="when-box">
           <b>2026년 10월 31일 토요일 오후 6시</b><br>
-          제천 더그랜드컨벤션센터<br>
+          제천 더그랜드컨벤션센터 3층<br>
           충북 제천시 청전대로 51 · 043-652-3000
         </div>
       </div>
 
       <div class="event event--olive">
         <span class="tag">After Party</span>
-        <h4>뒷풀이</h4>
+        <h4>뒤풀이</h4>
         <p>
           예식만 보고 헤어지기 아쉬워<br>
           따로 자리를 마련했습니다.<br><br>
@@ -590,17 +621,19 @@ textarea::placeholder{ color:var(--ink-3); }
     <section class="sec">
       <span class="label">R.S.V.P</span>
       <h3 class="sec-title">참석 여부</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <p class="rsvp-intro">
         자리를 준비하는 데 큰 도움이 됩니다.<br>
         해당하는 자리만 눌러 주세요.
       </p>
       <p class="rsvp-ask">
-        <b>제천 피로연</b>과 <b>뒷풀이</b>는<br>
-        식사와 자리를 미리 맞춰야 해서<br>
-        가능하시면 꼭 남겨 주시면 감사하겠습니다.
+        <b>제천 피로연</b>과 <b>뒤풀이</b>는<br>
+        식사와 자리를 미리 맞춰야 합니다.<br>
+        가능하시면 꼭 남겨 주세요.
       </p>
 
       <div class="q">
@@ -624,9 +657,9 @@ textarea::placeholder{ color:var(--ink-3); }
       </div>
 
       <div class="q q--olive">
-        <div class="qt">뒷풀이 <span class="must">꼭 부탁드려요</span></div>
+        <div class="qt">뒤풀이 <span class="must">꼭 부탁드려요</span></div>
         <div class="qs">예식 당일 저녁 · 장소 확정 후 안내</div>
-        <div class="opts" role="group" aria-label="뒷풀이 참석 여부">
+        <div class="opts" role="group" aria-label="뒤풀이 참석 여부">
           <button class="opt" aria-pressed="false">참석</button>
           <button class="opt" aria-pressed="false">미정</button>
           <button class="opt" aria-pressed="false">어려움</button>
@@ -645,8 +678,10 @@ textarea::placeholder{ color:var(--ink-3); }
     <section class="sec sec--tint">
       <span class="label">Gifts</span>
       <h3 class="sec-title">마음 전하실 곳</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <p class="gift-note">
         참석이 어려우시거나<br>
@@ -659,11 +694,6 @@ textarea::placeholder{ color:var(--ink-3); }
       <details>
         <summary>신랑측</summary>
         <div class="acct">
-          <span class="who">신랑</span>
-          <span class="no"><em>최준혁</em>농협 312-0089-6571-61</span>
-          <button class="copy" data-no="312-0089-6571-61">복사</button>
-        </div>
-        <div class="acct">
           <span class="who">아버지</span>
           <span class="no"><em>최상귀</em>농협 312-02-035734</span>
           <button class="copy" data-no="312-02-035734">복사</button>
@@ -673,14 +703,14 @@ textarea::placeholder{ color:var(--ink-3); }
           <span class="no"><em>이미선</em>농협 173283-52-069981</span>
           <button class="copy" data-no="173283-52-069981">복사</button>
         </div>
+        <div class="acct">
+          <span class="who">신랑</span>
+          <span class="no"><em>최준혁</em>농협 312-0089-6571-61</span>
+          <button class="copy" data-no="312-0089-6571-61">복사</button>
+        </div>
       </details>
       <details>
         <summary>신부측</summary>
-        <div class="acct">
-          <span class="who">신부</span>
-          <span class="no"><em>이은수</em>농협 174745-56-004731</span>
-          <button class="copy" data-no="174745-56-004731">복사</button>
-        </div>
         <div class="acct">
           <span class="who">아버지</span>
           <span class="no"><em>이천학</em>농협 404-02-014122</span>
@@ -691,6 +721,11 @@ textarea::placeholder{ color:var(--ink-3); }
           <span class="no"><em>정효정</em>농협 356-0289-7386-63</span>
           <button class="copy" data-no="356-0289-7386-63">복사</button>
         </div>
+        <div class="acct">
+          <span class="who">신부</span>
+          <span class="no"><em>이은수</em>농협 174745-56-004731</span>
+          <button class="copy" data-no="174745-56-004731">복사</button>
+        </div>
       </details>
     </section>
 
@@ -698,8 +733,10 @@ textarea::placeholder{ color:var(--ink-3); }
     <section class="sec">
       <span class="label">Guestbook</span>
       <h3 class="sec-title">축하 한마디</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <div class="gb-list" id="gbList"></div>
       <div class="field">
@@ -712,16 +749,23 @@ textarea::placeholder{ color:var(--ink-3); }
     <!-- ───────── 하객 사진 ───────── -->
     <section class="sec sec--tint">
       <span class="label">Your Photos</span>
-      <h3 class="sec-title">사진 보내주세요</h3>
-      <svg class="archline" width="46" height="20" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M3 19V13a20 20 0 0140 0v6" stroke="#C9A16B" stroke-width="1"/>
+      <h3 class="sec-title">사진 보내 주세요</h3>
+      <svg class="archline" width="86" height="14" viewBox="0 0 86 14" fill="none" aria-hidden="true">
+        <path d="M4 7h29M53 7h29" stroke="#E0D3BB" stroke-width="1"/>
+        <path d="M43 7c-2.6-4.2-7-5.2-9.6-4.3C35.4 6.1 39.9 7.9 43 7zM43 7c2.6-4.2 7-5.2 9.6-4.3C50.6 6.1 46.1 7.9 43 7z" fill="#A9B788"/>
+        <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <p class="up-note">
-        오늘 찍어주신 사진을 남겨 주세요.<br>
+        오늘 찍어 주신 사진을 남겨 주세요.<br>
         저희가 못 본 순간들이 훨씬 많을 겁니다.<br><br>
         <span style="color:var(--ink-3);font-size:11.5px">
           로그인 없이 바로 올라갑니다 · 여러 장 한 번에 가능
         </span>
+      </p>
+
+      <p class="up-prize">
+        가장 많이 보내 주신 분께<br>
+        <b>치킨 기프티콘</b>을 보내 드립니다 🍗
       </p>
 
       <div class="field">
