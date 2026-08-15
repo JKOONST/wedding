@@ -136,18 +136,22 @@ body{
 .greet p + p{ margin-top:15px; }
 /* 준 · 혁 · 은 · 수 — 종이 청첩장과 같은 방식으로 해당 글자만 짚어준다 */
 .greet .pt{ color:var(--gold-deep); font-weight:700; }
-/* 혼주 이름 양옆에 신랑·신부 캐릭터. 좁은 화면에서는 폭을 조금 줄인다. */
+/* 혼주 이름 양옆에 신랑·신부 캐릭터.
+   음수 여백으로 섹션 안쪽 여백을 파고들어 카드 가장자리까지 벌린다. */
 .parents-row{
-  margin-top:6px; display:flex; align-items:center; justify-content:center; gap:6px;
+  margin:8px -16px 0;
+  display:flex; align-items:center; justify-content:space-between; gap:4px;
 }
-.char{ width:52px; height:auto; flex:0 0 auto; }
+.char{ width:58px; height:auto; flex:0 0 auto; }
 .parents{
+  flex:1 1 auto;
   display:flex; flex-direction:column; gap:10px;
   font-size:13px; text-align:center; color:var(--ink-2);
 }
 @media (max-width:380px){
-  .char{ width:42px; }
-  .parents{ font-size:12px; }
+  .parents-row{ margin:8px -20px 0; }
+  .char{ width:46px; }
+  .parents{ font-size:11.5px; }
 }
 .parents span{ color:var(--ink-3); font-size:11.5px; padding:0 4px; }
 .parents b{ font-weight:400; color:var(--ink); letter-spacing:.03em; }
@@ -282,14 +286,7 @@ body{
 .tbd{ font-family:"Courier New",monospace; font-size:10.5px; letter-spacing:.09em; color:var(--olive-deep); opacity:.8; }
 
 /* ═══════════════ 참석 여부 ═══════════════ */
-.rsvp-intro{ text-align:center; font-size:13px; line-height:2.05; color:var(--ink-2); margin:0 0 16px; }
-.rsvp-ask{
-  text-align:center; font-size:12.5px; line-height:1.95; color:var(--brick-deep);
-  background:#FBF3E7; border:1px solid var(--brick-line); border-radius:5px;
-  padding:15px 16px; margin:0 0 26px;
-}
-.rsvp-ask b{ font-weight:600; }
-
+.rsvp-intro{ text-align:center; font-size:13px; line-height:2.05; color:var(--ink-2); margin:0 0 28px; }
 .q{ border-top:1px solid var(--line); padding:20px 0 4px; }
 .q:last-of-type{ border-bottom:1px solid var(--line); margin-bottom:22px; }
 .q .qt{ font-size:13.5px; margin-bottom:4px; letter-spacing:.03em; display:flex; align-items:center; gap:7px; }
@@ -404,6 +401,13 @@ textarea::placeholder{ color:var(--ink-3); }
 .foot{ background:#EBDCC5; padding:40px 30px 44px; text-align:center; border-top:1px solid #DFCDB2; }
 .foot .script{ font-size:23px; }
 .foot p{ margin:14px 0 0; font-size:11.5px; letter-spacing:.12em; line-height:2; color:var(--ink-2); }
+.visitor{
+  margin-top:20px; display:flex; align-items:center; justify-content:center; gap:12px;
+  font-family:var(--f-serif); font-size:11px; letter-spacing:.18em; color:var(--ink-3);
+}
+.visitor[hidden]{ display:none; }
+.visitor b{ font-weight:600; color:var(--gold-deep); font-variant-numeric:tabular-nums; letter-spacing:.06em; }
+.visitor i{ width:1px; height:9px; background:var(--line); display:block; }
 
 @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 :focus-visible{ outline:2px solid #A87F45; outline-offset:2px; }
@@ -630,12 +634,6 @@ textarea::placeholder{ color:var(--ink-3); }
         자리를 준비하는 데 큰 도움이 됩니다.<br>
         해당하는 자리만 눌러 주세요.
       </p>
-      <p class="rsvp-ask">
-        <b>제천 피로연</b>과 <b>뒤풀이</b>는<br>
-        식사와 자리를 미리 맞춰야 합니다.<br>
-        가능하시면 꼭 남겨 주세요.
-      </p>
-
       <div class="q">
         <div class="qt">본식</div>
         <div class="qs">11월 14일(토) 오전 11시 · 천안 더포레웨딩홀</div>
@@ -764,7 +762,7 @@ textarea::placeholder{ color:var(--ink-3); }
       </p>
 
       <p class="up-prize">
-        가장 많이 보내 주신 분께<br>
+        보내 주신 분들 중 추첨하여<br>
         <b>치킨 기프티콘</b>을 보내 드립니다 🍗
       </p>
 
@@ -790,6 +788,11 @@ textarea::placeholder{ color:var(--ink-3); }
     <footer class="foot">
       <div class="script">Thank you</div>
       <p>최준혁 · 이은수<br>2026 . 11 . 14</p>
+      <div class="visitor" id="visitor" hidden>
+        <span>TODAY <b id="visToday">0</b></span>
+        <i aria-hidden="true"></i>
+        <span>TOTAL <b id="visTotal">0</b></span>
+      </div>
     </footer>
 
   </main>
@@ -1219,9 +1222,35 @@ document.querySelectorAll('.copy').forEach(btn => {
   });
 });
 
+/* ── 방문자 수 ──
+   같은 사람이 새로고침할 때마다 늘지 않도록, 브라우저 세션당 한 번만 센다. */
+async function trackVisit(){
+  if (!ENDPOINT) return;
+  const KEY = 'visited.junhyuk-eunsu';
+  let fresh = true;
+  try { fresh = !sessionStorage.getItem(KEY); } catch {}
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ type: 'visit', count: fresh })
+    });
+    const d = await res.json();
+    if (!d || !d.ok) return;
+
+    document.getElementById('visToday').textContent = Number(d.today).toLocaleString('ko-KR');
+    document.getElementById('visTotal').textContent = Number(d.total).toLocaleString('ko-KR');
+    document.getElementById('visitor').hidden = false;
+
+    if (fresh) { try { sessionStorage.setItem(KEY, '1'); } catch {} }
+  } catch {}
+}
+
 restoreRsvp();
 renderGb();
 fetchGb();
+trackVisit();
 </script>
 
 </body>
