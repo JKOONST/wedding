@@ -225,14 +225,38 @@ body{
 
 /* ═══════════════ 갤러리 ═══════════════ */
 .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:7px; }
-.grid .ph{
+.grid button{
+  padding:0; border:none; background:none; cursor:pointer;
   aspect-ratio:1; border-radius:4px; overflow:hidden; display:block;
 }
 .grid img{
   width:100%; height:100%; object-fit:cover; display:block;
-  -webkit-touch-callout:none;
+  transition:transform .35s ease;
 }
+.grid button:hover img{ transform:scale(1.04); }
 .pending{ margin-top:18px; text-align:center; font-size:11.5px; color:var(--ink-3); letter-spacing:.03em; }
+
+/* ── 원본 보기 ── */
+.lb{
+  position:fixed; inset:0; z-index:60; background:rgba(24,20,16,.94);
+  display:flex; align-items:center; justify-content:center;
+}
+.lb[hidden]{ display:none; }
+.lb-img{ max-width:94vw; max-height:84vh; object-fit:contain; display:block; }
+.lb-close,.lb-nav{
+  position:absolute; background:none; border:none; cursor:pointer;
+  color:rgba(255,250,244,.82); font-family:inherit;
+}
+.lb-close{ top:14px; right:16px; font-size:22px; padding:8px 12px; }
+.lb-nav{ top:50%; transform:translateY(-50%); font-size:44px; padding:8px 16px; line-height:1; }
+.lb-prev{ left:2px; }
+.lb-next{ right:2px; }
+.lb-close:hover,.lb-nav:hover{ color:#fff; }
+.lb-count{
+  position:absolute; bottom:22px; left:0; right:0; text-align:center;
+  font-family:var(--f-serif); font-size:13px; letter-spacing:.2em;
+  color:rgba(255,250,244,.66); font-variant-numeric:tabular-nums;
+}
 
 /* ═══════════════ 피로연 · 뒤풀이 ═══════════════ */
 .event{ padding:30px 26px; border-radius:5px; border:1px solid; }
@@ -480,27 +504,28 @@ textarea::placeholder{ color:var(--ink-3); }
         <circle cx="43" cy="7" r="2" fill="#C9A16B"/>
       </svg>
       <div class="grid" id="gallery">
-        <div class="ph"><img src="photo1.jpg" alt="웨딩 사진 1" loading="lazy"></div>
-        <div class="ph"><img src="photo2.jpg" alt="웨딩 사진 2" loading="lazy"></div>
-        <div class="ph"><img src="photo3.jpg" alt="웨딩 사진 3" loading="lazy"></div>
-        <div class="ph"><img src="photo4.jpg" alt="웨딩 사진 4" loading="lazy"></div>
-        <div class="ph"><img src="photo5.jpg" alt="웨딩 사진 5" loading="lazy"></div>
-        <div class="ph"><img src="photo6.jpg" alt="웨딩 사진 6" loading="lazy"></div>
-        <div class="ph"><img src="photo7.jpg" alt="웨딩 사진 7" loading="lazy"></div>
-        <div class="ph"><img src="photo8.jpg" alt="웨딩 사진 8" loading="lazy"></div>
-        <div class="ph"><img src="photo9.jpg" alt="웨딩 사진 9" loading="lazy"></div>
-        <div class="ph"><img src="photo10.jpg" alt="웨딩 사진 10" loading="lazy"></div>
-        <div class="ph"><img src="photo11.jpg" alt="웨딩 사진 11" loading="lazy"></div>
-        <div class="ph"><img src="photo12.jpg" alt="웨딩 사진 12" loading="lazy"></div>
-        <div class="ph"><img src="photo13.jpg" alt="웨딩 사진 13" loading="lazy"></div>
-        <div class="ph"><img src="photo14.jpg" alt="웨딩 사진 14" loading="lazy"></div>
-        <div class="ph"><img src="photo15.jpg" alt="웨딩 사진 15" loading="lazy"></div>
-        <div class="ph"><img src="photo16.jpg" alt="웨딩 사진 16" loading="lazy"></div>
-        <div class="ph"><img src="photo17.jpg" alt="웨딩 사진 17" loading="lazy"></div>
-        <div class="ph"><img src="photo18.jpg" alt="웨딩 사진 18" loading="lazy"></div>
-        <div class="ph"><img src="photo19.jpg" alt="웨딩 사진 19" loading="lazy"></div>
-        <div class="ph"><img src="photo20.jpg" alt="웨딩 사진 20" loading="lazy"></div>
+        <button type="button"><img src="photo1.jpg" alt="웨딩 사진 1" loading="lazy"></button>
+        <button type="button"><img src="photo2.jpg" alt="웨딩 사진 2" loading="lazy"></button>
+        <button type="button"><img src="photo3.jpg" alt="웨딩 사진 3" loading="lazy"></button>
+        <button type="button"><img src="photo4.jpg" alt="웨딩 사진 4" loading="lazy"></button>
+        <button type="button"><img src="photo5.jpg" alt="웨딩 사진 5" loading="lazy"></button>
+        <button type="button"><img src="photo6.jpg" alt="웨딩 사진 6" loading="lazy"></button>
+        <button type="button"><img src="photo7.jpg" alt="웨딩 사진 7" loading="lazy"></button>
+        <button type="button"><img src="photo8.jpg" alt="웨딩 사진 8" loading="lazy"></button>
+        <button type="button"><img src="photo9.jpg" alt="웨딩 사진 9" loading="lazy"></button>
+        <button type="button"><img src="photo10.jpg" alt="웨딩 사진 10" loading="lazy"></button>
+        <button type="button"><img src="photo11.jpg" alt="웨딩 사진 11" loading="lazy"></button>
+        <button type="button"><img src="photo12.jpg" alt="웨딩 사진 12" loading="lazy"></button>
+        <button type="button"><img src="photo13.jpg" alt="웨딩 사진 13" loading="lazy"></button>
+        <button type="button"><img src="photo14.jpg" alt="웨딩 사진 14" loading="lazy"></button>
+        <button type="button"><img src="photo15.jpg" alt="웨딩 사진 15" loading="lazy"></button>
+        <button type="button"><img src="photo16.jpg" alt="웨딩 사진 16" loading="lazy"></button>
+        <button type="button"><img src="photo17.jpg" alt="웨딩 사진 17" loading="lazy"></button>
+        <button type="button"><img src="photo18.jpg" alt="웨딩 사진 18" loading="lazy"></button>
+        <button type="button"><img src="photo19.jpg" alt="웨딩 사진 19" loading="lazy"></button>
+        <button type="button"><img src="photo20.jpg" alt="웨딩 사진 20" loading="lazy"></button>
       </div>
+      <p class="pending">사진을 누르면 원본으로 볼 수 있습니다</p>
     </section>
 
     <!-- ───────── 오시는 길 ───────── -->
@@ -794,6 +819,15 @@ textarea::placeholder{ color:var(--ink-3); }
     </footer>
 
   </main>
+</div>
+
+<!-- 갤러리 원본 보기 -->
+<div class="lb" id="lb" hidden>
+  <button class="lb-close" id="lbClose" type="button" aria-label="닫기">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="이전 사진">‹</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="다음 사진">›</button>
+  <div class="lb-count" id="lbCount"></div>
 </div>
 
 <script>
@@ -1160,6 +1194,54 @@ async function uploadAll(files){
   upDrop.disabled = false;
   setTimeout(() => { upBar.hidden = true; }, 1200);
 }
+
+/* ── 갤러리 원본 보기 ── */
+const shots = [...document.querySelectorAll('#gallery img')];
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCount = document.getElementById('lbCount');
+let lbIndex = 0;
+
+function showShot(i){
+  lbIndex = (i + shots.length) % shots.length;
+  lbImg.src = shots[lbIndex].src;
+  lbImg.alt = shots[lbIndex].alt;
+  lbCount.textContent = (lbIndex + 1) + ' / ' + shots.length;
+}
+function openLb(i){
+  showShot(i);
+  lb.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeLb(){
+  lb.hidden = true;
+  document.body.style.overflow = '';
+}
+
+document.getElementById('gallery').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (btn) openLb([...e.currentTarget.children].indexOf(btn));
+});
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); showShot(lbIndex - 1); });
+document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); showShot(lbIndex + 1); });
+lb.addEventListener('click', e => { if (e.target === lb || e.target === lbImg) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (lb.hidden) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') showShot(lbIndex - 1);
+  if (e.key === 'ArrowRight') showShot(lbIndex + 1);
+});
+
+/* 좌우로 밀어 넘기기 */
+let swipeX = null;
+lb.addEventListener('touchstart', e => { swipeX = e.changedTouches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  if (swipeX == null) return;
+  const dx = e.changedTouches[0].clientX - swipeX;
+  if (Math.abs(dx) > 45) showShot(lbIndex + (dx < 0 ? 1 : -1));
+  swipeX = null;
+}, { passive: true });
 
 /* ── 주소 복사 ── */
 document.getElementById('copyAddr').addEventListener('click', (e) => {
