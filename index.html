@@ -1311,15 +1311,23 @@ function showShot(i){
   lbImg.alt = shots[lbIndex].alt;
   lbCount.textContent = (lbIndex + 1) + ' / ' + shots.length;
 }
+/* 사진을 열 때 히스토리 한 칸을 쌓아 두면, 뒤로가기가 페이지 이탈이 아니라 사진 닫기로 동작한다 */
+let lbPushed = false;
 function openLb(i){
   showShot(i);
   lb.hidden = false;
   document.body.style.overflow = 'hidden';
+  if (!lbPushed){ history.pushState({ lb: true }, ''); lbPushed = true; }
 }
-function closeLb(){
+function hideLb(){
   lb.hidden = true;
   document.body.style.overflow = '';
 }
+function closeLb(){
+  if (lbPushed) history.back();
+  else hideLb();
+}
+window.addEventListener('popstate', () => { lbPushed = false; hideLb(); });
 
 document.getElementById('gallery').addEventListener('click', e => {
   const btn = e.target.closest('button');
