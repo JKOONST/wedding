@@ -1539,8 +1539,7 @@ function showCalToast(){
 
 /* ── 참석 여부 팝업 ──
    참석 여부를 이미 전한 기기(RSVP_KEY 가 저장된 곳)에서는 띄우지 않는다.
-   아직인 분께는 접속할 때마다 뜨되, 한 번 닫으면 그 방문(탭) 동안은 다시 뜨지 않는다. */
-const RSVP_POP_KEY = 'rsvppop.junhyuk-eunsu';
+   아직인 분께는 접속(새로고침 포함)할 때마다 뜬다. */
 const rsvpPop = document.getElementById('rsvpPop');
 
 function hasRsvped(){
@@ -1559,7 +1558,6 @@ function closeRsvpPop(goToForm){
   rsvpPop.dataset.open = 'false';
   rsvpPop.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
-  try { sessionStorage.setItem(RSVP_POP_KEY, '1'); } catch {}
   if (goToForm){
     document.getElementById('rsvp').scrollIntoView({ behavior:'smooth', block:'start' });
   } else {
@@ -1574,9 +1572,7 @@ document.addEventListener('keydown', e => {
 });
 
 setTimeout(() => {
-  let shownThisVisit = false;
-  try { shownThisVisit = sessionStorage.getItem(RSVP_POP_KEY) === '1'; } catch {}
-  if (!hasRsvped() && !shownThisVisit){ openRsvpPop(); return; }
+  if (!hasRsvped()){ openRsvpPop(); return; }
   showCalToast();
 }, 1200);
 
