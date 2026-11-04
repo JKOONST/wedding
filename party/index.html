@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>준혁 · 은수 뒷풀이</title>
+<meta name="description" content="2026년 11월 14일 · 쌍용동 라퓨타">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FCF9F5">
+<meta property="og:title" content="준혁 · 은수 뒷풀이">
+<meta property="og:description" content="질문 · 사진 · 축하 메시지 · 무대 신청">
+<meta property="og:image" content="https://jkoonst.github.io/wedding/share.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&family=Parisienne&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+<style>
+/* ═══════════════ 팔레트 — 청첩장과 같은 세계 ═══════════════ */
+:root{
+  --paper:#FCF9F5; --paper-2:#F4EADB; --card:#FFFFFF;
+  --ink:#3A332C; --ink-2:#6B6154; --ink-3:#9C9182;
+  --gold:#C9A16B; --gold-deep:#A87F45; --line:#E6DBC8;
+  --rose:#DD6A32; --rose-soft:#EE9A63;
+  --olive:#8B9A6B; --olive-deep:#67754A;
+  --brick:#BE8158;
+  --ok:#67754A; --bad:#B8472A;
+  --f-sans:"Pretendard Variable",Pretendard,"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",system-ui,sans-serif;
+  --f-myeongjo:"Gowun Batang","Nanum Myeongjo",Batang,serif;
+  --f-serif:"Cormorant Garamond",Georgia,serif;
+  --f-script:"Parisienne","Segoe Script",cursive;
+}
+/* 큰 화면(TV)용 — 어두운 조명 아래에서 잘 보이는 따뜻한 밤색 */
+body.tv{
+  --paper:#1A1410; --paper-2:#251D17; --card:#2B221B;
+  --ink:#F6EFE4; --ink-2:#D2C5B2; --ink-3:#9E8F7B;
+  --gold:#D9B27A; --gold-deep:#E6C48F; --line:#3C3027;
+  --rose:#EE8A5A; --ok:#A9BA86; --bad:#F08A6A;
+}
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--f-sans);
+  line-height:1.6; -webkit-font-smoothing:antialiased; min-height:100vh;
+}
+body.tv{ background:radial-gradient(ellipse at 50% -10%, #3A2A1E 0%, #1A1410 60%) fixed, #1A1410; overflow-x:hidden; }
+button,input,textarea,select{ font:inherit; color:inherit; }
+a{ color:inherit; }
+[hidden]{ display:none !important; }
+
+/* ═══════════════ 휴대폰 공통 ═══════════════ */
+.wrap{ max-width:480px; margin:0 auto; padding:0 16px 48px; }
+.hero{ text-align:center; padding:48px 0 26px; }
+.label{ display:block; font-family:var(--f-serif); font-size:12px; font-weight:500; letter-spacing:.42em; text-transform:uppercase; color:var(--gold); }
+.names{ font-family:var(--f-myeongjo); font-weight:400; font-size:30px; letter-spacing:.12em; margin:10px 0 6px; }
+.names i{ font-family:var(--f-script); font-style:normal; color:var(--gold-deep); font-size:28px; letter-spacing:0; margin:0 4px; }
+.meta{ margin:0; font-size:13px; color:var(--ink-3); letter-spacing:.04em; }
+.arch{ display:block; margin:18px auto 0; }
+
+.tiles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.tile{
+  display:flex; flex-direction:column; align-items:flex-start; gap:10px;
+  padding:18px 16px 16px; border-radius:18px; text-decoration:none;
+  background:var(--card); border:1px solid var(--line);
+  box-shadow:0 10px 24px -18px rgba(90,64,34,.45);
+  transition:transform .15s ease, box-shadow .15s ease; min-height:132px;
+}
+.tile:active{ transform:scale(.97); }
+.tile .ic{ width:42px; height:42px; border-radius:12px; display:grid; place-items:center; color:#fff; }
+.tile b{ font-size:16px; font-weight:700; letter-spacing:-.01em; }
+.tile span{ font-size:12.5px; color:var(--ink-3); line-height:1.4; margin-top:-6px; }
+.ic svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.c1{ background:var(--rose); } .c2{ background:var(--olive-deep); } .c3{ background:var(--gold-deep); }
+.c4{ background:var(--brick); } .c5{ background:#7C6A9A; } .c6{ background:#C4586C; }
+.host-tag{ font-size:10.5px !important; color:var(--gold-deep) !important; letter-spacing:.06em; }
+
+.timeline{ margin-top:22px; background:var(--paper-2); border-radius:16px; padding:4px 18px; }
+.timeline summary{ cursor:pointer; padding:14px 0; font-family:var(--f-myeongjo); font-size:15px; letter-spacing:.08em; list-style:none; display:flex; justify-content:space-between; }
+.timeline summary::after{ content:"펼치기"; font-family:var(--f-sans); font-size:12px; color:var(--ink-3); letter-spacing:0; }
+.timeline[open] summary::after{ content:"접기"; }
+.timeline ol{ list-style:none; margin:0 0 14px; padding:0; }
+.timeline li{ display:flex; gap:14px; padding:7px 0; border-top:1px dashed var(--line); font-size:14px; }
+.timeline li time{ font-family:var(--f-serif); font-size:16px; font-weight:600; color:var(--gold-deep); min-width:46px; }
+.foot{ text-align:center; margin-top:28px; font-size:12px; color:var(--ink-3); }
+.foot a{ color:var(--ink-3); }
+
+.bar{ position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:12px 0; background:var(--paper); }
+.back{ width:40px; height:40px; border-radius:50%; display:grid; place-items:center; text-decoration:none; background:var(--paper-2); font-size:18px; flex:none; }
+.bar h2{ margin:0; font-family:var(--f-myeongjo); font-weight:400; font-size:19px; letter-spacing:.06em; }
+.lead{ color:var(--ink-2); font-size:14px; margin:6px 0 18px; }
+
+.field{ display:block; margin-bottom:16px; }
+.field > span{ display:block; font-size:13px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
+.inp{ width:100%; padding:13px 14px; border-radius:12px; border:1px solid var(--line); background:var(--card); font-size:16px; outline:none; }
+.inp:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,161,107,.18); }
+textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
+.count{ text-align:right; font-size:12px; color:var(--ink-3); margin-top:4px; }
+.seg{ display:flex; gap:8px; flex-wrap:wrap; }
+.seg button{ flex:1; min-width:70px; padding:11px 8px; border-radius:12px; border:1px solid var(--line); background:var(--card); cursor:pointer; font-weight:600; font-size:14px; }
+.seg button[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.btn{ display:block; width:100%; padding:15px; border:0; border-radius:14px; background:var(--rose); color:#fff; font-weight:700; font-size:16px; cursor:pointer; text-align:center; text-decoration:none; }
+.btn:disabled{ opacity:.55; }
+.btn.ghost{ background:transparent; color:var(--ink-2); border:1px solid var(--line); font-weight:600; }
+.btn + .btn{ margin-top:10px; }
+.tvlink{ display:flex; align-items:center; justify-content:center; gap:6px; margin-top:22px; font-size:13px; color:var(--ink-3); text-decoration:none; }
+
+.done{ text-align:center; padding:40px 8px; }
+.done .big{ font-size:46px; }
+.done h3{ font-family:var(--f-myeongjo); font-weight:400; font-size:21px; margin:10px 0 6px; }
+.done p{ color:var(--ink-2); margin:0 0 22px; }
+
+.drop{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:30px 16px; border:1.5px dashed var(--gold); border-radius:16px; background:var(--card); cursor:pointer; text-align:center; color:var(--ink-2); }
+.drop b{ color:var(--ink); font-size:16px; }
+.uplist{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:14px 0; }
+.up{ position:relative; aspect-ratio:1; border-radius:10px; overflow:hidden; background:var(--paper-2); }
+.up img{ width:100%; height:100%; object-fit:cover; display:block; }
+.up i{ position:absolute; inset:auto 0 0 0; padding:3px; font-style:normal; font-size:11px; text-align:center; color:#fff; background:rgba(0,0,0,.45); }
+.up.ok i{ background:rgba(103,117,74,.85); } .up.err i{ background:rgba(184,71,42,.85); }
+
+.demo{ position:fixed; left:50%; bottom:10px; transform:translateX(-50%); z-index:50; background:#3A332C; color:#FCF9F5; font-size:11.5px; padding:5px 12px; border-radius:99px; opacity:.85; pointer-events:none; white-space:nowrap; }
+.toast{ position:fixed; left:50%; top:16px; transform:translate(-50%,-80px); z-index:60; background:var(--ink); color:var(--paper); padding:10px 18px; border-radius:99px; font-size:14px; transition:transform .25s ease; max-width:calc(100% - 32px); }
+.toast.show{ transform:translate(-50%,0); }
+
+/* ═══════════════ 큰 화면(TV) 공통 ═══════════════ */
+.tvwrap{ min-height:100vh; padding:28px 40px 32px; display:flex; flex-direction:column; }
+.tvhead{ display:flex; align-items:center; gap:22px; margin-bottom:22px; }
+.tvhead .ttl{ flex:1; min-width:0; }
+.tvhead h1{ margin:0; word-break:keep-all; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(26px,3.2vw,44px); letter-spacing:.06em; }
+.tvhead p{ margin:2px 0 0; color:var(--ink-3); font-size:clamp(13px,1.2vw,17px); }
+.qr{ display:flex; align-items:center; gap:12px; background:#FCF9F5; color:#3A332C; border-radius:14px; padding:8px 14px 8px 8px; flex:none; }
+.qr .code{ width:84px; height:84px; }
+.qr .code img,.qr .code canvas{ width:84px !important; height:84px !important; display:block; }
+.qr small{ display:block; font-size:12px; color:#6B6154; }
+.qr b{ font-size:15px; }
+.tvtools{ position:fixed; right:14px; bottom:12px; display:flex; gap:8px; opacity:.25; transition:opacity .2s; z-index:20; }
+.tvtools:hover{ opacity:1; }
+.tvtools a,.tvtools button{ background:var(--card); border:1px solid var(--line); color:var(--ink-2); border-radius:10px; padding:7px 12px; font-size:13px; cursor:pointer; text-decoration:none; }
+.tabs{ display:flex; gap:8px; margin-bottom:18px; }
+.tabs button{ background:transparent; border:1px solid var(--line); color:var(--ink-2); border-radius:99px; padding:7px 16px; cursor:pointer; font-size:15px; }
+.tabs button[aria-pressed="true"]{ background:var(--gold); color:#1A1410; border-color:var(--gold); font-weight:700; }
+.empty{ margin:auto; text-align:center; color:var(--ink-3); font-size:clamp(18px,2vw,26px); }
+.empty b{ display:block; font-family:var(--f-myeongjo); font-weight:400; color:var(--ink-2); font-size:clamp(24px,3vw,40px); margin-bottom:8px; }
+@keyframes pop{ from{ opacity:0; transform:translateY(14px) scale(.96); } to{ opacity:1; transform:none; } }
+.new{ animation:pop .5s cubic-bezier(.2,.8,.2,1.2) both; }
+
+/* 질문함 */
+.qgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; align-content:start; }
+.qcard{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px 20px; cursor:pointer; text-align:left; display:flex; flex-direction:column; gap:10px; transition:transform .15s; }
+.qcard:hover{ transform:translateY(-2px); border-color:var(--gold); }
+.qcard p{ margin:0; font-size:clamp(17px,1.5vw,21px); line-height:1.5; word-break:keep-all; overflow-wrap:anywhere; }
+.qcard footer{ display:flex; justify-content:space-between; font-size:13px; color:var(--ink-3); }
+.qcard.is-done{ opacity:.45; }
+.chip{ display:inline-block; align-self:flex-start; font-size:12.5px; font-weight:700; padding:3px 10px; border-radius:99px; background:rgba(217,178,122,.16); color:var(--gold-deep); }
+.chip.신랑{ background:rgba(124,150,190,.18); color:#9DB5DA; } .chip.신부{ background:rgba(238,138,90,.18); color:var(--rose); }
+.spot{ position:fixed; inset:0; z-index:30; background:rgba(12,9,7,.88); display:flex; align-items:center; justify-content:center; padding:5vw; animation:pop .3s ease both; }
+.spot article{ max-width:1100px; width:100%; text-align:center; }
+.spot .chip{ font-size:clamp(16px,1.6vw,22px); padding:6px 18px; align-self:center; }
+.spot p{ font-family:var(--f-myeongjo); font-size:clamp(30px,4.6vw,68px); line-height:1.4; margin:26px 0 18px; word-break:keep-all; overflow-wrap:anywhere; color:#FCF4E6; }
+.spot .who{ color:var(--ink-3); font-size:clamp(16px,1.6vw,22px); }
+.spot .acts{ display:flex; gap:12px; justify-content:center; margin-top:40px; flex-wrap:wrap; }
+.spot .acts button{ border:1px solid var(--line); background:var(--card); color:var(--ink); padding:12px 22px; border-radius:12px; font-size:16px; cursor:pointer; }
+.spot .acts .pri{ background:var(--gold); color:#1A1410; border-color:var(--gold); font-weight:700; }
+
+/* 사진 월 */
+.stage{ position:fixed; inset:0; background:#0E0B09; overflow:hidden; }
+.stage .bgblur{ position:absolute; inset:-40px; background-size:cover; background-position:center; filter:blur(40px) brightness(.45); transition:background-image .8s; }
+.stage img.slide{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition:opacity 1s ease; }
+.stage img.slide.on{ opacity:1; }
+.stage .cap{ position:absolute; left:32px; bottom:28px; right:40%; color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.7); }
+.stage .cap b{ display:block; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(20px,2.4vw,34px); }
+.stage .cap span{ font-size:clamp(14px,1.3vw,18px); opacity:.85; }
+.stage .qr{ position:absolute; right:24px; bottom:24px; }
+.stage .badge{ position:absolute; left:32px; top:26px; background:var(--rose); color:#fff; border-radius:99px; padding:6px 16px; font-weight:700; font-size:clamp(14px,1.3vw,18px); animation:pop .4s ease both; }
+.stage .cnt{ position:absolute; right:28px; top:24px; color:rgba(255,255,255,.6); font-size:15px; }
+.pgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+.pgrid figure{ margin:0; position:relative; aspect-ratio:1; border-radius:12px; overflow:hidden; background:var(--card); }
+.pgrid img{ width:100%; height:100%; object-fit:cover; display:block; }
+.pgrid figure.is-hidden{ opacity:.25; }
+.pgrid button{ position:absolute; right:6px; top:6px; background:rgba(0,0,0,.6); color:#fff; border:0; border-radius:8px; padding:4px 9px; font-size:12px; cursor:pointer; }
+
+/* 메시지 월 */
+.feature{ text-align:center; padding:10px 0 30px; min-height:160px; }
+.feature p{ font-family:var(--f-myeongjo); font-size:clamp(28px,3.6vw,54px); line-height:1.35; margin:0 auto 10px; max-width:1100px; word-break:keep-all; overflow-wrap:anywhere; animation:pop .6s ease both; }
+.feature span{ color:var(--gold-deep); font-size:clamp(16px,1.5vw,22px); }
+.wall{ flex:1; overflow:hidden; position:relative; -webkit-mask-image:linear-gradient(transparent,#000 6%,#000 90%,transparent); mask-image:linear-gradient(transparent,#000 6%,#000 90%,transparent); }
+.wall-in{ columns:4 260px; column-gap:16px; padding:12px 0; }
+.mcard{ break-inside:avoid; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:0 0 16px; }
+.mcard p{ margin:0 0 6px; font-size:clamp(16px,1.35vw,19px); line-height:1.5; word-break:keep-all; overflow-wrap:anywhere; }
+.mcard span{ font-size:13px; color:var(--gold-deep); }
+.mcard:nth-child(3n+2){ background:#33271F; } .mcard:nth-child(5n+3){ border-color:rgba(238,138,90,.4); }
+
+/* 무대 신청 */
+.now{ background:linear-gradient(135deg,#4A3325,#2B221B); border:1px solid var(--gold); border-radius:22px; padding:24px 30px; margin-bottom:22px; display:flex; align-items:center; gap:24px; }
+.now .lbl{ font-family:var(--f-serif); letter-spacing:.3em; color:var(--gold); font-size:15px; text-transform:uppercase; }
+.now h3{ margin:4px 0 0; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(28px,3.4vw,50px); }
+.now p{ margin:4px 0 0; color:var(--ink-2); font-size:clamp(16px,1.5vw,22px); }
+.mlist{ display:flex; flex-direction:column; gap:10px; }
+.mrow{ display:grid; grid-template-columns:56px 1fr auto; align-items:center; gap:16px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 18px; }
+.mrow .no{ font-family:var(--f-serif); font-size:30px; font-weight:600; color:var(--gold); text-align:center; }
+.mrow b{ font-size:clamp(18px,1.6vw,23px); } .mrow .k{ margin-left:8px; }
+.mrow small{ display:block; color:var(--ink-3); font-size:14px; }
+.mrow.is-done{ opacity:.4; }
+.mrow .acts{ display:flex; gap:6px; }
+.mrow .acts button{ background:transparent; border:1px solid var(--line); color:var(--ink-2); padding:6px 12px; border-radius:9px; cursor:pointer; font-size:13px; }
+
+/* 경품 추첨 */
+.draw{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; text-align:center; }
+.slot{ font-family:var(--f-serif); font-weight:600; font-size:clamp(140px,26vw,360px); line-height:1; color:var(--gold); font-variant-numeric:tabular-nums; text-shadow:0 0 60px rgba(217,178,122,.35); min-height:1em; }
+.slot.rolling{ color:var(--ink-2); }
+.slot.hit{ animation:hit .7s cubic-bezier(.2,.8,.2,1.4) both; color:#FFD89A; }
+@keyframes hit{ 0%{ transform:scale(.6); } 60%{ transform:scale(1.12); } 100%{ transform:scale(1); } }
+.drawbtn{ background:var(--rose); color:#fff; border:0; border-radius:99px; padding:18px 64px; font-size:clamp(20px,2vw,28px); font-weight:800; cursor:pointer; letter-spacing:.08em; box-shadow:0 10px 30px -10px rgba(238,138,90,.7); }
+.drawbtn:disabled{ opacity:.5; }
+.drawset{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center; color:var(--ink-2); font-size:15px; }
+.drawset input[type=number]{ width:80px; padding:8px 10px; border-radius:10px; border:1px solid var(--line); background:var(--card); text-align:center; }
+.drawset button{ background:transparent; border:1px solid var(--line); color:var(--ink-2); padding:8px 14px; border-radius:10px; cursor:pointer; }
+.hist{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:900px; }
+.hist span{ background:var(--card); border:1px solid var(--line); border-radius:99px; padding:4px 14px; font-family:var(--f-serif); font-size:20px; font-weight:600; color:var(--gold-deep); }
+.confetti{ position:fixed; top:-20px; width:10px; height:16px; z-index:40; pointer-events:none; animation:fall linear forwards; }
+@keyframes fall{ to{ transform:translate(var(--dx),110vh) rotate(var(--r)); } }
+
+/* 텔레파시 */
+.roles{ display:grid; gap:12px; }
+.role{ display:flex; align-items:center; gap:14px; padding:16px; border-radius:16px; background:var(--card); border:1px solid var(--line); text-decoration:none; }
+.role img{ width:44px; height:58px; object-fit:contain; }
+.role .emo{ width:44px; text-align:center; font-size:30px; }
+.role b{ display:block; font-size:16px; } .role small{ color:var(--ink-3); }
+.tpq{ font-family:var(--f-myeongjo); font-size:23px; line-height:1.45; text-align:center; margin:18px 0 22px; word-break:keep-all; }
+.opts{ display:grid; gap:10px; }
+.opts button{ padding:18px; border-radius:16px; border:1.5px solid var(--line); background:var(--card); font-size:18px; font-weight:700; cursor:pointer; }
+.opts button[aria-pressed="true"]{ border-color:var(--rose); background:var(--rose); color:#fff; }
+.opts button:disabled{ cursor:default; }
+.wait{ text-align:center; color:var(--ink-3); padding:30px 0; }
+.status{ display:flex; gap:10px; margin:16px 0; }
+.status div{ flex:1; text-align:center; padding:12px; border-radius:12px; background:var(--paper-2); font-size:14px; }
+.status div.on{ background:rgba(103,117,74,.16); color:var(--olive-deep); font-weight:700; }
+.presets{ display:flex; flex-direction:column; gap:6px; max-height:230px; overflow:auto; margin-bottom:16px; padding:2px; }
+.presets button{ text-align:left; padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:var(--card); cursor:pointer; font-size:14px; }
+.optin{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
+
+.tpstage{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.tpstage .q{ font-family:var(--f-myeongjo); font-size:clamp(32px,4.4vw,64px); line-height:1.35; margin:0 0 4vh; max-width:1200px; word-break:keep-all; }
+.duo{ display:flex; align-items:flex-end; justify-content:center; gap:6vw; }
+.pl{ display:flex; flex-direction:column; align-items:center; gap:14px; width:min(30vw,380px); }
+.pl img{ height:clamp(150px,24vh,260px); width:auto; filter:drop-shadow(0 10px 20px rgba(0,0,0,.5)); }
+.pl .ans{ min-height:2.4em; display:flex; align-items:center; justify-content:center; width:100%; border-radius:18px; padding:10px 14px; font-size:clamp(20px,2.4vw,36px); font-weight:800; background:var(--card); border:1.5px solid var(--line); color:var(--ink-3); }
+.pl .ans.ready{ color:var(--ok); border-color:var(--ok); }
+.pl .ans.shown{ color:#fff; background:var(--rose); border-color:var(--rose); animation:hit .6s ease both; }
+.pl b{ font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(18px,1.8vw,26px); color:var(--ink-2); }
+.verdict{ font-family:var(--f-myeongjo); font-size:clamp(46px,7vw,110px); margin:3vh 0 0; min-height:1.3em; }
+.verdict.yes{ color:#FFD89A; animation:hit .7s ease both; } .verdict.no{ color:var(--ink-3); animation:hit .7s ease both; }
+.score{ color:var(--ink-3); font-size:clamp(16px,1.5vw,22px); margin-top:10px; }
+.score b{ color:var(--gold); font-family:var(--f-serif); font-size:1.5em; }
+
+/* 인쇄용 QR 안내 */
+.poster{ text-align:center; padding:40px 16px; }
+.poster .code{ width:240px; height:240px; margin:24px auto; }
+.poster .code img,.poster .code canvas{ width:240px !important; height:240px !important; }
+@media print{ .noprint{ display:none !important; } }
+
+@media (max-width:700px){
+  .tvwrap{ padding:18px 16px 24px; }
+  .tvhead{ flex-wrap:wrap; gap:12px; }
+  .qr .code{ width:64px; height:64px; } .qr .code img,.qr .code canvas{ width:64px !important; height:64px !important; }
+  .stage .cap{ right:16px; left:16px; bottom:120px; }
+  .duo{ gap:4vw; } .pl{ width:44vw; }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ═══════════════ 설정 ═══════════════
+   구글 Apps Script 웹 앱 주소(…/exec)를 넣으면 실제 모드로 동작한다.
+   비워 두면 이 브라우저 안에서만 저장되는 데모 모드. */
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbyY2galFmWlDEmpeLFNhzeX7zgA8gqLUqQ7jbgWlTaYuIFkiE7sdUYeRn-NLWDc-SXf/exec';
+const DEMO = !ENDPOINT || new URLSearchParams(location.search).has('demo');
+const BASE = location.origin + location.pathname;
+
+/* ═══════════════ 작은 도구들 ═══════════════ */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const app = $('#app');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const store = {
+  get(k){ try { return localStorage.getItem('party_' + k); } catch(e){ return null; } },
+  set(k, v){ try { localStorage.setItem('party_' + k, v); } catch(e){} },
+  del(k){ try { localStorage.removeItem('party_' + k); } catch(e){} },
+};
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function ago(ts){
+  const s = Math.max(0, (Date.now() - Number(ts)) / 1000);
+  if (s < 60) return '방금'; if (s < 3600) return Math.floor(s / 60) + '분 전';
+  return Math.floor(s / 3600) + '시간 전';
+}
+function qr(el, url){
+  const draw = () => {
+    if (!window.QRCode) return setTimeout(draw, 300);
+    el.innerHTML = '';
+    new QRCode(el, { text: url, width: 240, height: 240, colorDark: '#3A332C', colorLight: '#FCF9F5', correctLevel: QRCode.CorrectLevel.M });
+  };
+  draw();
+}
+function qrBox(route, label){
+  return `<div class="qr"><div class="code" data-qr="${esc(BASE + route)}"></div><div><small>QR 찍고</small><b>${esc(label)}</b></div></div>`;
+}
+function mountQr(){ $$('[data-qr]').forEach(el => qr(el, el.dataset.qr)); }
+
+/* 페이지를 옮길 때 돌던 타이머를 모두 멈춘다 */
+let cleanups = [];
+function onLeave(fn){ cleanups.push(fn); }
+function loop(fn, ms){
+  let alive = true, t;
+  const run = async () => { if (!alive) return; try { await fn(); } catch(e){ console.warn(e); } if (alive) t = setTimeout(run, ms); };
+  run(); onLeave(() => { alive = false; clearTimeout(t); });
+}
+
+/* ═══════════════ 서버 통신 ═══════════════ */
+async function apiGet(a, q = {}){
+  if (DEMO) return demo.get(a, q);
+  const u = new URL(ENDPOINT); u.searchParams.set('a', a);
+  Object.entries(q).forEach(([k, v]) => u.searchParams.set(k, v));
+  u.searchParams.set('_', Date.now());
+  const j = await (await fetch(u)).json();
+  if (!j.ok) throw new Error(j.error || '오류가 났어요');
+  return j;
+}
+async function apiPost(body){
+  if (DEMO) return demo.post(body);
+  const r = await fetch(ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || '오류가 났어요');
+  return j;
+}
+const listRows = async t => (await apiGet('list', { t })).rows.sort((a, b) => a.ts - b.ts);
+
+async function hostPin(){
+  let p = store.get('pin');
+  if (p) return p;
+  p = prompt('진행자 PIN을 입력해 주세요');
+  if (!p) throw new Error('취소');
+  try { await apiPost({ a:'checkPin', pin:p }); }
+  catch(e){ toast('PIN이 틀렸어요'); throw e; }
+  store.set('pin', p); return p;
+}
+async function hostPost(body){
+  const pin = await hostPin();
+  try { return await apiPost({ ...body, pin }); }
+  catch(e){ if (/PIN/.test(e.message)) store.del('pin'); toast(e.message); throw e; }
+}
+
+/* 데모 모드: 같은 브라우저의 탭끼리만 공유되는 가짜 서버 */
+const demo = {
+  PIN: '1114',
+  rows(t){ try { return JSON.parse(localStorage.getItem('party_demo_' + t)) || []; } catch(e){ return []; } },
+  save(t, v){ try { localStorage.setItem('party_demo_' + t, JSON.stringify(v)); } catch(e){ throw new Error('데모 저장 공간이 가득 찼어요'); } },
+  tp(){ return this.rows('tp').round != null ? this.rows('tp') : { round:0, q:'', options:[], groom:null, bride:null, revealed:false, score:0, played:0 }; },
+  pub(s){ return { round:s.round, q:s.q, options:s.options, revealed:s.revealed, score:s.score, played:s.played,
+    groomDone:s.groom != null, brideDone:s.bride != null, groom:s.revealed ? s.groom : null, bride:s.revealed ? s.bride : null }; },
+  async get(a, q){
+    await sleep(120);
+    if (a === 'list') return { ok:true, rows:this.rows(q.t) };
+    if (a === 'tp') return { ok:true, tp:this.pub(this.tp()) };
+  },
+  async post(b){
+    await sleep(250);
+    const needPin = ['status','tpSet','tpReveal','tpReset','checkPin'];
+    if (needPin.includes(b.a) && b.pin !== this.PIN) throw new Error('진행자 PIN 이 틀렸어요');
+    const row = { id: Math.random().toString(36).slice(2, 10), ts: Date.now(), status:'new' };
+    if (b.a === 'add'){
+      Object.assign(row, b.data);
+      if (!row.name && b.t !== 'mic') row.name = '익명';
+      const all = this.rows(b.t); all.push(row); this.save(b.t, all); return { ok:true, row };
+    }
+    if (b.a === 'photo'){
+      Object.assign(row, { name:b.name || '익명', caption:b.caption || '', url:'data:image/jpeg;base64,' + b.data });
+      const all = this.rows('photos'); all.push(row); this.save('photos', all); return { ok:true, row };
+    }
+    if (b.a === 'status'){
+      const all = this.rows(b.t); const r = all.find(x => x.id === b.id); if (r) r.status = b.status; this.save(b.t, all); return { ok:true };
+    }
+    if (b.a === 'checkPin') return { ok:true };
+    const s = this.tp();
+    if (b.a === 'tpSet'){ Object.assign(s, { round:s.round + 1, q:b.q, options:b.options, groom:null, bride:null, revealed:false }); }
+    if (b.a === 'tpAnswer' && !s.revealed && b.round === s.round){ s[b.who] = b.answer; }
+    if (b.a === 'tpReveal' && !s.revealed && s.round > 0){ s.revealed = true; s.played++; if (s.groom != null && s.groom === s.bride) s.score++; }
+    if (b.a === 'tpReset'){ Object.assign(s, { round:0, q:'', options:[], groom:null, bride:null, revealed:false, score:0, played:0 }); }
+    this.save('tp', s); return { ok:true, tp:this.pub(s) };
+  },
+};
+
+/* ═══════════════ 아이콘 ═══════════════ */
+const ICON = {
+  ask:'<svg viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4.2A1.5 1.5 0 0 1 4 14.5z"/><path d="M10 8.6a2 2 0 1 1 2.8 1.8c-.5.2-.8.6-.8 1.1v.3"/><path d="M12 13.6v.1"/></svg>',
+  photo:'<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7l1.4-2.5h4.2L15.5 7"/><circle cx="12" cy="13.5" r="3.6"/></svg>',
+  msg:'<svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></svg>',
+  mic:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></svg>',
+  draw:'<svg viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M3.5 13h17M12 9v11.5M12 9C10.5 5 6.5 4.5 6.5 7 6.5 8.6 9 9 12 9zM12 9c1.5-4 5.5-4.5 5.5-2 0 1.6-2.5 2-5.5 2z"/></svg>',
+  tp:'<svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>',
+};
+
+/* ═══════════════ 공통 조각 ═══════════════ */
+function phone(title, body){
+  document.body.className = '';
+  app.innerHTML = `<div class="wrap"><header class="bar"><a class="back" href="#/" aria-label="처음으로">←</a><h2>${title}</h2></header>${body}</div>`;
+}
+function tv(html){
+  document.body.className = 'tv';
+  app.innerHTML = html + `<div class="tvtools noprint"><a href="#/">홈</a><button type="button" id="fs">전체화면</button></div>`;
+  $('#fs').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+  mountQr();
+}
+function segmented(el, onChange){
+  $$('button', el).forEach(b => b.onclick = () => {
+    $$('button', el).forEach(x => x.setAttribute('aria-pressed', x === b));
+    onChange?.(b.dataset.v);
+  });
+  return () => $('[aria-pressed="true"]', el)?.dataset.v;
+}
+function counter(inp, out, max){
+  const f = () => out.textContent = `${inp.value.length} / ${max}`; inp.addEventListener('input', f); f();
+}
+function doneView(emoji, title, text, again, tvRoute, tvLabel){
+  return `<div class="done"><div class="big">${emoji}</div><h3>${title}</h3><p>${text}</p>
+    <button class="btn" type="button" id="again">${again}</button>
+    <a class="btn ghost" href="#/">처음으로</a>
+    <a class="tvlink" href="#${tvRoute}">${tvLabel} →</a></div>`;
+}
+async function submitWith(btn, fn){
+  btn.disabled = true; const t = btn.textContent; btn.textContent = '보내는 중…';
+  try { await fn(); } catch(e){ toast(e.message || '다시 시도해 주세요'); btn.disabled = false; btn.textContent = t; }
+}
+
+/* ═══════════════ 홈 ═══════════════ */
+const TILES = [
+  ['/ask','ask','c1','질문하기','신랑신부에게 무엇이든'],
+  ['/photo','photo','c2','사진 올리기','찍은 사진을 큰 화면으로'],
+  ['/msg','msg','c3','축하 메시지','한 줄 방명록'],
+  ['/mic','mic','c4','무대 신청','축가 · 축사 · 깜짝 공연'],
+  ['/draw','draw','c5','경품 추첨','번호표를 확인하세요'],
+  ['/tp','tp','c6','텔레파시 게임','신랑신부 마음 맞추기'],
+];
+const SCHEDULE = [
+  ['13:30','입장 · 자리 찾기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
+  ['14:30','연애 탐구영역 퀴즈쇼'], ['14:55','무엇이든 물어봐'], ['15:10','자유 시간 · 텔레파시 게임'],
+  ['15:30','무대 (축가 · 축사)'], ['15:50','경품 추첨 · 단체사진'], ['16:00','마무리 인사'],
+];
+function home(){
+  document.body.className = '';
+  app.innerHTML = `<div class="wrap">
+    <header class="hero">
+      <span class="label">After Party</span>
+      <h1 class="names">준혁<i>&amp;</i>은수</h1>
+      <p class="meta">2026. 11. 14 SAT · 쌍용동 라퓨타</p>
+      <svg class="arch" width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#C9A16B" stroke-width="1"><path d="M2 13C20 2 100 2 118 13"/></svg>
+    </header>
+    <nav class="tiles">${TILES.map(([r, ic, c, t, s]) => `
+      <a class="tile" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
+    </nav>
+    <details class="timeline"><summary>오늘의 순서</summary>
+      <ol>${SCHEDULE.map(([t, s]) => `<li><time>${t}</time><span>${s}</span></li>`).join('')}</ol>
+    </details>
+    <p class="foot">와 주셔서 고맙습니다 · <a href="../">청첩장 보기</a> · <a href="#/qr">QR 안내판</a></p>
+  </div>`;
+}
+
+/* ═══════════════ 1. 질문함 ═══════════════ */
+function ask(){
+  phone('무엇이든 물어봐', `
+    <p class="lead">신랑신부에게 궁금한 걸 남겨 주세요. 진행자가 골라서 무대에서 물어봐요. 이름은 안 적어도 돼요.</p>
+    <div id="form">
+      <div class="field"><span>누구에게?</span>
+        <div class="seg" id="target"><button type="button" data-v="신랑" aria-pressed="false">신랑에게</button><button type="button" data-v="신부" aria-pressed="false">신부에게</button><button type="button" data-v="둘 다" aria-pressed="true">둘 다</button></div></div>
+      <label class="field"><span>질문</span><textarea class="inp" id="text" maxlength="150" placeholder="예) 서로 처음 봤을 때 첫인상은?"></textarea><div class="count" id="cnt"></div></label>
+      <label class="field"><span>이름 (선택)</span><input class="inp" id="name" maxlength="20" placeholder="비워 두면 익명"></label>
+      <button class="btn" type="button" id="send">질문 보내기</button>
+      <a class="tvlink" href="#/ask/board">큰 화면으로 보기 →</a>
+    </div>`);
+  const target = segmented($('#target'));
+  counter($('#text'), $('#cnt'), 150);
+  $('#send').onclick = () => submitWith($('#send'), async () => {
+    const text = $('#text').value.trim();
+    if (!text) throw new Error('질문을 적어 주세요');
+    await apiPost({ a:'add', t:'questions', data:{ target:target(), text, name:$('#name').value.trim() } });
+    $('#form').innerHTML = doneView('💌', '질문이 전달됐어요', '무대에서 불릴지도 몰라요!', '하나 더 물어보기', '/ask/board', '큰 화면으로 보기');
+    $('#again').onclick = ask;
+  });
+}
+
+function askBoard(){
+  tv(`<div class="tvwrap">
+    <header class="tvhead"><div class="ttl"><h1>무엇이든 물어봐</h1><p id="sub">질문을 누르면 크게 보여요</p></div>${qrBox('#/ask', '질문하기')}</header>
+    <div class="tabs" id="tabs"><button type="button" data-v="new" aria-pressed="true">대기</button><button type="button" data-v="done" aria-pressed="false">답변 완료</button><button type="button" data-v="all" aria-pressed="false">전체</button></div>
+    <div class="qgrid" id="grid"></div>
+  </div>`);
+  let rows = [], seen = null, filter = 'new', sig = '';
+  segmented($('#tabs'), v => { filter = v; sig = ''; draw(); });
+  function draw(){
+    const vis = rows.filter(r => r.status !== 'hidden').filter(r => filter === 'all' || (filter === 'done' ? r.status === 'done' : r.status !== 'done')).reverse();
+    const s = filter + JSON.stringify(vis.map(r => r.id + r.status)); if (s === sig) return; sig = s;
+    $('#sub').textContent = `대기 ${rows.filter(r => r.status === 'new').length}개 · 답변 ${rows.filter(r => r.status === 'done').length}개`;
+    $('#grid').innerHTML = vis.length ? vis.map(r => `
+      <button type="button" class="qcard ${r.status === 'done' ? 'is-done' : ''} ${seen && !seen.has(r.id) ? 'new' : ''}" data-id="${esc(r.id)}">
+        <span class="chip ${esc(r.target)}">${esc(r.target === '둘 다' ? '신랑신부에게' : r.target + '에게')}</span>
+        <p>${esc(r.text)}</p><footer><span>${esc(r.name)}</span><span>${ago(r.ts)}</span></footer></button>`).join('')
+      : `<div class="empty" style="grid-column:1/-1;padding-top:10vh"><b>아직 질문이 없어요</b>QR을 찍고 첫 질문을 보내 주세요</div>`;
+    seen = new Set(rows.map(r => r.id));
+    $$('.qcard').forEach(c => c.onclick = () => spotlight(rows.find(r => r.id === c.dataset.id)));
+  }
+  function spotlight(r){
+    const el = document.createElement('div'); el.className = 'spot';
+    el.innerHTML = `<article><span class="chip ${esc(r.target)}">${esc(r.target === '둘 다' ? '신랑신부에게' : r.target + '에게')}</span>
+      <p>${esc(r.text)}</p><div class="who">${esc(r.name)}</div>
+      <div class="acts"><button type="button" class="pri" data-s="done">답변 완료</button><button type="button" data-s="hidden">숨기기</button><button type="button" data-s="">닫기</button></div></article>`;
+    document.body.appendChild(el);
+    const close = () => el.remove(); onLeave(close);
+    el.onclick = e => { if (e.target === el) close(); };
+    $$('.acts button', el).forEach(b => b.onclick = async () => {
+      if (!b.dataset.s) return close();
+      await hostPost({ a:'status', t:'questions', id:r.id, status:b.dataset.s });
+      r.status = b.dataset.s; sig = ''; draw(); close();
+    });
+  }
+  loop(async () => { rows = await listRows('questions'); draw(); }, 4000);
+}
+
+/* ═══════════════ 2. 사진 ═══════════════ */
+async function shrink(file, max, q){
+  let img;
+  try { img = await createImageBitmap(file, { imageOrientation:'from-image' }); }
+  catch(e){ img = await new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = URL.createObjectURL(file); }); }
+  const s = Math.min(1, max / Math.max(img.width, img.height));
+  const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  return c.toDataURL('image/jpeg', q);
+}
+const photoSrc = (r, w = 1600) => r.url || `https://lh3.googleusercontent.com/d/${encodeURIComponent(r.fileId)}=w${w}`;
+const photoFallback = r => r.url || `https://drive.google.com/thumbnail?id=${encodeURIComponent(r.fileId)}&sz=w1600`;
+
+function photo(){
+  phone('사진 올리기', `
+    <p class="lead">오늘 찍은 사진을 올려 주세요. 큰 화면에 바로 떠요. 여러 장을 한 번에 골라도 돼요.</p>
+    <label class="field"><span>이름 (선택)</span><input class="inp" id="name" maxlength="20" placeholder="비워 두면 익명" value="${esc(store.get('name') || '')}"></label>
+    <label class="field"><span>한마디 (선택)</span><input class="inp" id="cap" maxlength="40" placeholder="예) 신부 입장 순간!"></label>
+    <label class="drop" for="file"><b>사진 고르기</b><span>눌러서 앨범에서 선택</span></label>
+    <input type="file" id="file" accept="image/*" multiple hidden>
+    <div class="uplist" id="list"></div>
+    <a class="tvlink" href="#/photo/board">큰 화면으로 보기 →</a>`);
+  $('#file').onchange = async e => {
+    const files = [...e.target.files].slice(0, 10); e.target.value = '';
+    if (!files.length) return;
+    const name = $('#name').value.trim(); store.set('name', name);
+    const cap = $('#cap').value.trim();
+    for (const f of files){
+      const box = document.createElement('div'); box.className = 'up'; box.innerHTML = '<i>준비 중</i>';
+      $('#list').prepend(box);
+      try {
+        const data = await shrink(f, DEMO ? 640 : 1600, DEMO ? .6 : .82);
+        box.insertAdjacentHTML('afterbegin', `<img src="${data}" alt="">`);
+        $('i', box).textContent = '올리는 중…';
+        await apiPost({ a:'photo', name, caption:cap, data:data.split(',')[1] });
+        box.classList.add('ok'); $('i', box).textContent = '완료';
+      } catch(err){ box.classList.add('err'); $('i', box).textContent = '실패'; toast(err.message || '업로드 실패'); }
+    }
+  };
+}
+
+function photoBoard(){
+  document.body.className = 'tv';
+  app.innerHTML = `<div class="stage" id="stage">
+      <div class="bgblur" id="bg"></div><img class="slide" id="s0" alt=""><img class="slide" id="s1" alt="">
+      <div class="cap" id="cap"></div><div class="cnt" id="cnt"></div><div id="badge"></div>
+      ${qrBox('#/photo', '사진 올리기')}
+      <div class="empty" id="empty" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center"><b>사진을 기다리고 있어요</b>QR을 찍고 오늘의 사진을 올려 주세요</div>
+    </div>
+    <div class="tvtools noprint"><a href="#/">홈</a><button type="button" id="grid">사진 관리</button><button type="button" id="fs">전체화면</button></div>`;
+  mountQr();
+  $('#fs').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+  $('#grid').onclick = () => { location.hash = '#/photo/manage'; };
+  let rows = [], seen = null, queue = [], idx = -1, layer = 0, current = null;
+  const visible = () => rows.filter(r => r.status !== 'hidden');
+  async function show(r, fresh){
+    if (!r) return;
+    const img = $('#s' + (1 - layer));
+    await new Promise(ok => { img.onload = ok; img.onerror = () => { if (img.src !== photoFallback(r)) img.src = photoFallback(r); else ok(); }; img.src = photoSrc(r); });
+    $('#s' + layer).classList.remove('on'); img.classList.add('on'); layer = 1 - layer; current = r;
+    $('#bg').style.backgroundImage = `url("${img.src}")`;
+    $('#cap').innerHTML = (r.caption ? `<b>${esc(r.caption)}</b>` : '') + `<span>${esc(r.name)} · ${ago(r.ts)}</span>`;
+    $('#badge').innerHTML = fresh ? '<div class="badge">방금 올라온 사진</div>' : '';
+  }
+  function next(){
+    const vis = visible(); if (!vis.length) return;
+    if (queue.length) return show(queue.shift(), true);
+    if (vis.length === 1 && current?.id === vis[0].id) return;
+    idx = (vis.findIndex(r => r.id === current?.id) + 1) % vis.length;
+    show(vis[idx], false);
+  }
+  loop(async () => {
+    rows = await listRows('photos');
+    const vis = visible();
+    $('#empty').hidden = vis.length > 0;
+    $('#cnt').textContent = vis.length ? `사진 ${vis.length}장` : '';
+    if (seen) vis.filter(r => !seen.has(r.id)).forEach(r => queue.push(r));
+    seen = new Set(rows.map(r => r.id));
+    if (!current && vis.length) next();
+    if (current && !vis.some(r => r.id === current.id)) next();
+  }, 5000);
+  const t = setInterval(next, 6500); onLeave(() => clearInterval(t));
+}
+
+function photoManage(){
+  tv(`<div class="tvwrap"><header class="tvhead"><div class="ttl"><h1>사진 관리</h1><p>눌러서 숨기기 · 다시 보이기 (진행자 PIN 필요)</p></div><a class="btn ghost" style="width:auto;padding:10px 18px" href="#/photo/board">슬라이드쇼로 →</a></header><div class="pgrid" id="pg"></div></div>`);
+  let sig = '';
+  loop(async () => {
+    const rows = (await listRows('photos')).reverse();
+    const s = JSON.stringify(rows.map(r => r.id + r.status)); if (s === sig) return; sig = s;
+    $('#pg').innerHTML = rows.map(r => `<figure class="${r.status === 'hidden' ? 'is-hidden' : ''}"><img loading="lazy" src="${esc(photoSrc(r, 400))}" alt=""><button type="button" data-id="${esc(r.id)}" data-s="${r.status === 'hidden' ? 'new' : 'hidden'}">${r.status === 'hidden' ? '보이기' : '숨기기'}</button></figure>`).join('') || '<div class="empty">아직 사진이 없어요</div>';
+    $$('#pg button').forEach(b => b.onclick = async () => { await hostPost({ a:'status', t:'photos', id:b.dataset.id, status:b.dataset.s }); sig = ''; });
+  }, 5000);
+}
+
+/* ═══════════════ 3. 축하 메시지 ═══════════════ */
+function msg(){
+  phone('축하 메시지', `
+    <p class="lead">두 사람에게 한 줄 축하를 남겨 주세요. 큰 화면에 떠오르고, 방명록으로 오래 간직할게요.</p>
+    <div id="form">
+      <label class="field"><span>이름</span><input class="inp" id="name" maxlength="20" placeholder="예) 신랑 대학 동기 민수" value="${esc(store.get('name') || '')}"></label>
+      <label class="field"><span>메시지</span><textarea class="inp" id="text" maxlength="80" placeholder="예) 싸우지 말고 오래오래 행복해!"></textarea><div class="count" id="cnt"></div></label>
+      <button class="btn" type="button" id="send">메시지 남기기</button>
+      <a class="tvlink" href="#/msg/board">큰 화면으로 보기 →</a>
+    </div>`);
+  counter($('#text'), $('#cnt'), 80);
+  $('#send').onclick = () => submitWith($('#send'), async () => {
+    const text = $('#text').value.trim(), name = $('#name').value.trim();
+    if (!text) throw new Error('메시지를 적어 주세요');
+    store.set('name', name);
+    await apiPost({ a:'add', t:'messages', data:{ name, text } });
+    $('#form').innerHTML = doneView('💐', '메시지가 도착했어요', '큰 화면을 확인해 보세요!', '한 줄 더 남기기', '/msg/board', '큰 화면으로 보기');
+    $('#again').onclick = msg;
+  });
+}
+
+function msgBoard(){
+  tv(`<div class="tvwrap">
+    <header class="tvhead"><div class="ttl"><h1>축하 메시지</h1><p id="sub"></p></div>${qrBox('#/msg', '메시지 남기기')}</header>
+    <section class="feature" id="feat"></section>
+    <div class="wall" id="wall"><div class="wall-in" id="in"></div></div>
+  </div>`);
+  let rows = [], seen = null, sig = '', fi = 0, pinned = null;
+  function feature(r){ $('#feat').innerHTML = r ? `<p>“${esc(r.text)}”</p><span>— ${esc(r.name)}</span>` : `<div class="empty"><b>첫 축하를 기다려요</b>QR을 찍고 한 줄 남겨 주세요</div>`; }
+  function rotate(){
+    const vis = rows.filter(r => r.status !== 'hidden'); if (!vis.length) return feature(null);
+    if (pinned){ feature(pinned); pinned = null; return; }
+    fi = (fi + 1) % vis.length; feature(vis[vis.length - 1 - fi]);
+  }
+  loop(async () => {
+    rows = await listRows('messages');
+    const vis = rows.filter(r => r.status !== 'hidden');
+    $('#sub').textContent = vis.length ? `${vis.length}개의 축하가 도착했어요` : '';
+    const s = JSON.stringify(vis.map(r => r.id)); if (s === sig) return; sig = s;
+    const fresh = seen ? vis.filter(r => !seen.has(r.id)) : [];
+    $('#in').innerHTML = vis.slice().reverse().map(r => `<div class="mcard ${seen && !seen.has(r.id) ? 'new' : ''}"><p>${esc(r.text)}</p><span>${esc(r.name)}</span></div>`).join('');
+    if (!seen || fresh.length){ pinned = fresh.at(-1) || vis.at(-1) || null; fi = 0; rotate(); }
+    seen = new Set(vis.map(r => r.id));
+  }, 4000);
+  const t1 = setInterval(rotate, 8000);
+  // 벽이 넘치면 천천히 아래로 흘려 보내고 끝에서 처음으로
+  const wall = $('#wall'); let hold = 0;
+  const t2 = setInterval(() => {
+    if (wall.scrollHeight <= wall.clientHeight + 4) return;
+    if (hold > 0){ hold--; return; }
+    wall.scrollTop += 1;
+    if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2){ hold = 80; setTimeout(() => wall.scrollTo({ top:0, behavior:'smooth' }), 2500); }
+  }, 45);
+  onLeave(() => { clearInterval(t1); clearInterval(t2); });
+}
+
+/* ═══════════════ 4. 무대 신청 ═══════════════ */
+function mic(){
+  phone('무대 신청', `
+    <p class="lead">축가, 축사, 깜짝 공연 모두 환영해요. 신청하면 진행자가 순서대로 불러 드릴게요. 한 팀당 3분 안팎이면 좋아요.</p>
+    <div id="form">
+      <label class="field"><span>이름 (팀 이름)</span><input class="inp" id="name" maxlength="20" placeholder="예) 신부 회사 동기들" value="${esc(store.get('name') || '')}"></label>
+      <div class="field"><span>무엇을?</span>
+        <div class="seg" id="kind"><button type="button" data-v="축가" aria-pressed="true">축가</button><button type="button" data-v="축사" aria-pressed="false">축사</button><button type="button" data-v="깜짝 공연" aria-pressed="false">깜짝 공연</button></div></div>
+      <label class="field"><span id="dl">곡 제목</span><input class="inp" id="detail" maxlength="60" placeholder="예) 성시경 - 두 사람"></label>
+      <div class="field"><span>예상 시간</span>
+        <div class="seg" id="min"><button type="button" data-v="3" aria-pressed="true">3분</button><button type="button" data-v="5" aria-pressed="false">5분</button><button type="button" data-v="7" aria-pressed="false">7분 이상</button></div></div>
+      <button class="btn" type="button" id="send">신청하기</button>
+      <a class="tvlink" href="#/mic/board">무대 순서 보기 →</a>
+    </div>`);
+  const kind = segmented($('#kind'), v => { $('#dl').textContent = v === '축가' ? '곡 제목' : v === '축사' ? '한 줄 소개 (선택)' : '무엇을 하나요?'; });
+  const min = segmented($('#min'));
+  $('#send').onclick = () => submitWith($('#send'), async () => {
+    const name = $('#name').value.trim();
+    if (!name) throw new Error('이름을 적어 주세요');
+    store.set('name', name);
+    await apiPost({ a:'add', t:'mic', data:{ name, kind:kind(), detail:$('#detail').value.trim(), minutes:Number(min()) } });
+    $('#form').innerHTML = doneView('🎤', '신청 완료!', '순서가 되면 진행자가 불러 드려요. 목 풀고 계세요!', '다른 팀 신청하기', '/mic/board', '무대 순서 보기');
+    $('#again').onclick = mic;
+  });
+}
+
+function micBoard(){
+  tv(`<div class="tvwrap">
+    <header class="tvhead"><div class="ttl"><h1>오늘의 무대</h1><p id="sub"></p></div>${qrBox('#/mic', '무대 신청')}</header>
+    <div id="now"></div><div class="mlist" id="list"></div>
+  </div>`);
+  let sig = '';
+  loop(async () => {
+    const rows = (await listRows('mic')).filter(r => r.status !== 'hidden');
+    const s = JSON.stringify(rows.map(r => r.id + r.status)); if (s === sig) return; sig = s;
+    const on = rows.find(r => r.status === 'on');
+    const waiting = rows.filter(r => r.status === 'new');
+    const mins = waiting.reduce((a, r) => a + Number(r.minutes || 3), 0);
+    $('#sub').textContent = rows.length ? `신청 ${rows.length}팀 · 남은 무대 약 ${mins}분` : '';
+    $('#now').innerHTML = on ? `<div class="now new"><div><div class="lbl">Now on stage</div><h3>${esc(on.name)}</h3><p>${esc(on.kind)}${on.detail ? ' · ' + esc(on.detail) : ''}</p></div></div>` : '';
+    $('#list').innerHTML = rows.length ? rows.map((r, i) => `
+      <div class="mrow ${r.status === 'done' ? 'is-done' : ''}">
+        <div class="no">${i + 1}</div>
+        <div><b>${esc(r.name)}</b><span class="chip k">${esc(r.kind)}</span><small>${esc(r.detail || '')} · 약 ${esc(r.minutes)}분</small></div>
+        <div class="acts noprint">${r.status === 'on' ? '' : `<button type="button" data-id="${esc(r.id)}" data-s="on">무대로</button>`}${r.status === 'done' ? `<button type="button" data-id="${esc(r.id)}" data-s="new">되돌리기</button>` : `<button type="button" data-id="${esc(r.id)}" data-s="done">완료</button>`}<button type="button" data-id="${esc(r.id)}" data-s="hidden">삭제</button></div>
+      </div>`).join('') : `<div class="empty" style="padding-top:12vh"><b>무대의 주인공을 찾습니다</b>QR을 찍고 축가 · 축사를 신청해 주세요</div>`;
+    $$('.mrow button').forEach(b => b.onclick = async () => {
+      if (b.dataset.s === 'on'){ const cur = rows.find(r => r.status === 'on'); if (cur) await hostPost({ a:'status', t:'mic', id:cur.id, status:'done' }); }
+      await hostPost({ a:'status', t:'mic', id:b.dataset.id, status:b.dataset.s }); sig = '';
+    });
+  }, 4000);
+}
+
+/* ═══════════════ 5. 경품 추첨 (서버 없이 이 화면에서만) ═══════════════ */
+function draw(){
+  tv(`<div class="tvwrap">
+    <header class="tvhead"><div class="ttl"><h1>행운의 번호</h1><p>입장할 때 받은 번호표를 확인하세요</p></div></header>
+    <div class="draw">
+      <div class="slot" id="slot">?</div>
+      <button class="drawbtn" type="button" id="go">추첨!</button>
+      <div class="hist" id="hist"></div>
+      <div class="drawset noprint">
+        <label>번호 <input type="number" id="lo" min="1" value="${esc(store.get('lo') || 1)}"></label>~
+        <input type="number" id="hi" min="1" value="${esc(store.get('hi') || 70)}">
+        <label><input type="checkbox" id="uniq" checked> 뽑힌 번호 제외</label>
+        <button type="button" id="reset">기록 지우기</button>
+      </div>
+    </div>
+  </div>`);
+  let hist = []; try { hist = JSON.parse(store.get('drawn') || '[]'); } catch(e){}
+  const paint = () => $('#hist').innerHTML = hist.map((n, i) => `<span title="${i + 1}번째">${n}</span>`).join('');
+  paint();
+  $('#lo').onchange = () => store.set('lo', $('#lo').value);
+  $('#hi').onchange = () => store.set('hi', $('#hi').value);
+  $('#reset').onclick = () => { if (confirm('추첨 기록을 지울까요?')){ hist = []; store.set('drawn', '[]'); paint(); $('#slot').textContent = '?'; } };
+  let busy = false;
+  async function go(){
+    if (busy) return;
+    const lo = Math.floor(+$('#lo').value), hi = Math.floor(+$('#hi').value);
+    if (!(hi >= lo)) return toast('번호 범위를 확인해 주세요');
+    const pool = []; for (let n = lo; n <= hi; n++) if (!$('#uniq').checked || !hist.includes(n)) pool.push(n);
+    if (!pool.length) return toast('남은 번호가 없어요');
+    busy = true; $('#go').disabled = true;
+    const slot = $('#slot'); slot.className = 'slot rolling';
+    const pick = pool[crypto.getRandomValues(new Uint32Array(1))[0] % pool.length];
+    let d = 40;
+    while (d < 420){ slot.textContent = pool[Math.floor(Math.random() * pool.length)]; await sleep(d); d *= 1.09; }
+    slot.textContent = pick; slot.className = 'slot hit';
+    hist.push(pick); store.set('drawn', JSON.stringify(hist)); paint(); confetti();
+    busy = false; $('#go').disabled = false;
+  }
+  $('#go').onclick = go;
+  const key = e => { if (e.code === 'Space' && e.target === document.body){ e.preventDefault(); go(); } };
+  document.addEventListener('keydown', key); onLeave(() => document.removeEventListener('keydown', key));
+}
+function confetti(){
+  const colors = ['#D9B27A', '#EE8A5A', '#A9BA86', '#FCF4E6', '#C4586C'];
+  for (let i = 0; i < 120; i++){
+    const c = document.createElement('i'); c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[i % colors.length];
+    c.style.setProperty('--dx', (Math.random() * 200 - 100) + 'px');
+    c.style.setProperty('--r', (Math.random() * 900) + 'deg');
+    c.style.animationDuration = (2.4 + Math.random() * 2) + 's';
+    c.style.animationDelay = Math.random() * .4 + 's';
+    document.body.appendChild(c); setTimeout(() => c.remove(), 5000);
+  }
+}
+
+/* ═══════════════ 6. 텔레파시 게임 ═══════════════ */
+const PRESETS = [
+  ['둘 중 먼저 반한 사람은?', ['신랑', '신부']],
+  ['와인파티에서 본 서로의 첫인상은?', ['첫눈에 반함', '괜찮네?', '별 생각 없었음']],
+  ['연애하면서 더 많이 운 사람은?', ['신랑', '신부']],
+  ['싸우면 먼저 사과하는 사람은?', ['신랑', '신부']],
+  ['둘 중 질투가 더 많은 사람은?', ['신랑', '신부']],
+  ['둘 중 요리를 더 잘하는 사람은?', ['신랑', '신부']],
+  ['신혼집 청소 담당은?', ['신랑', '신부', '같이', '로봇청소기']],
+  ['여행 스타일은?', ['철저한 계획형', '발길 닿는 대로']],
+  ['데이트 메뉴 고를 때 결정하는 사람은?', ['신랑', '신부']],
+  ['둘이 처음 여행 간 대천에서 제일 좋았던 건?', ['바다', '맛집', '숙소', '그냥 같이 있어서']],
+  ['프러포즈 날 더 긴장한 사람은?', ['신랑', '신부']],
+  ['아이는 몇 명?', ['1명', '2명', '3명 이상', '아직 모름']],
+  ['10년 뒤 우리는?', ['지금처럼 알콩달콩', '전우애', '신부가 대장']],
+  ['짜장면 vs 짬뽕', ['짜장면', '짬뽕']],
+  ['주말 데이트는?', ['집에서 뒹굴', '밖으로 나가자']],
+];
+function tpRoles(){
+  phone('텔레파시 게임', `
+    <p class="lead">같은 질문에 신랑신부가 따로 답을 고르고, 큰 화면에서 동시에 공개해요. 답이 같으면 텔레파시 성공!</p>
+    <div class="roles">
+      <a class="role" href="#/tp/screen"><div class="emo">📺</div><div><b>큰 화면</b><small>가게 TV나 빔에 띄우기</small></div></a>
+      <a class="role" href="#/tp/groom"><img src="../char-groom.png" alt=""><div><b>신랑 폰</b><small>준혁 전용</small></div></a>
+      <a class="role" href="#/tp/bride"><img src="../char-bride.png" alt=""><div><b>신부 폰</b><small>은수 전용</small></div></a>
+      <a class="role" href="#/tp/host"><div class="emo">🎙️</div><div><b>진행자</b><small>문제 내고 공개하기 (PIN 필요)</small></div></a>
+    </div>`);
+}
+
+function tpPlayer(who){
+  const me = who === 'groom' ? '신랑' : '신부';
+  phone(`${me} 자리`, `<div id="tp"><p class="wait">문제를 기다리는 중…</p></div>`);
+  let sig = '';
+  loop(async () => {
+    const s = (await apiGet('tp')).tp;
+    const mine = store.get(`tp_${who}_${s.round}`);
+    const sg = JSON.stringify([s.round, s.revealed, mine]); if (sg === sig) return; sig = sg;
+    if (!s.round){ $('#tp').innerHTML = '<p class="wait">진행자가 곧 첫 문제를 낼 거예요</p>'; return; }
+    const res = s.revealed ? (s.groom != null && s.groom === s.bride ? '통했다! 🎉' : '땡! 다음엔 꼭…') : '';
+    $('#tp').innerHTML = `<p class="label" style="text-align:center">Round ${s.round}</p><p class="tpq">${esc(s.q)}</p>
+      <div class="opts">${s.options.map((o, i) => `<button type="button" data-i="${i}" aria-pressed="${String(mine) === String(i)}" ${s.revealed ? 'disabled' : ''}>${esc(o)}</button>`).join('')}</div>
+      <p class="wait">${s.revealed ? `<b style="font-size:20px;color:var(--ink)">${res}</b>` : mine != null ? '선택 완료! 공개 전까지는 바꿀 수 있어요' : '상대에게 안 보이니 솔직하게!'}</p>`;
+    $$('.opts button').forEach(b => b.onclick = async () => {
+      $$('.opts button').forEach(x => x.setAttribute('aria-pressed', x === b));
+      try { await apiPost({ a:'tpAnswer', who, round:s.round, answer:Number(b.dataset.i) }); store.set(`tp_${who}_${s.round}`, b.dataset.i); sig = ''; }
+      catch(e){ toast(e.message); }
+    });
+  }, 2000);
+}
+
+async function tpHost(){
+  phone('텔레파시 진행', `<p class="wait">PIN 확인 중…</p>`);
+  try { await hostPin(); } catch(e){ location.hash = '#/tp'; return; }
+  phone('텔레파시 진행', `
+    <div class="status"><div id="g">신랑 대기</div><div id="b">신부 대기</div></div>
+    <button class="btn" type="button" id="reveal">정답 공개</button>
+    <p class="wait" id="now" style="padding:12px 0"></p>
+    <div class="field"><span>준비된 질문 (누르면 채워져요)</span><div class="presets" id="pre">${PRESETS.map(([q], i) => `<button type="button" data-i="${i}">${esc(q)}</button>`).join('')}</div></div>
+    <label class="field"><span>질문</span><input class="inp" id="q" maxlength="80"></label>
+    <div class="optin">${[0, 1, 2, 3].map(i => `<input class="inp" data-o="${i}" maxlength="20" placeholder="보기 ${i + 1}${i > 1 ? ' (선택)' : ''}">`).join('')}</div>
+    <button class="btn" type="button" id="set" style="background:var(--ink)">이 문제 내기</button>
+    <button class="btn ghost" type="button" id="reset">점수 초기화</button>
+    <a class="tvlink" href="#/tp/screen">큰 화면 열기 →</a>`);
+  $$('#pre button').forEach(b => b.onclick = () => {
+    const [q, o] = PRESETS[b.dataset.i]; $('#q').value = q;
+    $$('[data-o]').forEach((el, i) => el.value = o[i] || '');
+  });
+  $('#set').onclick = () => submitWith($('#set'), async () => {
+    const options = $$('[data-o]').map(el => el.value.trim()).filter(Boolean);
+    if (!$('#q').value.trim() || options.length < 2) throw new Error('질문과 보기 2개 이상을 적어 주세요');
+    await hostPost({ a:'tpSet', q:$('#q').value.trim(), options });
+    $('#set').disabled = false; $('#set').textContent = '이 문제 내기'; toast('출제했어요');
+  });
+  $('#reveal').onclick = () => submitWith($('#reveal'), async () => { await hostPost({ a:'tpReveal' }); $('#reveal').disabled = false; $('#reveal').textContent = '정답 공개'; });
+  $('#reset').onclick = async () => { if (confirm('점수와 문제를 모두 초기화할까요?')){ await hostPost({ a:'tpReset' }); toast('초기화했어요'); } };
+  loop(async () => {
+    const s = (await apiGet('tp')).tp;
+    $('#g').textContent = s.groomDone ? '신랑 선택 완료' : '신랑 고민 중'; $('#g').className = s.groomDone ? 'on' : '';
+    $('#b').textContent = s.brideDone ? '신부 선택 완료' : '신부 고민 중'; $('#b').className = s.brideDone ? 'on' : '';
+    $('#now').textContent = s.round ? `Round ${s.round} · ${s.q}${s.revealed ? ' (공개됨)' : ''} · 점수 ${s.score}/${s.played}` : '아직 낸 문제가 없어요';
+  }, 2000);
+}
+
+function tpScreen(){
+  tv(`<div class="tvwrap"><header class="tvhead"><div class="ttl"><h1>텔레파시 게임</h1><p id="rd"></p></div></header>
+    <div class="tpstage">
+      <p class="q" id="q">곧 시작합니다</p>
+      <div class="duo">
+        <div class="pl"><div class="ans" id="ga">고민 중…</div><img src="../char-groom.png" alt="신랑"><b>신랑 준혁</b></div>
+        <div class="pl"><div class="ans" id="ba">고민 중…</div><img src="../char-bride.png" alt="신부"><b>신부 은수</b></div>
+      </div>
+      <div class="verdict" id="v"></div>
+      <div class="score" id="sc"></div>
+    </div></div>`);
+  let sig = '';
+  loop(async () => {
+    const s = (await apiGet('tp')).tp;
+    const sg = JSON.stringify(s); if (sg === sig) return; const first = !sig; sig = sg;
+    $('#rd').textContent = s.round ? `Round ${s.round}` : '';
+    $('#q').textContent = s.round ? s.q : '곧 시작합니다';
+    const box = (el, done, ans) => {
+      el.className = 'ans' + (s.revealed ? ' shown' : done ? ' ready' : '');
+      el.textContent = s.revealed ? (ans != null ? s.options[ans] : '무응답') : done ? '선택 완료 ✓' : '고민 중…';
+    };
+    box($('#ga'), s.groomDone, s.groom); box($('#ba'), s.brideDone, s.bride);
+    const hit = s.revealed && s.groom != null && s.groom === s.bride;
+    $('#v').className = 'verdict' + (s.revealed ? (hit ? ' yes' : ' no') : '');
+    $('#v').textContent = s.revealed ? (hit ? '통했다!' : '땡!') : '';
+    $('#sc').innerHTML = s.played ? `텔레파시 지수 <b>${s.score}</b> / ${s.played}` : '';
+    if (hit && !first) confetti();
+  }, 1500);
+}
+
+/* ═══════════════ 인쇄용 QR 안내판 ═══════════════ */
+function poster(){
+  document.body.className = '';
+  app.innerHTML = `<div class="wrap poster">
+    <span class="label">After Party</span>
+    <h1 class="names">준혁<i>&amp;</i>은수</h1>
+    <p class="meta">QR을 찍으면 질문 · 사진 · 축하 메시지 · 무대 신청을 할 수 있어요</p>
+    <div class="code" data-qr="${esc(BASE)}"></div>
+    <p class="meta">${esc(BASE.replace(/^https?:\/\//, ''))}</p>
+    <p class="noprint" style="margin-top:28px"><button class="btn" type="button" onclick="print()">인쇄하기</button><a class="btn ghost" href="#/">처음으로</a></p>
+  </div>`;
+  mountQr();
+}
+
+/* ═══════════════ 라우터 ═══════════════ */
+const ROUTES = {
+  '': home, 'ask': ask, 'ask/board': askBoard,
+  'photo': photo, 'photo/board': photoBoard, 'photo/manage': photoManage,
+  'msg': msg, 'msg/board': msgBoard, 'mic': mic, 'mic/board': micBoard,
+  'draw': draw, 'tp': tpRoles, 'tp/screen': tpScreen, 'tp/host': tpHost,
+  'tp/groom': () => tpPlayer('groom'), 'tp/bride': () => tpPlayer('bride'),
+  'qr': poster,
+};
+function route(){
+  cleanups.forEach(f => f()); cleanups = [];
+  $$('.spot').forEach(el => el.remove());
+  const r = location.hash.replace(/^#\/?/, '').replace(/\/$/, '');
+  (ROUTES[r] || home)();
+  window.scrollTo(0, 0);
+  if (DEMO && !$('.demo')) document.body.insertAdjacentHTML('beforeend', '<div class="demo">데모 모드 · 이 기기에서만 저장돼요 · 진행자 PIN 1114</div>');
+}
+addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
