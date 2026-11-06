@@ -71,7 +71,9 @@ a{ color:inherit; }
 .tile span{ font-size:12.5px; color:var(--ink-3); line-height:1.4; margin-top:-6px; }
 .ic svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
 .c1{ background:var(--rose); } .c2{ background:var(--olive-deep); } .c3{ background:var(--gold-deep); }
-.c4{ background:var(--brick); } .c5{ background:#7C6A9A; } .c6{ background:#C4586C; }
+.c4{ background:var(--brick); } .c5{ background:#7C6A9A; } .c6{ background:#C4586C; } .c7{ background:#C08A1E; }
+.tile.wide{ grid-column:1 / -1; flex-direction:row; align-items:center; min-height:0; gap:14px; }
+.tile.wide span{ margin:0 0 0 auto; text-align:right; }
 .host-tag{ font-size:10.5px !important; color:var(--gold-deep) !important; letter-spacing:.06em; }
 
 .timeline{ margin-top:22px; background:var(--paper-2); border-radius:16px; padding:4px 18px; }
@@ -252,6 +254,22 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .score{ color:var(--ink-3); font-size:clamp(16px,1.5vw,22px); margin-top:10px; }
 .score b{ color:var(--gold); font-family:var(--f-serif); font-size:1.5em; }
 
+/* 맥주 빨리 마시기 대회 */
+.vs{ flex:1; display:grid; grid-template-columns:1fr auto 1fr; gap:24px; align-items:start; }
+.vsmark{ align-self:center; font-family:var(--f-serif); font-weight:600; font-size:clamp(48px,6vw,96px); color:var(--rose); }
+.team{ background:var(--card); border:1px solid var(--line); border-radius:22px; padding:20px 22px; min-height:50vh; }
+.team h3{ margin:0 0 4px; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(26px,2.8vw,40px); display:flex; justify-content:space-between; align-items:baseline; }
+.team h3 small{ font-family:var(--f-sans); font-size:16px; color:var(--ink-3); }
+.players{ display:flex; flex-direction:column; gap:10px; margin:14px 0 18px; }
+.players div{ background:linear-gradient(135deg,#5A3E1E,#3A2A1A); border:1.5px solid var(--gold); border-radius:16px; padding:12px 18px; }
+.players b{ font-size:clamp(22px,2.4vw,34px); color:#FFD89A; } .players span{ display:block; color:var(--ink-2); font-size:15px; }
+.pool{ display:flex; flex-wrap:wrap; gap:8px; }
+.pool span{ border:1px solid var(--line); border-radius:99px; padding:5px 14px; font-size:clamp(15px,1.3vw,19px); color:var(--ink-2); }
+.team .pickbtn{ margin-top:18px; width:100%; background:transparent; border:1px dashed var(--gold); color:var(--gold); border-radius:12px; padding:10px; font-size:15px; cursor:pointer; }
+.roll{ font-family:var(--f-myeongjo); font-size:clamp(48px,8vw,120px); color:#FFD89A; text-align:center; }
+.roll small{ display:block; font-family:var(--f-sans); font-size:clamp(16px,1.6vw,24px); color:var(--ink-3); margin-bottom:12px; }
+@media (max-width:700px){ .vs{ grid-template-columns:1fr; } .vsmark{ text-align:center; } .team{ min-height:0; } }
+
 /* 인쇄용 QR 안내 */
 .poster{ text-align:center; padding:40px 16px; }
 .poster .code{ width:240px; height:240px; margin:24px auto; }
@@ -403,6 +421,7 @@ const ICON = {
   mic:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></svg>',
   draw:'<svg viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M3.5 13h17M12 9v11.5M12 9C10.5 5 6.5 4.5 6.5 7 6.5 8.6 9 9 12 9zM12 9c1.5-4 5.5-4.5 5.5-2 0 1.6-2.5 2-5.5 2z"/></svg>',
   tp:'<svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>',
+  beer:'<svg viewBox="0 0 24 24"><path d="M5 9h10v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M15 11.5h2.2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H15"/><path d="M5 9V7.5A2.5 2.5 0 0 1 7.5 5c.5-1.2 1.6-2 3-2s2.6.9 3 2a2 2 0 0 1 1.5 2V9"/><path d="M8.5 12.5v5M11.5 12.5v5"/></svg>',
 };
 
 /* ═══════════════ 공통 조각 ═══════════════ */
@@ -445,11 +464,12 @@ const TILES = [
   ['/mic','mic','c4','무대 신청','축가 · 축사 · 깜짝 공연'],
   ['/draw','draw','c5','경품 추첨','번호표를 확인하세요'],
   ['/tp','tp','c6','텔레파시 게임','신랑신부 마음 맞추기'],
+  ['/beer','beer','c7','맥주 빨리 마시기 대회','신랑 측 vs 신부 측 · 참가 신청'],
 ];
 const SCHEDULE = [
   ['13:30','입장 · 자리 찾기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
-  ['14:30','연애 탐구영역 퀴즈쇼'], ['14:55','무엇이든 물어봐'], ['15:10','자유 시간 · 텔레파시 게임'],
-  ['15:30','무대 (축가 · 축사)'], ['15:50','경품 추첨 · 단체사진'], ['16:00','마무리 인사'],
+  ['14:30','연애 탐구영역 퀴즈쇼'], ['14:55','무엇이든 물어봐'], ['15:10','텔레파시 게임'],
+  ['15:20','맥주 빨리 마시기 대회'], ['15:30','무대 (축가 · 축사)'], ['15:50','경품 추첨 · 단체사진'], ['16:00','마무리 인사'],
 ];
 function home(){
   document.body.className = '';
@@ -460,8 +480,8 @@ function home(){
       <p class="meta">2026. 11. 14 SAT · 쌍용동 라퓨타</p>
       <svg class="arch" width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#C9A16B" stroke-width="1"><path d="M2 13C20 2 100 2 118 13"/></svg>
     </header>
-    <nav class="tiles">${TILES.map(([r, ic, c, t, s]) => `
-      <a class="tile" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
+    <nav class="tiles">${TILES.map(([r, ic, c, t, s], i) => `
+      <a class="tile ${i === TILES.length - 1 && TILES.length % 2 ? 'wide' : ''}" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
     </nav>
     <details class="timeline"><summary>오늘의 순서</summary>
       <ol>${SCHEDULE.map(([t, s]) => `<li><time>${t}</time><span>${s}</span></li>`).join('')}</ol>
@@ -903,6 +923,69 @@ function tpScreen(){
   }, 1500);
 }
 
+/* ═══════════════ 7. 맥주 빨리 마시기 대회 ═══════════════ */
+function beer(){
+  phone('맥주 빨리 마시기 대회', `
+    <p class="lead">신랑 측 vs 신부 측 대결! 신청한 사람 중에서 진행자가 팀별 선수를 뽑아요. 술을 못 드시면 무리하지 마세요.</p>
+    <div id="form">
+      <label class="field"><span>이름</span><input class="inp" id="name" maxlength="20" placeholder="예) 신랑 대학 동기 민수" value="${esc(store.get('name') || '')}"></label>
+      <div class="field"><span>어느 팀?</span>
+        <div class="seg" id="side"><button type="button" data-v="신랑 측" aria-pressed="true">신랑 측</button><button type="button" data-v="신부 측" aria-pressed="false">신부 측</button></div></div>
+      <label class="field"><span>출전 각오 (선택)</span><input class="inp" id="motto" maxlength="40" placeholder="예) 3초 컷 보여 드림"></label>
+      <button class="btn" type="button" id="send">참가 신청</button>
+      <a class="tvlink" href="#/beer/board">대진표 보기 →</a>
+    </div>`);
+  const side = segmented($('#side'));
+  $('#send').onclick = () => submitWith($('#send'), async () => {
+    const name = $('#name').value.trim();
+    if (!name) throw new Error('이름을 적어 주세요');
+    store.set('name', name);
+    await apiPost({ a:'add', t:'beer', data:{ name, side:side(), motto:$('#motto').value.trim() } });
+    $('#form').innerHTML = doneView('🍺', '신청 완료!', '뽑히면 이름이 큰 화면에 떠요. 목 풀고 계세요!', '다른 사람 신청하기', '/beer/board', '대진표 보기');
+    $('#again').onclick = beer;
+  });
+}
+
+function beerBoard(){
+  tv(`<div class="tvwrap">
+    <header class="tvhead"><div class="ttl"><h1>맥주 빨리 마시기 대회</h1><p id="sub"></p></div>${qrBox('#/beer', '참가 신청')}</header>
+    <div class="vs">
+      <section class="team" data-side="신랑 측"></section>
+      <div class="vsmark">VS</div>
+      <section class="team" data-side="신부 측"></section>
+    </div>
+  </div>`);
+  let rows = [], sig = '';
+  function paint(){
+    const live = rows.filter(r => r.status !== 'hidden');
+    const s = JSON.stringify(live.map(r => r.id + r.status)); if (s === sig) return; sig = s;
+    $('#sub').textContent = live.length ? `신청 ${live.length}명 · 신랑 측 ${live.filter(r => r.side === '신랑 측').length} · 신부 측 ${live.filter(r => r.side === '신부 측').length}` : '';
+    $$('.team').forEach(el => {
+      const mine = live.filter(r => r.side === el.dataset.side);
+      const picked = mine.filter(r => r.status === 'picked'), pool = mine.filter(r => r.status !== 'picked');
+      el.innerHTML = `<h3>${esc(el.dataset.side)}<small>${mine.length}명 신청</small></h3>
+        <div class="players">${picked.map(r => `<div class="new"><b>${esc(r.name)}</b>${r.motto ? `<span>“${esc(r.motto)}”</span>` : ''}</div>`).join('')}</div>
+        <div class="pool">${pool.map(r => `<span>${esc(r.name)}</span>`).join('') || (picked.length ? '' : '<span>아직 신청자가 없어요</span>')}</div>
+        <button type="button" class="pickbtn noprint">선수 1명 뽑기</button>`;
+      $('.pickbtn', el).onclick = () => pick(el.dataset.side, pool);
+    });
+  }
+  async function pick(sideName, pool){
+    if (!pool.length) return toast(`${sideName}에 남은 신청자가 없어요`);
+    await hostPin();
+    const winner = pool[crypto.getRandomValues(new Uint32Array(1))[0] % pool.length];
+    const ov = document.createElement('div'); ov.className = 'spot';
+    ov.innerHTML = `<div class="roll"><small>${esc(sideName)} 선수는…</small><span id="rn"></span></div>`;
+    document.body.appendChild(ov); onLeave(() => ov.remove());
+    let d = 50;
+    while (d < 380){ $('#rn', ov).textContent = pool[Math.floor(Math.random() * pool.length)].name; await sleep(d); d *= 1.12; }
+    $('#rn', ov).textContent = winner.name; confetti();
+    try { await hostPost({ a:'status', t:'beer', id:winner.id, status:'picked' }); winner.status = 'picked'; sig = ''; paint(); } catch(e){}
+    setTimeout(() => ov.remove(), 2200);
+  }
+  loop(async () => { rows = await listRows('beer'); paint(); }, 4000);
+}
+
 /* ═══════════════ 인쇄용 QR 안내판 ═══════════════ */
 function poster(){
   document.body.className = '';
@@ -924,6 +1007,7 @@ const ROUTES = {
   'msg': msg, 'msg/board': msgBoard, 'mic': mic, 'mic/board': micBoard,
   'draw': draw, 'tp': tpRoles, 'tp/screen': tpScreen, 'tp/host': tpHost,
   'tp/groom': () => tpPlayer('groom'), 'tp/bride': () => tpPlayer('bride'),
+  'beer': beer, 'beer/board': beerBoard,
   'qr': poster,
 };
 function route(){
