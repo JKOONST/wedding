@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>준혁 · 은수 뒷풀이</title>
+<title>준혁 & 은수 결혼 2부</title>
 <meta name="description" content="2026년 11월 14일 · 쌍용동 라퓨타">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FCF9F5">
-<meta property="og:title" content="준혁 · 은수 뒷풀이">
+<meta name="theme-color" content="#8C2A3C">
+<meta property="og:title" content="준혁 & 은수 결혼 2부">
 <meta property="og:description" content="질문 · 사진 · 축하 메시지 · 무대 신청">
 <meta property="og:image" content="https://jkoonst.github.io/wedding/share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,10 @@
 <style>
 /* ═══════════════ 팔레트 — 청첩장과 같은 세계 ═══════════════ */
 :root{
-  --paper:#FCF9F5; --paper-2:#F4EADB; --card:#FFFFFF;
-  --ink:#3A332C; --ink-2:#6B6154; --ink-3:#9C9182;
-  --gold:#C9A16B; --gold-deep:#A87F45; --line:#E6DBC8;
+  --paper:#FBF6F1; --paper-2:#F3E6DD; --card:#FFFFFF;
+  --ink:#35262A; --ink-2:#6E5A5D; --ink-3:#A08E8F;
+  --gold:#C9A16B; --gold-deep:#A87F45; --line:#EADBD1;
+  --wine:#8C2A3C; --wine-2:#B4485C; --wine-dark:#5E1A28; --wine-tint:#F6E7E8;
   --rose:#DD6A32; --rose-soft:#EE9A63;
   --olive:#8B9A6B; --olive-deep:#67754A;
   --brick:#BE8158;
@@ -32,10 +33,11 @@
 }
 /* 큰 화면(TV)용 — 어두운 조명 아래에서 잘 보이는 따뜻한 밤색 */
 body.tv{
-  --paper:#1A1410; --paper-2:#251D17; --card:#2B221B;
-  --ink:#F6EFE4; --ink-2:#D2C5B2; --ink-3:#9E8F7B;
-  --gold:#D9B27A; --gold-deep:#E6C48F; --line:#3C3027;
-  --rose:#EE8A5A; --ok:#A9BA86; --bad:#F08A6A;
+  --paper:#1C0B11; --paper-2:#2A1219; --card:#33161F;
+  --ink:#F8EEE8; --ink-2:#DCC6C0; --ink-3:#A68E8E;
+  --gold:#E2BC85; --gold-deep:#EDCD9C; --line:#4A2530;
+  --wine:#B4485C; --wine-2:#D0627A; --wine-dark:#5E1A28; --wine-tint:#3A1A24;
+  --rose:#F08A72; --ok:#B9C996; --bad:#F08A6A;
 }
 *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html,body{ margin:0; }
@@ -43,7 +45,11 @@ body{
   background:var(--paper); color:var(--ink); font-family:var(--f-sans);
   line-height:1.6; -webkit-font-smoothing:antialiased; min-height:100vh;
 }
-body.tv{ background:radial-gradient(ellipse at 50% -10%, #3A2A1E 0%, #1A1410 60%) fixed, #1A1410; overflow-x:hidden; }
+body.tv{ background:radial-gradient(ellipse at 50% -15%, #5A1F2E 0%, #2A0F17 45%, #160609 100%) fixed, #160609; overflow-x:hidden; }
+/* 큰 화면 뒤에 아주 옅게 깔리는 금색 아치 — 청첩장 표지의 아치선을 이어서 */
+body.tv::before{ content:""; position:fixed; left:50%; top:-55vh; width:130vh; height:130vh; transform:translateX(-50%); border:1px solid rgba(226,188,133,.13); border-radius:50%; pointer-events:none; z-index:0; }
+body.tv::after{ content:""; position:fixed; left:50%; top:-48vh; width:114vh; height:114vh; transform:translateX(-50%); border:1px solid rgba(226,188,133,.07); border-radius:50%; pointer-events:none; z-index:0; }
+body.tv #app{ position:relative; z-index:1; }
 button,input,textarea,select{ font:inherit; color:inherit; }
 a{ color:inherit; }
 [hidden]{ display:none !important; }
@@ -51,6 +57,23 @@ a{ color:inherit; }
 /* ═══════════════ 휴대폰 공통 ═══════════════ */
 .wrap{ max-width:480px; margin:0 auto; padding:0 16px 48px; }
 .hero{ text-align:center; padding:48px 0 26px; }
+.hero2{ position:relative; overflow:hidden; margin:14px 0 18px; padding:24px 22px 22px; border-radius:28px; color:#FBEDE4; min-height:272px;
+  background:radial-gradient(circle at 88% 18%, rgba(208,98,122,.55) 0%, transparent 52%), linear-gradient(160deg, #8C2A3C 0%, #5E1A28 100%);
+  box-shadow:0 22px 40px -24px rgba(94,26,40,.8); }
+.hero2::before{ content:""; position:absolute; right:-70px; top:-40px; width:300px; height:300px; border:1px solid rgba(226,188,133,.35); border-radius:50%; }
+.hero2::after{ content:""; position:absolute; right:-46px; top:-16px; width:252px; height:252px; border:1px solid rgba(226,188,133,.18); border-radius:50%; }
+.hero2 > *{ position:relative; z-index:1; }
+.hero2 .label{ color:#E2BC85; font-size:11px; }
+.hero2 .names{ margin:12px 0 2px; font-size:30px; color:#FBEDE4; text-align:left; letter-spacing:.1em; }
+.hero2 .names i{ color:#E2BC85; }
+.part{ display:flex; align-items:baseline; gap:8px; margin:0 0 12px; }
+.part span{ font-family:var(--f-myeongjo); font-size:20px; letter-spacing:.2em; color:#F3D9CF; }
+.part b{ font-family:var(--f-myeongjo); font-weight:700; font-size:58px; line-height:.9; color:#E2BC85; letter-spacing:.02em; }
+.greet{ margin:0 0 4px; max-width:58%; font-size:14px; line-height:1.5; color:#FBEDE4; word-break:keep-all; }
+.hero2 .meta{ color:#E9C9C0; font-size:12.5px; text-align:left; line-height:1.5; max-width:58%; }
+.hero2 .pair{ position:absolute; right:10px; bottom:0; z-index:1; display:flex; align-items:flex-end; }
+.hero2 .pair img{ height:150px; width:auto; filter:drop-shadow(0 8px 14px rgba(0,0,0,.35)); }
+.hero2 .pair img + img{ margin-left:-14px; height:158px; }
 .label{ display:block; font-family:var(--f-serif); font-size:12px; font-weight:500; letter-spacing:.42em; text-transform:uppercase; color:var(--gold); }
 .names{ font-family:var(--f-myeongjo); font-weight:400; font-size:30px; letter-spacing:.12em; margin:10px 0 6px; }
 .names i{ font-family:var(--f-script); font-style:normal; color:var(--gold-deep); font-size:28px; letter-spacing:0; margin:0 4px; }
@@ -62,7 +85,7 @@ a{ color:inherit; }
   display:flex; flex-direction:column; align-items:flex-start; gap:10px;
   padding:18px 16px 16px; border-radius:18px; text-decoration:none;
   background:var(--card); border:1px solid var(--line);
-  box-shadow:0 10px 24px -18px rgba(90,64,34,.45);
+  box-shadow:0 10px 24px -18px rgba(94,26,40,.45);
   transition:transform .15s ease, box-shadow .15s ease; min-height:132px;
 }
 .tile:active{ transform:scale(.97); }
@@ -70,23 +93,32 @@ a{ color:inherit; }
 .tile b{ font-size:16px; font-weight:700; letter-spacing:-.01em; }
 .tile span{ font-size:12.5px; color:var(--ink-3); line-height:1.4; margin-top:-6px; }
 .ic svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-.c1{ background:var(--rose); } .c2{ background:var(--olive-deep); } .c3{ background:var(--gold-deep); }
-.c4{ background:var(--brick); } .c5{ background:#7C6A9A; } .c6{ background:#C4586C; } .c7{ background:#C08A1E; }
-.c8{ background:#3F7F8C; }
-.notice{ margin-top:16px; background:var(--card); border:1px solid var(--line); border-left:4px solid var(--rose); border-radius:14px; padding:14px 16px 6px; }
+.c1{ background:var(--wine); } .c2{ background:var(--olive-deep); } .c3{ background:var(--gold-deep); }
+.c4{ background:var(--rose); } .c5{ background:#6E4A6E; } .c6{ background:var(--wine-2); } .c7{ background:#B07A1E; }
+.c8{ background:#C8566E; }
+.notice{ margin-top:16px; background:var(--card); border:1px solid var(--line); border-left:4px solid var(--wine); border-radius:14px; padding:14px 16px 6px; }
 .notice h3{ margin:0 0 6px; font-family:var(--f-myeongjo); font-weight:400; font-size:16px; letter-spacing:.06em; }
 .notice ul{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-2); }
 .notice li{ margin-bottom:8px; } .notice b{ color:var(--ink); }
 /* 행운 번호 */
-.ticket{ position:fixed; left:12px; bottom:12px; z-index:45; display:flex; align-items:center; gap:6px; background:var(--ink); color:var(--paper); border:0; border-radius:99px; padding:8px 14px 8px 10px; font-size:13px; cursor:pointer; box-shadow:0 8px 20px -8px rgba(0,0,0,.5); }
-.ticket b{ font-family:var(--f-serif); font-size:20px; color:#FFD89A; line-height:1; }
-.tmodal{ position:fixed; inset:0; z-index:70; background:rgba(26,20,16,.6); display:flex; align-items:center; justify-content:center; padding:16px; animation:pop .3s ease both; }
+.ticket{ position:fixed; left:12px; bottom:12px; z-index:45; display:flex; align-items:center; gap:6px; background:var(--wine); color:#FBEDE4; border:0; border-radius:99px; padding:8px 14px 8px 10px; font-size:13px; cursor:pointer; box-shadow:0 8px 20px -8px rgba(0,0,0,.5); }
+.ticket b{ font-family:var(--f-serif); font-size:20px; color:#E2BC85; line-height:1; }
+.tmodal{ position:fixed; inset:0; z-index:70; background:rgba(42,15,23,.62); display:flex; align-items:center; justify-content:center; padding:16px; animation:pop .3s ease both; }
 .tcard{ width:100%; max-width:360px; background:var(--paper); border-radius:22px; padding:26px 22px 20px; text-align:center; box-shadow:0 20px 50px -20px rgba(0,0,0,.6); }
+.tcard.stub{ padding:0; overflow:hidden; }
+.stub-top{ background:linear-gradient(160deg, #8C2A3C, #5E1A28); color:#FBEDE4; padding:20px 22px 18px; }
+.stub-top .label{ color:#E2BC85; }
+.stub-top h3{ margin:6px 0 2px; font-family:var(--f-myeongjo); font-weight:400; font-size:22px; letter-spacing:.1em; }
+.stub-top h3 i{ font-family:var(--f-script); font-style:normal; color:#E2BC85; margin:0 4px; }
+.stub-top small{ color:#E9C9C0; font-size:12px; }
+.perf{ height:0; border-top:2px dashed var(--line); margin:0 14px; }
+.stub-bot{ padding:16px 22px 20px; }
+.stub-bot small{ font-family:var(--f-serif); font-weight:600; letter-spacing:.3em; color:var(--gold-deep); font-size:12px; }
 .tcard .label{ margin-bottom:6px; }
-.tcard .no{ font-family:var(--f-serif); font-weight:600; font-size:96px; line-height:1; color:var(--rose); margin:6px 0; }
+.tcard .no{ font-family:var(--f-serif); font-weight:600; font-size:96px; line-height:1; color:var(--wine); margin:2px 0 8px; }
 .tcard p{ margin:0 0 14px; font-size:14px; color:var(--ink-2); }
 .tcard .row{ display:flex; gap:8px; margin-bottom:10px; } .tcard .row .inp{ flex:1; }
-.tcard .row button{ flex:none; border:0; border-radius:12px; background:var(--ink); color:var(--paper); padding:0 16px; font-weight:700; cursor:pointer; }
+.tcard .row button{ flex:none; border:0; border-radius:12px; background:var(--wine); color:var(--paper); padding:0 16px; font-weight:700; cursor:pointer; }
 .winner{ font-family:var(--f-myeongjo); font-size:clamp(24px,3vw,44px); color:var(--ink-2); min-height:1.4em; }
 .mrow .acts a{ border:1px solid var(--gold); color:var(--gold); padding:6px 12px; border-radius:9px; font-size:13px; text-decoration:none; }
 .tile.wide{ grid-column:1 / -1; flex-direction:row; align-items:center; min-height:0; gap:14px; }
@@ -105,19 +137,21 @@ a{ color:inherit; }
 
 .bar{ position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:12px 0; background:var(--paper); }
 .back{ width:40px; height:40px; border-radius:50%; display:grid; place-items:center; text-decoration:none; background:var(--paper-2); font-size:18px; flex:none; }
-.bar h2{ margin:0; font-family:var(--f-myeongjo); font-weight:400; font-size:19px; letter-spacing:.06em; }
+.bar h2{ margin:0; font-family:var(--f-myeongjo); font-weight:400; font-size:19px; letter-spacing:.06em; flex:1; min-width:0; }
+.brand{ flex:none; font-size:11.5px; color:var(--ink-3); letter-spacing:.04em; white-space:nowrap; }
+.brand b{ display:inline-block; margin-left:4px; padding:2px 8px; border-radius:99px; background:var(--wine); color:#FBEDE4; font-weight:700; letter-spacing:.08em; }
 .lead{ color:var(--ink-2); font-size:14px; margin:6px 0 18px; }
 
 .field{ display:block; margin-bottom:16px; }
 .field > span{ display:block; font-size:13px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
 .inp{ width:100%; padding:13px 14px; border-radius:12px; border:1px solid var(--line); background:var(--card); font-size:16px; outline:none; }
-.inp:focus{ border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,161,107,.18); }
+.inp:focus{ border-color:var(--wine-2); box-shadow:0 0 0 3px rgba(180,72,92,.15); }
 textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .count{ text-align:right; font-size:12px; color:var(--ink-3); margin-top:4px; }
 .seg{ display:flex; gap:8px; flex-wrap:wrap; }
 .seg button{ flex:1; min-width:70px; padding:11px 8px; border-radius:12px; border:1px solid var(--line); background:var(--card); cursor:pointer; font-weight:600; font-size:14px; }
-.seg button[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
-.btn{ display:block; width:100%; padding:15px; border:0; border-radius:14px; background:var(--rose); color:#fff; font-weight:700; font-size:16px; cursor:pointer; text-align:center; text-decoration:none; }
+.seg button[aria-pressed="true"]{ background:var(--wine); color:#fff; border-color:var(--wine); }
+.btn{ display:block; width:100%; padding:15px; border:0; border-radius:14px; background:var(--wine); color:#fff; font-weight:700; font-size:16px; cursor:pointer; text-align:center; text-decoration:none; }
 .btn:disabled{ opacity:.55; }
 .btn.ghost{ background:transparent; color:var(--ink-2); border:1px solid var(--line); font-weight:600; }
 .btn + .btn{ margin-top:10px; }
@@ -136,7 +170,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .up i{ position:absolute; inset:auto 0 0 0; padding:3px; font-style:normal; font-size:11px; text-align:center; color:#fff; background:rgba(0,0,0,.45); }
 .up.ok i{ background:rgba(103,117,74,.85); } .up.err i{ background:rgba(184,71,42,.85); }
 
-.demo{ position:fixed; left:50%; bottom:10px; transform:translateX(-50%); z-index:50; background:#3A332C; color:#FCF9F5; font-size:11.5px; padding:5px 12px; border-radius:99px; opacity:.85; pointer-events:none; white-space:nowrap; }
+.demo{ position:fixed; left:50%; bottom:10px; transform:translateX(-50%); z-index:50; background:#35262A; color:#FCF9F5; font-size:11.5px; padding:5px 12px; border-radius:99px; opacity:.85; pointer-events:none; white-space:nowrap; }
 .toast{ position:fixed; left:50%; top:16px; transform:translate(-50%,-80px); z-index:60; background:var(--ink); color:var(--paper); padding:10px 18px; border-radius:99px; font-size:14px; transition:transform .25s ease; max-width:calc(100% - 32px); }
 .toast.show{ transform:translate(-50%,0); }
 
@@ -144,6 +178,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .tvwrap{ min-height:100vh; padding:28px 40px 32px; display:flex; flex-direction:column; }
 .tvhead{ display:flex; align-items:center; gap:22px; margin-bottom:22px; }
 .tvhead .ttl{ flex:1; min-width:0; }
+.tvhead .ttl::before{ content:"준혁 ♥ 은수 · 결혼 2부"; display:block; font-size:clamp(12px,1.1vw,15px); letter-spacing:.32em; color:var(--gold); margin-bottom:4px; }
 .tvhead h1{ margin:0; word-break:keep-all; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(26px,3.2vw,44px); letter-spacing:.06em; }
 .tvhead p{ margin:2px 0 0; color:var(--ink-3); font-size:clamp(13px,1.2vw,17px); }
 .qr{ display:flex; align-items:center; gap:12px; background:#FCF9F5; color:#3A332C; border-radius:14px; padding:8px 14px 8px 8px; flex:none; }
@@ -156,7 +191,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .tvtools a,.tvtools button{ background:var(--card); border:1px solid var(--line); color:var(--ink-2); border-radius:10px; padding:7px 12px; font-size:13px; cursor:pointer; text-decoration:none; }
 .tabs{ display:flex; gap:8px; margin-bottom:18px; }
 .tabs button{ background:transparent; border:1px solid var(--line); color:var(--ink-2); border-radius:99px; padding:7px 16px; cursor:pointer; font-size:15px; }
-.tabs button[aria-pressed="true"]{ background:var(--gold); color:#1A1410; border-color:var(--gold); font-weight:700; }
+.tabs button[aria-pressed="true"]{ background:var(--gold); color:#2A0F17; border-color:var(--gold); font-weight:700; }
 .empty{ margin:auto; text-align:center; color:var(--ink-3); font-size:clamp(18px,2vw,26px); }
 .empty b{ display:block; font-family:var(--f-myeongjo); font-weight:400; color:var(--ink-2); font-size:clamp(24px,3vw,40px); margin-bottom:8px; }
 @keyframes pop{ from{ opacity:0; transform:translateY(14px) scale(.96); } to{ opacity:1; transform:none; } }
@@ -171,17 +206,17 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .qcard.is-done{ opacity:.45; }
 .chip{ display:inline-block; align-self:flex-start; font-size:12.5px; font-weight:700; padding:3px 10px; border-radius:99px; background:rgba(217,178,122,.16); color:var(--gold-deep); }
 .chip.신랑{ background:rgba(124,150,190,.18); color:#9DB5DA; } .chip.신부{ background:rgba(238,138,90,.18); color:var(--rose); }
-.spot{ position:fixed; inset:0; z-index:30; background:rgba(12,9,7,.88); display:flex; align-items:center; justify-content:center; padding:5vw; animation:pop .3s ease both; }
+.spot{ position:fixed; inset:0; z-index:30; background:rgba(22,6,10,.9); display:flex; align-items:center; justify-content:center; padding:5vw; animation:pop .3s ease both; }
 .spot article{ max-width:1100px; width:100%; text-align:center; }
 .spot .chip{ font-size:clamp(16px,1.6vw,22px); padding:6px 18px; align-self:center; }
 .spot p{ font-family:var(--f-myeongjo); font-size:clamp(30px,4.6vw,68px); line-height:1.4; margin:26px 0 18px; word-break:keep-all; overflow-wrap:anywhere; color:#FCF4E6; }
 .spot .who{ color:var(--ink-3); font-size:clamp(16px,1.6vw,22px); }
 .spot .acts{ display:flex; gap:12px; justify-content:center; margin-top:40px; flex-wrap:wrap; }
 .spot .acts button{ border:1px solid var(--line); background:var(--card); color:var(--ink); padding:12px 22px; border-radius:12px; font-size:16px; cursor:pointer; }
-.spot .acts .pri{ background:var(--gold); color:#1A1410; border-color:var(--gold); font-weight:700; }
+.spot .acts .pri{ background:var(--gold); color:#2A0F17; border-color:var(--gold); font-weight:700; }
 
 /* 사진 월 */
-.stage{ position:fixed; inset:0; background:#0E0B09; overflow:hidden; }
+.stage{ position:fixed; inset:0; background:#12050A; overflow:hidden; }
 .stage .bgblur{ position:absolute; inset:-40px; background-size:cover; background-position:center; filter:blur(40px) brightness(.45); transition:background-image .8s; }
 .stage img.slide{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition:opacity 1s ease; }
 .stage img.slide.on{ opacity:1; }
@@ -206,10 +241,10 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .mcard{ break-inside:avoid; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:0 0 16px; }
 .mcard p{ margin:0 0 6px; font-size:clamp(16px,1.35vw,19px); line-height:1.5; word-break:keep-all; overflow-wrap:anywhere; }
 .mcard span{ font-size:13px; color:var(--gold-deep); }
-.mcard:nth-child(3n+2){ background:#33271F; } .mcard:nth-child(5n+3){ border-color:rgba(238,138,90,.4); }
+.mcard:nth-child(3n+2){ background:#3E1824; } .mcard:nth-child(5n+3){ border-color:rgba(238,138,90,.4); }
 
 /* 무대 신청 */
-.now{ background:linear-gradient(135deg,#4A3325,#2B221B); border:1px solid var(--gold); border-radius:22px; padding:24px 30px; margin-bottom:22px; display:flex; align-items:center; gap:24px; }
+.now{ background:linear-gradient(135deg,#6A2536,#33161F); border:1px solid var(--gold); border-radius:22px; padding:24px 30px; margin-bottom:22px; display:flex; align-items:center; gap:24px; }
 .now .lbl{ font-family:var(--f-serif); letter-spacing:.3em; color:var(--gold); font-size:15px; text-transform:uppercase; }
 .now h3{ margin:4px 0 0; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(28px,3.4vw,50px); }
 .now p{ margin:4px 0 0; color:var(--ink-2); font-size:clamp(16px,1.5vw,22px); }
@@ -228,7 +263,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .slot.rolling{ color:var(--ink-2); }
 .slot.hit{ animation:hit .7s cubic-bezier(.2,.8,.2,1.4) both; color:#FFD89A; }
 @keyframes hit{ 0%{ transform:scale(.6); } 60%{ transform:scale(1.12); } 100%{ transform:scale(1); } }
-.drawbtn{ background:var(--rose); color:#fff; border:0; border-radius:99px; padding:18px 64px; font-size:clamp(20px,2vw,28px); font-weight:800; cursor:pointer; letter-spacing:.08em; box-shadow:0 10px 30px -10px rgba(238,138,90,.7); }
+.drawbtn{ background:var(--wine); color:#fff; border:0; border-radius:99px; padding:18px 64px; font-size:clamp(20px,2vw,28px); font-weight:800; cursor:pointer; letter-spacing:.08em; box-shadow:0 10px 30px -10px rgba(208,98,122,.75); }
 .drawbtn:disabled{ opacity:.5; }
 .drawset{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center; color:var(--ink-2); font-size:15px; }
 .drawset input[type=number]{ width:80px; padding:8px 10px; border-radius:10px; border:1px solid var(--line); background:var(--card); text-align:center; }
@@ -247,7 +282,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .tpq{ font-family:var(--f-myeongjo); font-size:23px; line-height:1.45; text-align:center; margin:18px 0 22px; word-break:keep-all; }
 .opts{ display:grid; gap:10px; }
 .opts button{ padding:18px; border-radius:16px; border:1.5px solid var(--line); background:var(--card); font-size:18px; font-weight:700; cursor:pointer; }
-.opts button[aria-pressed="true"]{ border-color:var(--rose); background:var(--rose); color:#fff; }
+.opts button[aria-pressed="true"]{ border-color:var(--wine); background:var(--wine); color:#fff; }
 .opts button:disabled{ cursor:default; }
 .wait{ text-align:center; color:var(--ink-3); padding:30px 0; }
 .status{ display:flex; gap:10px; margin:16px 0; }
@@ -278,7 +313,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .team h3{ margin:0 0 4px; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(26px,2.8vw,40px); display:flex; justify-content:space-between; align-items:baseline; }
 .team h3 small{ font-family:var(--f-sans); font-size:16px; color:var(--ink-3); }
 .players{ display:flex; flex-direction:column; gap:10px; margin:14px 0 18px; }
-.players div{ background:linear-gradient(135deg,#5A3E1E,#3A2A1A); border:1.5px solid var(--gold); border-radius:16px; padding:12px 18px; }
+.players div{ background:linear-gradient(135deg,#6A2536,#3A1621); border:1.5px solid var(--gold); border-radius:16px; padding:12px 18px; }
 .players b{ font-size:clamp(22px,2.4vw,34px); color:#FFD89A; } .players span{ display:block; color:var(--ink-2); font-size:15px; }
 .pool{ display:flex; flex-wrap:wrap; gap:8px; }
 .pool span{ border:1px solid var(--line); border-radius:99px; padding:5px 14px; font-size:clamp(15px,1.3vw,19px); color:var(--ink-2); }
@@ -290,10 +325,10 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 /* 연타 레이스 */
 .teamgrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .teamgrid button{ padding:16px 8px; border-radius:14px; border:1.5px solid var(--line); background:var(--card); font-size:17px; font-weight:700; cursor:pointer; }
-.teamgrid button[aria-pressed="true"]{ background:var(--rose); border-color:var(--rose); color:#fff; }
+.teamgrid button[aria-pressed="true"]{ background:var(--wine); border-color:var(--wine); color:#fff; }
 .teamedit{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 .pad{ position:fixed; inset:64px 0 0 0; z-index:4; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; overflow:hidden;
-  background:radial-gradient(circle at 50% 40%, #F0A27A 0%, #DD6A32 55%, #B4532A 100%); color:#fff; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; cursor:pointer; }
+  background:radial-gradient(circle at 50% 38%, #D0627A 0%, #8C2A3C 58%, #5E1A28 100%); color:#fff; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; cursor:pointer; }
 .pad.hit{ animation:padhit .12s ease; }
 @keyframes padhit{ 50%{ filter:brightness(1.25); transform:scale(.985); } }
 .padteam{ font-family:var(--f-myeongjo); font-size:24px; opacity:.9; }
@@ -331,13 +366,13 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .ruler .marks span:first-child{ transform:none; }
 .ruler .marks span:last-child{ left:auto !important; right:0; transform:none; color:var(--rose); font-weight:700; }
 .runner{ position:absolute; left:0; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .75); transition:left .6s cubic-bezier(.2,.8,.2,1); display:flex; align-items:center; }
-.runner .rk{ font-family:var(--f-serif); font-weight:700; font-size:.6em; color:#1A1410; background:var(--gold); border-radius:99px; min-width:1.5em; text-align:center; margin-right:4px; }
+.runner .rk{ font-family:var(--f-serif); font-weight:700; font-size:.6em; color:#2A0F17; background:var(--gold); border-radius:99px; min-width:1.5em; text-align:center; margin-right:4px; }
 .runner .rk:empty{ display:none; }
 .flag{ position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .55); color:var(--rose); }
 .lnum{ font-family:var(--f-serif); font-weight:600; font-size:clamp(16px, calc(var(--h) * .65), 32px); color:var(--gold); text-align:right; }
 .lane.lead .track{ border-color:var(--gold); box-shadow:0 0 18px rgba(217,178,122,.35); }
 .lane.win .track{ background-color:rgba(238,138,90,.25); border-color:var(--rose); }
-.cdown{ position:fixed; inset:0; z-index:30; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(12,9,7,.72);
+.cdown{ position:fixed; inset:0; z-index:30; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(22,6,10,.78);
   font-family:var(--f-serif); font-weight:600; font-size:clamp(120px,24vw,320px); color:#FFD89A; pointer-events:none; text-align:center; line-height:1.1; }
 .cdown.win{ font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(56px,9vw,150px); }
 .cdown em{ font-style:normal; font-family:var(--f-sans); font-size:clamp(18px,2vw,30px); color:var(--ink); margin-top:10px; }
@@ -547,7 +582,7 @@ const ICON = {
 /* ═══════════════ 공통 조각 ═══════════════ */
 function phone(title, body){
   document.body.className = '';
-  app.innerHTML = `<div class="wrap"><header class="bar"><a class="back" href="#/" aria-label="처음으로">←</a><h2>${title}</h2></header>${body}</div>`;
+  app.innerHTML = `<div class="wrap"><header class="bar"><a class="back" href="#/" aria-label="처음으로">←</a><h2>${title}</h2><span class="brand">준혁♥은수<b>2부</b></span></header>${body}</div>`;
 }
 function tv(html){
   document.body.className = 'tv';
@@ -604,11 +639,13 @@ const FOOD_NOTICE = `<section class="notice">
 function home(){
   document.body.className = '';
   app.innerHTML = `<div class="wrap">
-    <header class="hero">
-      <span class="label">After Party</span>
+    <header class="hero2">
+      <span class="label">The Second Party</span>
       <h1 class="names">준혁<i>&amp;</i>은수</h1>
-      <p class="meta">2026. 11. 14 SAT · 쌍용동 라퓨타</p>
-      <svg class="arch" width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#C9A16B" stroke-width="1"><path d="M2 13C20 2 100 2 118 13"/></svg>
+      <div class="part"><span>결혼</span><b>2부</b></div>
+      <p class="greet">식장에서 못다 한 축하,<br>여기서 마음껏 나눠요!</p>
+      <p class="meta">11. 14 SAT 오후 1:30<br>쌍용동 라퓨타</p>
+      <div class="pair"><img src="../char-groom.png" alt=""><img src="../char-bride.png" alt=""></div>
     </header>
     <nav class="tiles">${TILES.map(([r, ic, c, t, s], i) => `
       <a class="tile ${i === TILES.length - 1 && TILES.length % 2 ? 'wide' : ''}" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
@@ -617,7 +654,7 @@ function home(){
     <details class="timeline"><summary>오늘의 순서</summary>
       <ol>${SCHEDULE.map(([t, s]) => `<li><time>${t}</time><span>${s}</span></li>`).join('')}</ol>
     </details>
-    <p class="foot">와 주셔서 고맙습니다 · <a href="../">청첩장 보기</a> · <a href="#/qr">QR 안내판</a></p>
+    <p class="foot">준혁 &amp; 은수의 결혼 2부에 와 주셔서 고맙습니다<br><a href="../">청첩장 보기</a> · <a href="#/qr">QR 안내판</a></p>
   </div>`;
 }
 
@@ -890,14 +927,14 @@ function micBoard(){
    '번호 범위'로 바꾸면 서버 없이 이 화면에서만 추첨. */
 function draw(){
   tv(`<div class="tvwrap">
-    <header class="tvhead"><div class="ttl"><h1>행운의 번호</h1><p>입장할 때 받은 행운 번호를 확인하세요</p></div>${qrBox('#/', '번호 받기')}</header>
+    <header class="tvhead"><div class="ttl"><h1>행운의 입장권 추첨</h1><p>입장할 때 받은 입장권 번호를 확인하세요</p></div>${qrBox('#/', '번호 받기')}</header>
     <div class="draw">
       <div class="slot" id="slot">?</div>
       <div class="winner" id="who"></div>
       <button class="drawbtn" type="button" id="go">추첨!</button>
       <div class="hist" id="hist"></div>
       <div class="drawset noprint">
-        <label><input type="radio" name="src" value="ticket" ${store.get('drawSrc') !== 'range' ? 'checked' : ''}> 입장 번호 (<span id="cnt">0</span>명)</label>
+        <label><input type="radio" name="src" value="ticket" ${store.get('drawSrc') !== 'range' ? 'checked' : ''}> 입장권 번호 (<span id="cnt">0</span>명)</label>
         <label><input type="radio" name="src" value="range" ${store.get('drawSrc') === 'range' ? 'checked' : ''}> 번호 범위</label>
         <span id="rangebox"><input type="number" id="lo" min="1" value="${esc(store.get('lo') || 1)}"> ~ <input type="number" id="hi" min="1" value="${esc(store.get('hi') || 100)}"></span>
         <button type="button" id="reset">기록 지우기</button>
@@ -966,7 +1003,7 @@ function draw(){
   document.addEventListener('keydown', key); onLeave(() => document.removeEventListener('keydown', key));
 }
 function confetti(){
-  const colors = ['#D9B27A', '#EE8A5A', '#A9BA86', '#FCF4E6', '#C4586C'];
+  const colors = ['#E2BC85', '#F08A72', '#D0627A', '#FCF4E6', '#B9C996'];
   for (let i = 0; i < 120; i++){
     const c = document.createElement('i'); c.className = 'confetti';
     c.style.left = Math.random() * 100 + 'vw';
@@ -1326,17 +1363,21 @@ function ticketChip(){
   const no = store.get('ticket'); let chip = $('.ticket');
   if (!no || document.body.classList.contains('tv')){ chip?.remove(); return; }
   if (!chip){ chip = document.createElement('button'); chip.type = 'button'; chip.className = 'ticket'; document.body.appendChild(chip); chip.onclick = () => ticketModal(false); }
-  chip.innerHTML = `행운 번호 <b>${esc(no)}</b>`;
+  chip.innerHTML = `🎟 입장권 No.<b>${esc(no)}</b>`;
 }
 function ticketModal(first){
   $('.tmodal')?.remove();
   const el = document.createElement('div'); el.className = 'tmodal';
-  el.innerHTML = `<div class="tcard"><span class="label">Lucky Number</span>
-    <p style="margin:0">${first ? '와 주셔서 고마워요! 당신의 행운 번호는' : '나의 행운 번호'}</p>
+  el.innerHTML = `<div class="tcard stub">
+    <div class="stub-top"><span class="label">Admission · 결혼 2부</span><h3>준혁<i>&amp;</i>은수</h3><small>2026. 11. 14 SAT · 쌍용동 라퓨타</small></div>
+    <div class="perf"></div>
+    <div class="stub-bot">
+    <p style="margin:0 0 6px">${first ? '와 주셔서 고마워요! 당신의 입장권 번호는' : '나의 입장권 번호'}</p>
+    <small>LUCKY No.</small>
     <div class="no">${esc(store.get('ticket'))}</div>
-    <p>마지막 경품 추첨에 이 번호로 응모돼요.<br>화면 왼쪽 아래에서 언제든 다시 볼 수 있어요.</p>
+    <p>이 번호가 마지막 경품 추첨 응모권이에요.<br>화면 왼쪽 아래에서 언제든 다시 볼 수 있어요.</p>
     <div class="row"><input class="inp" id="tname" maxlength="20" placeholder="이름 (선택) · 당첨 시 화면에 표시" value="${esc(store.get('ticketName') || '')}"><button type="button" id="tsave">저장</button></div>
-    <button class="btn ghost" type="button" id="tclose">확인</button></div>`;
+    <button class="btn ghost" type="button" id="tclose">확인</button></div></div>`;
   document.body.appendChild(el);
   $('#tclose', el).onclick = () => el.remove();
   el.onclick = e => { if (e.target === el) el.remove(); };
@@ -1361,9 +1402,10 @@ async function ensureTicket(){
 function poster(){
   document.body.className = '';
   app.innerHTML = `<div class="wrap poster">
-    <span class="label">After Party</span>
+    <span class="label">The Second Party</span>
     <h1 class="names">준혁<i>&amp;</i>은수</h1>
-    <p class="meta">QR을 찍으면 행운 번호가 바로 나와요 · 마지막 경품 추첨에 응모돼요</p>
+    <div class="part" style="justify-content:center"><span style="color:var(--ink-2)">결혼</span><b style="color:var(--wine)">2부</b></div>
+    <p class="meta">QR을 찍으면 입장권 번호가 바로 나와요 · 마지막 경품 추첨에 응모돼요</p>
     <div class="code" data-qr="${esc(BASE)}"></div>
     <p class="meta">${esc(BASE.replace(/^https?:\/\//, ''))}</p>
     <div style="text-align:left;margin-top:18px">${FOOD_NOTICE}</div>
