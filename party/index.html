@@ -285,40 +285,62 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .team .pickbtn{ margin-top:18px; width:100%; background:transparent; border:1px dashed var(--gold); color:var(--gold); border-radius:12px; padding:10px; font-size:15px; cursor:pointer; }
 .roll{ font-family:var(--f-myeongjo); font-size:clamp(48px,8vw,120px); color:#FFD89A; text-align:center; }
 .roll small{ display:block; font-family:var(--f-sans); font-size:clamp(16px,1.6vw,24px); color:var(--ink-3); margin-bottom:12px; }
-@media (max-width:700px){ .vs{ grid-template-columns:1fr; } .vsmark{ text-align:center; } .team{ min-height:0; } }
+@media (max-width:700px){ .road{ grid-template-columns:1fr; } .altar{ display:none; } .vs{ grid-template-columns:1fr; } .vsmark{ text-align:center; } .team{ min-height:0; } }
 
 /* 연타 레이스 */
 .teamgrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .teamgrid button{ padding:16px 8px; border-radius:14px; border:1.5px solid var(--line); background:var(--card); font-size:17px; font-weight:700; cursor:pointer; }
-.teamgrid button[aria-pressed="true"]{ background:#3F7F8C; border-color:#3F7F8C; color:#fff; }
+.teamgrid button[aria-pressed="true"]{ background:var(--rose); border-color:var(--rose); color:#fff; }
 .teamedit{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.pad{ position:fixed; inset:64px 0 0 0; z-index:4; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-  background:radial-gradient(circle at 50% 45%, #4F97A3 0%, #2F6670 70%); color:#fff; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; cursor:pointer; }
+.pad{ position:fixed; inset:64px 0 0 0; z-index:4; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; overflow:hidden;
+  background:radial-gradient(circle at 50% 40%, #F0A27A 0%, #DD6A32 55%, #B4532A 100%); color:#fff; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; cursor:pointer; }
 .pad.hit{ animation:padhit .12s ease; }
 @keyframes padhit{ 50%{ filter:brightness(1.25); transform:scale(.985); } }
 .padteam{ font-family:var(--f-myeongjo); font-size:24px; opacity:.9; }
 .padnum{ font-family:var(--f-serif); font-weight:600; font-size:120px; line-height:1; min-height:1em; }
 .padhint{ font-size:34px; font-weight:800; letter-spacing:.06em; }
-.padbar{ width:72%; height:12px; border-radius:99px; background:rgba(255,255,255,.25); overflow:hidden; margin-top:12px; }
+.padroad{ width:78%; display:flex; align-items:center; gap:8px; margin-top:12px; }
+.padbar{ flex:1; height:12px; border-radius:99px; background:rgba(255,255,255,.3); overflow:hidden; }
+.padcouple{ font-size:22px; }
+.padpct{ font-size:15px; font-weight:700; }
+.heart{ position:absolute; z-index:5; pointer-events:none; color:#FFE3D2; font-size:34px; transform:translate(-50%,-50%); animation:heartup .9s ease-out forwards; }
+@keyframes heartup{ to{ transform:translate(calc(-50% + var(--dx)), -150px) scale(1.4); opacity:0; } }
 .padbar i{ display:block; height:100%; width:0; background:#FFD89A; transition:width .3s; }
 .padme{ font-size:15px; opacity:.85; min-height:1.4em; }
+.road{ flex:1; display:grid; grid-template-columns:1fr clamp(150px,17vw,260px); gap:18px; min-height:0; }
+.altar{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-top:20px; }
+.altar .arch{ position:absolute; inset:6% 4% 18%; border:2px solid rgba(217,178,122,.55); border-bottom:0; border-radius:999px 999px 0 0; }
+.altar .ah{ position:relative; color:var(--rose); font-size:clamp(22px,3vw,40px); animation:beat 1.2s ease-in-out infinite; }
+@keyframes beat{ 50%{ transform:scale(1.25); } }
+.altar .pair{ position:relative; display:flex; align-items:flex-end; justify-content:center; gap:2px; margin:6px 0 10px; }
+.altar .pair img{ height:clamp(110px,26vh,240px); width:auto; filter:drop-shadow(0 8px 16px rgba(0,0,0,.5)); }
+.altar b{ position:relative; font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(18px,1.8vw,26px); }
+.altar small{ position:relative; color:var(--ink-3); font-family:var(--f-serif); letter-spacing:.2em; }
 .lanes{ --n:10; --h:clamp(16px, calc((100vh - 220px) / var(--n) - 8px), 52px); flex:1; display:flex; flex-direction:column; justify-content:center; gap:8px; }
 .lane{ display:grid; grid-template-columns:clamp(110px,14vw,200px) 1fr clamp(56px,6vw,90px); align-items:center; gap:14px; }
 .lname{ display:flex; align-items:baseline; gap:6px; min-width:0; }
 .lname b{ font-size:clamp(14px, calc(var(--h) * .55), 24px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .lname small{ color:var(--ink-3); font-size:12px; flex:none; }
-.track{ position:relative; height:var(--h); border-radius:99px; background:var(--card); border:1px solid var(--line);
-  background-image:repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(217,178,122,.15) calc(10% - 1px) 10%); }
+.track{ position:relative; height:var(--h); border-radius:99px; border:1px solid rgba(217,178,122,.35);
+  background:
+    linear-gradient(90deg, transparent calc(23% - 1px), rgba(217,178,122,.35) 23%, transparent calc(23% + 1px), transparent calc(46% - 1px), rgba(217,178,122,.35) 46%, transparent calc(46% + 1px), transparent calc(69% - 1px), rgba(217,178,122,.35) 69%, transparent calc(69% + 1px)),
+    radial-gradient(circle, rgba(238,154,99,.35) 1.5px, transparent 2px) 0 0 / 22px 100%,
+    linear-gradient(90deg, rgba(252,244,230,.05), rgba(252,244,230,.14)); }
+.ruler .marks{ position:relative; height:20px; }
+.ruler .marks span{ position:absolute; top:0; transform:translateX(-50%); font-size:clamp(11px,1vw,14px); color:var(--gold); white-space:nowrap; }
+.ruler .marks span:first-child{ transform:none; }
+.ruler .marks span:last-child{ left:auto !important; right:0; transform:none; color:var(--rose); font-weight:700; }
 .runner{ position:absolute; left:0; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .75); transition:left .6s cubic-bezier(.2,.8,.2,1); display:flex; align-items:center; }
 .runner .rk{ font-family:var(--f-serif); font-weight:700; font-size:.6em; color:#1A1410; background:var(--gold); border-radius:99px; min-width:1.5em; text-align:center; margin-right:4px; }
 .runner .rk:empty{ display:none; }
-.flag{ position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .6); }
+.flag{ position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .55); color:var(--rose); }
 .lnum{ font-family:var(--f-serif); font-weight:600; font-size:clamp(16px, calc(var(--h) * .65), 32px); color:var(--gold); text-align:right; }
 .lane.lead .track{ border-color:var(--gold); box-shadow:0 0 18px rgba(217,178,122,.35); }
 .lane.win .track{ background-color:rgba(238,138,90,.25); border-color:var(--rose); }
 .cdown{ position:fixed; inset:0; z-index:30; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(12,9,7,.72);
   font-family:var(--f-serif); font-weight:600; font-size:clamp(120px,24vw,320px); color:#FFD89A; pointer-events:none; text-align:center; line-height:1.1; }
 .cdown.win{ font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(56px,9vw,150px); }
+.cdown em{ font-style:normal; font-family:var(--f-sans); font-size:clamp(18px,2vw,30px); color:var(--ink); margin-top:10px; }
 .cdown small{ font-family:var(--f-sans); font-size:clamp(20px,2.4vw,34px); color:var(--ink-2); letter-spacing:.3em; }
 
 /* 인쇄용 QR 안내 */
@@ -562,13 +584,13 @@ const TILES = [
   ['/mic','mic','c4','무대 신청','축가 · 축사 · 깜짝 공연'],
   ['/draw','draw','c5','경품 추첨','번호표를 확인하세요'],
   ['/tp','tp','c6','텔레파시 게임','신랑신부 마음 맞추기'],
-  ['/race','race','c8','연타 레이스','화면을 연타해서 우리 팀 1등!'],
+  ['/race','race','c8','웨딩로드 레이스','연타해서 축하를 배달!'],
   ['/beer','beer','c7','맥주 빨리 마시기','신랑 측 vs 신부 측 신청'],
 ];
 const SCHEDULE = [
   ['13:30','입장 · 행운 번호 받기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
   ['14:25','연애 탐구영역 퀴즈쇼'], ['14:50','무엇이든 물어봐'], ['15:05','텔레파시 게임'],
-  ['15:15','팀 대항 연타 레이스'], ['15:25','맥주 빨리 마시기 대회'], ['15:35','무대 (노래방 축가 · 축사)'],
+  ['15:15','웨딩로드 레이스 (팀 연타)'], ['15:25','맥주 빨리 마시기 대회'], ['15:35','무대 (노래방 축가 · 축사)'],
   ['15:55','경품 추첨 · 단체사진'], ['16:05','마무리 인사'],
 ];
 const FOOD_NOTICE = `<section class="notice">
@@ -1143,7 +1165,7 @@ function raceRanks(s){
 }
 
 function race(){
-  phone('연타 레이스', `<div id="rc"><p class="wait">불러오는 중…</p></div>`);
+  phone('웨딩로드 레이스', `<div id="rc"><p class="wait">불러오는 중…</p></div>`);
   const dev = deviceId();
   let s = null, offset = 0, mode = '', round = null, taps = 0, sent = -1, busy = false;
   let my = store.get('raceTeam'); my = my == null ? -1 : Number(my);
@@ -1154,27 +1176,30 @@ function race(){
     if (m === mode) return; mode = m;
     const rc = $('#rc');
     if (m === 'pick'){
-      rc.innerHTML = `<p class="lead">우리 팀을 고르세요. 시작하면 화면을 마구 연타해서 우리 팀 말을 앞으로!</p>
+      rc.innerHTML = `<p class="lead">우리 팀의 축하 편지 💌를 신랑신부에게 가장 먼저 배달하는 레이스예요. 팀을 고르고, 시작하면 화면을 마구 연타하세요!</p>
         <div class="teamgrid">${s.teams.map((t, i) => `<button type="button" data-i="${i}" aria-pressed="${i === my}">${esc(t)}</button>`).join('')}</div>
         <p class="wait" id="rmsg"></p>
         <p class="foot"><a href="#/race/screen">큰 화면</a> · <a href="#/race/host">진행자</a></p>`;
       $$('.teamgrid button').forEach(b => b.onclick = () => { my = Number(b.dataset.i); store.set('raceTeam', my); mode = ''; tick(); });
     } else if (m === 'pad'){
-      rc.innerHTML = `<div class="pad" id="pad"><div class="padteam">${esc(s.teams[my] || '')}</div><div class="padnum" id="cd"></div><div class="padhint" id="ph">누르세요!</div>
-        <div class="padbar"><i id="pb"></i></div><div class="padme" id="pm"></div></div>`;
+      rc.innerHTML = `<div class="pad" id="pad"><div class="padteam">💌 ${esc(s.teams[my] || '')}</div><div class="padnum" id="cd"></div><div class="padhint" id="ph">연타해서 축하 배달!</div>
+        <div class="padroad"><div class="padbar"><i id="pb"></i></div><span class="padcouple">🤵👰</span></div><div class="padpct" id="pp"></div><div class="padme" id="pm"></div></div>`;
       const pad = $('#pad');
       pad.addEventListener('pointerdown', e => {
         e.preventDefault();
         if (!goTime()) return;
         taps++; pad.classList.remove('hit'); void pad.offsetWidth; pad.classList.add('hit');
-        $('#pm').textContent = `내가 누른 횟수 ${taps}`;
+        $('#pm').textContent = `내가 보낸 축하 ${taps}번`;
+        const h = document.createElement('span'); h.className = 'heart'; h.textContent = Math.random() < .25 ? '💌' : '♥';
+        h.style.left = e.clientX + 'px'; h.style.top = (e.clientY - 64) + 'px'; h.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+        pad.appendChild(h); setTimeout(() => h.remove(), 900);
       });
       pad.addEventListener('contextmenu', e => e.preventDefault());
     } else if (m === 'done'){
       const rank = raceRanks(s);
-      rc.innerHTML = `<div class="done"><div class="big">${s.winner === my ? '🏆' : '🏁'}</div>
-        <h3>${s.winner != null ? esc(s.teams[s.winner]) + ' 우승!' : '레이스 종료'}</h3>
-        <p>${my >= 0 ? `우리 팀(${esc(s.teams[my])})은 ${rank[my]}등 · 내가 누른 횟수 ${taps}` : ''}</p>
+      rc.innerHTML = `<div class="done"><div class="big">${s.winner === my ? '💐' : '💌'}</div>
+        <h3>${s.winner != null ? esc(s.teams[s.winner]) + '의 축하가 1등으로 도착!' : '레이스 종료'}</h3>
+        <p>${my >= 0 ? `우리 팀(${esc(s.teams[my])})은 ${rank[my]}등 · 내가 보낸 축하 ${taps}번` : ''}</p>
         <button class="btn ghost" type="button" id="re">팀 다시 고르기</button></div>`;
       $('#re').onclick = () => { my = -1; store.del('raceTeam'); mode = ''; tick(); };
     }
@@ -1192,8 +1217,9 @@ function race(){
     view('pad');
     const left = Math.ceil((s.startAt - now()) / 1000);
     $('#cd').textContent = left > 0 ? left : '';
-    $('#ph').textContent = left > 0 ? '준비…' : '누르세요!';
-    $('#pb').style.width = Math.min(100, (s.totals[my] || 0) / s.goal * 100) + '%';
+    $('#ph').textContent = left > 0 ? '편지 준비…' : '연타해서 축하 배달!';
+    const pct = Math.min(100, Math.round((s.totals[my] || 0) / s.goal * 100));
+    $('#pb').style.width = pct + '%'; $('#pp').textContent = `신랑신부까지 ${pct}% 왔어요`;
   }
   async function sync(){
     if (busy) return; busy = true;
@@ -1210,23 +1236,28 @@ function race(){
 
 function raceScreen(){
   tv(`<div class="tvwrap">
-    <header class="tvhead"><div class="ttl"><h1>팀 대항 연타 레이스</h1><p id="sub"></p></div>${qrBox('#/race', '레이스 참가')}</header>
-    <div class="lanes" id="lanes"></div>
+    <header class="tvhead"><div class="ttl"><h1>웨딩로드 레이스</h1><p id="sub"></p></div>${qrBox('#/race', '레이스 참가')}</header>
+    <div class="road">
+      <div class="lanes" id="lanes"></div>
+      <div class="altar"><div class="arch"></div><span class="ah">♥</span><div class="pair"><img src="../char-groom.png" alt="신랑"><img src="../char-bride.png" alt="신부"></div><b>준혁 &amp; 은수</b><small>2026. 11. 14</small></div>
+    </div>
     <div class="cdown" id="cdown" hidden></div>
   </div>`);
   let s = null, offset = 0, sig = '', cheered = null, cheerAt = 0;
   function build(){
-    $('#lanes').style.setProperty('--n', s.teams.length);
-    $('#lanes').innerHTML = s.teams.map((t, i) => `<div class="lane" data-i="${i}">
+    $('#lanes').style.setProperty('--n', s.teams.length + 1);
+    const marks = ['와인 모임', '고백', '대천 여행', '프러포즈', '11.14 결혼'];
+    $('#lanes').innerHTML = `<div class="lane ruler"><div></div><div class="marks">${marks.map((m, k) => `<span style="left:${k * 23}%">${m}</span>`).join('')}</div><div></div></div>`
+      + s.teams.map((t, i) => `<div class="lane" data-i="${i}">
       <div class="lname"><b>${esc(t)}</b><small></small></div>
-      <div class="track"><div class="runner"><span class="rk"></span>🏃</div><div class="flag">🏁</div></div>
+      <div class="track"><div class="runner"><span class="rk"></span>💌</div><div class="flag">♥</div></div>
       <div class="lnum">0</div></div>`).join('');
   }
   function paint(){
     const sg = JSON.stringify([s.teams, s.round]); if (sg !== sig){ sig = sg; build(); }
     const rank = raceRanks(s);
-    $('#sub').textContent = s.status === 'ready' ? `목표 ${s.goal}번 · QR 찍고 팀을 고르세요!` : s.status === 'go' ? `목표 ${s.goal}번 · 연타!` : '레이스 종료';
-    $$('.lane').forEach(el => {
+    $('#sub').textContent = s.status === 'ready' ? `우리 팀의 축하를 신랑신부에게 가장 먼저! · 목표 ${s.goal}번 · QR 찍고 팀을 고르세요` : s.status === 'go' ? `축하 배달 중! · 목표 ${s.goal}번` : '축하 배달 완료';
+    $$('.lane[data-i]').forEach(el => {
       const i = Number(el.dataset.i), v = s.totals[i] || 0;
       $('.runner', el).style.left = `calc(${Math.min(1, v / s.goal) * 100}% * .92)`;
       $('.lnum', el).textContent = v;
@@ -1238,10 +1269,10 @@ function raceScreen(){
     const cd = $('#cdown'), left = Math.ceil((s.startAt - (Date.now() + offset)) / 1000);
     cd.classList.remove('win');
     if (s.status === 'go' && left > 0){ cd.hidden = false; cd.textContent = left; }
-    else if (s.status === 'go' && left > -1){ cd.hidden = false; cd.textContent = 'GO!'; }
+    else if (s.status === 'go' && left > -1){ cd.hidden = false; cd.textContent = '출발!'; }
     else if (s.status === 'done' && s.winner != null && (cheered !== s.round || Date.now() - cheerAt < 6000)){
       if (cheered !== s.round){ cheered = s.round; cheerAt = Date.now(); confetti(); }
-      cd.hidden = false; cd.classList.add('win'); cd.innerHTML = `<small>우승</small>${esc(s.teams[s.winner])}`;
+      cd.hidden = false; cd.classList.add('win'); cd.innerHTML = `<small>축하 배달 1등</small>${esc(s.teams[s.winner])}<em>신랑신부에게 가장 먼저 도착했어요 ♥</em>`;
     } else cd.hidden = true;
   }
   loop(async () => { s = (await apiGet('race')).race; offset = raceOffset(s); paint(); }, 700);
@@ -1249,10 +1280,10 @@ function raceScreen(){
 }
 
 async function raceHost(){
-  phone('레이스 진행', `<p class="wait">PIN 확인 중…</p>`);
+  phone('웨딩로드 레이스 진행', `<p class="wait">PIN 확인 중…</p>`);
   try { await hostPin(); } catch(e){ location.hash = '#/race'; return; }
   let s = (await apiGet('race')).race;
-  phone('레이스 진행', `
+  phone('웨딩로드 레이스 진행', `
     <div class="status"><div id="st"></div></div>
     <button class="btn" type="button" id="start">시작 (3초 카운트다운)</button>
     <button class="btn ghost" type="button" id="stop">멈추기</button>
