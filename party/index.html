@@ -96,6 +96,11 @@ a{ color:inherit; }
 .c1{ background:var(--wine); } .c2{ background:var(--olive-deep); } .c3{ background:var(--gold-deep); }
 .c4{ background:var(--rose); } .c5{ background:#6E4A6E; } .c6{ background:var(--wine-2); } .c7{ background:#B07A1E; }
 .c8{ background:#C8566E; }
+.quizbar{ display:flex; align-items:center; gap:12px; margin:0 0 12px; padding:14px 16px; border-radius:18px; text-decoration:none;
+  background:var(--card); border:1.5px solid var(--gold); box-shadow:0 10px 24px -18px rgba(94,26,40,.45); }
+.quizbar .qi{ flex:none; width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background:linear-gradient(160deg,#C9A16B,#A87F45); color:#fff; font-family:var(--f-serif); font-weight:700; font-size:24px; }
+.quizbar div{ flex:1; min-width:0; } .quizbar b{ display:block; font-size:16px; } .quizbar small{ color:var(--ink-3); font-size:12.5px; }
+.quizbar .go{ flex:none; color:var(--wine); font-size:20px; font-weight:700; }
 .notice{ margin-top:16px; background:var(--card); border:1px solid var(--line); border-left:4px solid var(--wine); border-radius:14px; padding:14px 16px 6px; }
 .notice h3{ margin:0 0 6px; font-family:var(--f-myeongjo); font-weight:400; font-size:16px; letter-spacing:.06em; }
 .notice ul{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-2); }
@@ -628,6 +633,7 @@ const SCHEDULE = [
   ['15:15','웨딩로드 레이스 (팀 연타)'], ['15:25','맥주 빨리 마시기 대회'], ['15:35','무대 (노래방 축가 · 축사)'],
   ['15:55','경품 추첨 · 단체사진'], ['16:05','마무리 인사'],
 ];
+const QUIZ_URL = 'https://quizn.show/quz/play/tryPinForm.do?showSeq=878244';
 const FOOD_NOTICE = `<section class="notice">
   <h3>안주 · 술 안내</h3>
   <ul>
@@ -647,6 +653,11 @@ function home(){
       <p class="meta">11. 14 SAT 오후 1:30<br>쌍용동 라퓨타</p>
       <div class="pair"><img src="../char-groom.png" alt=""><img src="../char-bride.png" alt=""></div>
     </header>
+    <a class="quizbar" href="${QUIZ_URL}" target="_blank" rel="noopener">
+      <span class="qi">Q</span>
+      <div><b>연애 탐구영역 퀴즈쇼 참여</b><small>14:25 시작 · 누르고 큰 화면의 PIN 입력</small></div>
+      <span class="go">→</span>
+    </a>
     <nav class="tiles">${TILES.map(([r, ic, c, t, s], i) => `
       <a class="tile ${i === TILES.length - 1 && TILES.length % 2 ? 'wide' : ''}" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
     </nav>
