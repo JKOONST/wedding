@@ -72,6 +72,23 @@ a{ color:inherit; }
 .ic svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
 .c1{ background:var(--rose); } .c2{ background:var(--olive-deep); } .c3{ background:var(--gold-deep); }
 .c4{ background:var(--brick); } .c5{ background:#7C6A9A; } .c6{ background:#C4586C; } .c7{ background:#C08A1E; }
+.c8{ background:#3F7F8C; }
+.notice{ margin-top:16px; background:var(--card); border:1px solid var(--line); border-left:4px solid var(--rose); border-radius:14px; padding:14px 16px 6px; }
+.notice h3{ margin:0 0 6px; font-family:var(--f-myeongjo); font-weight:400; font-size:16px; letter-spacing:.06em; }
+.notice ul{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-2); }
+.notice li{ margin-bottom:8px; } .notice b{ color:var(--ink); }
+/* 행운 번호 */
+.ticket{ position:fixed; left:12px; bottom:12px; z-index:45; display:flex; align-items:center; gap:6px; background:var(--ink); color:var(--paper); border:0; border-radius:99px; padding:8px 14px 8px 10px; font-size:13px; cursor:pointer; box-shadow:0 8px 20px -8px rgba(0,0,0,.5); }
+.ticket b{ font-family:var(--f-serif); font-size:20px; color:#FFD89A; line-height:1; }
+.tmodal{ position:fixed; inset:0; z-index:70; background:rgba(26,20,16,.6); display:flex; align-items:center; justify-content:center; padding:16px; animation:pop .3s ease both; }
+.tcard{ width:100%; max-width:360px; background:var(--paper); border-radius:22px; padding:26px 22px 20px; text-align:center; box-shadow:0 20px 50px -20px rgba(0,0,0,.6); }
+.tcard .label{ margin-bottom:6px; }
+.tcard .no{ font-family:var(--f-serif); font-weight:600; font-size:96px; line-height:1; color:var(--rose); margin:6px 0; }
+.tcard p{ margin:0 0 14px; font-size:14px; color:var(--ink-2); }
+.tcard .row{ display:flex; gap:8px; margin-bottom:10px; } .tcard .row .inp{ flex:1; }
+.tcard .row button{ flex:none; border:0; border-radius:12px; background:var(--ink); color:var(--paper); padding:0 16px; font-weight:700; cursor:pointer; }
+.winner{ font-family:var(--f-myeongjo); font-size:clamp(24px,3vw,44px); color:var(--ink-2); min-height:1.4em; }
+.mrow .acts a{ border:1px solid var(--gold); color:var(--gold); padding:6px 12px; border-radius:9px; font-size:13px; text-decoration:none; }
 .tile.wide{ grid-column:1 / -1; flex-direction:row; align-items:center; min-height:0; gap:14px; }
 .tile.wide span{ margin:0 0 0 auto; text-align:right; }
 .host-tag{ font-size:10.5px !important; color:var(--gold-deep) !important; letter-spacing:.06em; }
@@ -207,7 +224,7 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 
 /* 경품 추첨 */
 .draw{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; text-align:center; }
-.slot{ font-family:var(--f-serif); font-weight:600; font-size:clamp(140px,26vw,360px); line-height:1; color:var(--gold); font-variant-numeric:tabular-nums; text-shadow:0 0 60px rgba(217,178,122,.35); min-height:1em; }
+.slot{ font-family:var(--f-serif); font-weight:600; font-size:clamp(110px,min(26vw,36vh),360px); line-height:1; color:var(--gold); font-variant-numeric:tabular-nums; text-shadow:0 0 60px rgba(217,178,122,.35); min-height:1em; }
 .slot.rolling{ color:var(--ink-2); }
 .slot.hit{ animation:hit .7s cubic-bezier(.2,.8,.2,1.4) both; color:#FFD89A; }
 @keyframes hit{ 0%{ transform:scale(.6); } 60%{ transform:scale(1.12); } 100%{ transform:scale(1); } }
@@ -269,6 +286,40 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .roll{ font-family:var(--f-myeongjo); font-size:clamp(48px,8vw,120px); color:#FFD89A; text-align:center; }
 .roll small{ display:block; font-family:var(--f-sans); font-size:clamp(16px,1.6vw,24px); color:var(--ink-3); margin-bottom:12px; }
 @media (max-width:700px){ .vs{ grid-template-columns:1fr; } .vsmark{ text-align:center; } .team{ min-height:0; } }
+
+/* 연타 레이스 */
+.teamgrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.teamgrid button{ padding:16px 8px; border-radius:14px; border:1.5px solid var(--line); background:var(--card); font-size:17px; font-weight:700; cursor:pointer; }
+.teamgrid button[aria-pressed="true"]{ background:#3F7F8C; border-color:#3F7F8C; color:#fff; }
+.teamedit{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.pad{ position:fixed; inset:64px 0 0 0; z-index:4; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  background:radial-gradient(circle at 50% 45%, #4F97A3 0%, #2F6670 70%); color:#fff; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; cursor:pointer; }
+.pad.hit{ animation:padhit .12s ease; }
+@keyframes padhit{ 50%{ filter:brightness(1.25); transform:scale(.985); } }
+.padteam{ font-family:var(--f-myeongjo); font-size:24px; opacity:.9; }
+.padnum{ font-family:var(--f-serif); font-weight:600; font-size:120px; line-height:1; min-height:1em; }
+.padhint{ font-size:34px; font-weight:800; letter-spacing:.06em; }
+.padbar{ width:72%; height:12px; border-radius:99px; background:rgba(255,255,255,.25); overflow:hidden; margin-top:12px; }
+.padbar i{ display:block; height:100%; width:0; background:#FFD89A; transition:width .3s; }
+.padme{ font-size:15px; opacity:.85; min-height:1.4em; }
+.lanes{ --n:10; --h:clamp(16px, calc((100vh - 220px) / var(--n) - 8px), 52px); flex:1; display:flex; flex-direction:column; justify-content:center; gap:8px; }
+.lane{ display:grid; grid-template-columns:clamp(110px,14vw,200px) 1fr clamp(56px,6vw,90px); align-items:center; gap:14px; }
+.lname{ display:flex; align-items:baseline; gap:6px; min-width:0; }
+.lname b{ font-size:clamp(14px, calc(var(--h) * .55), 24px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.lname small{ color:var(--ink-3); font-size:12px; flex:none; }
+.track{ position:relative; height:var(--h); border-radius:99px; background:var(--card); border:1px solid var(--line);
+  background-image:repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(217,178,122,.15) calc(10% - 1px) 10%); }
+.runner{ position:absolute; left:0; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .75); transition:left .6s cubic-bezier(.2,.8,.2,1); display:flex; align-items:center; }
+.runner .rk{ font-family:var(--f-serif); font-weight:700; font-size:.6em; color:#1A1410; background:var(--gold); border-radius:99px; min-width:1.5em; text-align:center; margin-right:4px; }
+.runner .rk:empty{ display:none; }
+.flag{ position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:calc(var(--h) * .6); }
+.lnum{ font-family:var(--f-serif); font-weight:600; font-size:clamp(16px, calc(var(--h) * .65), 32px); color:var(--gold); text-align:right; }
+.lane.lead .track{ border-color:var(--gold); box-shadow:0 0 18px rgba(217,178,122,.35); }
+.lane.win .track{ background-color:rgba(238,138,90,.25); border-color:var(--rose); }
+.cdown{ position:fixed; inset:0; z-index:30; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(12,9,7,.72);
+  font-family:var(--f-serif); font-weight:600; font-size:clamp(120px,24vw,320px); color:#FFD89A; pointer-events:none; text-align:center; line-height:1.1; }
+.cdown.win{ font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(56px,9vw,150px); }
+.cdown small{ font-family:var(--f-sans); font-size:clamp(20px,2.4vw,34px); color:var(--ink-2); letter-spacing:.3em; }
 
 /* 인쇄용 QR 안내 */
 .poster{ text-align:center; padding:40px 16px; }
@@ -373,6 +424,22 @@ async function hostPost(body){
   catch(e){ if (/PIN/.test(e.message)) store.del('pin'); toast(e.message); throw e; }
 }
 
+/* 이 기기를 구분하는 값 (입장 번호 · 레이스용) */
+function deviceId(){
+  let d = store.get('dev');
+  if (!d){ d = Math.random().toString(36).slice(2, 12) + Date.now().toString(36); store.set('dev', d); }
+  return d;
+}
+const defaultTeams = n => Array.from({ length:n }, (_, i) => `${i + 1}팀`);
+/* 레이스 집계 (데모 서버용 — 실제 서버는 Code.gs 에서 같은 계산) */
+function raceSummary(st, entries){
+  const n = st.teams.length, totals = Array(n).fill(0), players = Array(n).fill(0);
+  entries.forEach(e => { if (e.t >= 0 && e.t < n){ totals[e.t] += Number(e.n) || 0; players[e.t]++; } });
+  const out = { ...st, totals, players, now:Date.now() };
+  if (st.status === 'go'){ const m = Math.max(0, ...totals); if (m >= st.goal){ out.status = 'done'; out.winner = totals.indexOf(m); out.changed = true; } }
+  return out;
+}
+
 /* 데모 모드: 같은 브라우저의 탭끼리만 공유되는 가짜 서버 */
 const demo = {
   PIN: '1114',
@@ -381,16 +448,46 @@ const demo = {
   tp(){ return this.rows('tp').round != null ? this.rows('tp') : { round:0, q:'', options:[], groom:null, bride:null, revealed:false, score:0, played:0 }; },
   pub(s){ return { round:s.round, q:s.q, options:s.options, revealed:s.revealed, score:s.score, played:s.played,
     groomDone:s.groom != null, brideDone:s.bride != null, groom:s.revealed ? s.groom : null, bride:s.revealed ? s.bride : null }; },
+  race(){ const s = this.rows('race'); return s.round != null ? s : { round:0, status:'ready', goal:300, teams:defaultTeams(10), startAt:0, winner:null }; },
+  racePub(){
+    const s = this.race(); let taps = {}; try { taps = JSON.parse(localStorage.getItem('party_demo_racetaps')) || {}; } catch(e){}
+    const out = raceSummary(s, Object.entries(taps).filter(([k]) => k.startsWith(s.round + '|')).map(([, v]) => v));
+    if (out.changed){ delete out.changed; this.save('race', { ...s, status:out.status, winner:out.winner }); }
+    return out;
+  },
   async get(a, q){
     await sleep(120);
-    if (a === 'list') return { ok:true, rows:this.rows(q.t) };
+    if (a === 'list') return { ok:true, rows:this.rows(q.t).map(({ device, ...r }) => r) };
     if (a === 'tp') return { ok:true, tp:this.pub(this.tp()) };
+    if (a === 'race') return { ok:true, race:this.racePub() };
   },
   async post(b){
-    await sleep(250);
-    const needPin = ['status','tpSet','tpReveal','tpReset','checkPin'];
+    await sleep(b.a === 'raceTap' ? 60 : 250);
+    const needPin = ['status','tpSet','tpReveal','tpReset','checkPin','raceSetup','raceStart','raceStop','raceReset'];
     if (needPin.includes(b.a) && b.pin !== this.PIN) throw new Error('진행자 PIN 이 틀렸어요');
     const row = { id: Math.random().toString(36).slice(2, 10), ts: Date.now(), status:'new' };
+    if (b.a === 'ticket'){
+      const all = this.rows('tickets'); let r = all.find(x => x.device === b.device);
+      if (!r){
+        const used = new Set(all.map(x => x.no)), free = [];
+        for (let n = 1; n <= 100; n++) if (!used.has(n)) free.push(n);
+        if (!free.length) throw new Error('번호가 모두 나갔어요');
+        r = { ...row, no:free[Math.floor(Math.random() * free.length)], device:b.device, name:'' }; all.push(r);
+      }
+      if (b.name) r.name = String(b.name).slice(0, 20);
+      this.save('tickets', all); const { device, ...pub } = r; return { ok:true, row:pub };
+    }
+    if (b.a && b.a.startsWith('race')){
+      const s = this.race();
+      let taps = {}; try { taps = JSON.parse(localStorage.getItem('party_demo_racetaps')) || {}; } catch(e){}
+      if (b.a === 'raceTap' && s.status === 'go' && b.round === s.round && Date.now() >= s.startAt) taps[s.round + '|' + b.device] = { t:b.t, n:b.n };
+      if (b.a === 'raceSetup'){ s.teams = b.teams; s.goal = b.goal; }
+      if (b.a === 'raceStart'){ Object.assign(s, { round:s.round + 1, status:'go', startAt:Date.now() + 4000, winner:null }); taps = {}; }
+      if (b.a === 'raceStop'){ s.status = 'done'; }
+      if (b.a === 'raceReset'){ Object.assign(s, { round:s.round + 1, status:'ready', winner:null }); taps = {}; }
+      localStorage.setItem('party_demo_racetaps', JSON.stringify(taps)); this.save('race', s);
+      return { ok:true, race:this.racePub() };
+    }
     if (b.a === 'add'){
       Object.assign(row, b.data);
       if (!row.name && b.t !== 'mic') row.name = '익명';
@@ -421,6 +518,7 @@ const ICON = {
   mic:'<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></svg>',
   draw:'<svg viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M3.5 13h17M12 9v11.5M12 9C10.5 5 6.5 4.5 6.5 7 6.5 8.6 9 9 12 9zM12 9c1.5-4 5.5-4.5 5.5-2 0 1.6-2.5 2-5.5 2z"/></svg>',
   tp:'<svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>',
+  race:'<svg viewBox="0 0 24 24"><path d="M5 21V3.5"/><path d="M5 4h13l-2.5 4L18 12H5"/></svg>',
   beer:'<svg viewBox="0 0 24 24"><path d="M5 9h10v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M15 11.5h2.2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H15"/><path d="M5 9V7.5A2.5 2.5 0 0 1 7.5 5c.5-1.2 1.6-2 3-2s2.6.9 3 2a2 2 0 0 1 1.5 2V9"/><path d="M8.5 12.5v5M11.5 12.5v5"/></svg>',
 };
 
@@ -464,13 +562,23 @@ const TILES = [
   ['/mic','mic','c4','무대 신청','축가 · 축사 · 깜짝 공연'],
   ['/draw','draw','c5','경품 추첨','번호표를 확인하세요'],
   ['/tp','tp','c6','텔레파시 게임','신랑신부 마음 맞추기'],
-  ['/beer','beer','c7','맥주 빨리 마시기 대회','신랑 측 vs 신부 측 · 참가 신청'],
+  ['/race','race','c8','연타 레이스','화면을 연타해서 우리 팀 1등!'],
+  ['/beer','beer','c7','맥주 빨리 마시기','신랑 측 vs 신부 측 신청'],
 ];
 const SCHEDULE = [
-  ['13:30','입장 · 자리 찾기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
-  ['14:30','연애 탐구영역 퀴즈쇼'], ['14:55','무엇이든 물어봐'], ['15:10','텔레파시 게임'],
-  ['15:20','맥주 빨리 마시기 대회'], ['15:30','무대 (축가 · 축사)'], ['15:50','경품 추첨 · 단체사진'], ['16:00','마무리 인사'],
+  ['13:30','입장 · 행운 번호 받기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
+  ['14:25','연애 탐구영역 퀴즈쇼'], ['14:50','무엇이든 물어봐'], ['15:05','텔레파시 게임'],
+  ['15:15','팀 대항 연타 레이스'], ['15:25','맥주 빨리 마시기 대회'], ['15:35','무대 (노래방 축가 · 축사)'],
+  ['15:55','경품 추첨 · 단체사진'], ['16:05','마무리 인사'],
 ];
+const FOOD_NOTICE = `<section class="notice">
+  <h3>안주 · 술 안내</h3>
+  <ul>
+    <li>뒤쪽에 <b>오뎅탕 · 샐러드 · 과일</b>이 준비돼 있어요. <b>테이블(팀)당 2접시</b> 정도 가져가 주세요.</li>
+    <li>더 드시고 싶으면 테이블당 <b>안주 1개 정도</b>는 주문해서 드셔도 돼요.</li>
+    <li>술은 <b>자유롭게</b> 가져가시거나 주문해서 드세요.</li>
+  </ul>
+</section>`;
 function home(){
   document.body.className = '';
   app.innerHTML = `<div class="wrap">
@@ -483,6 +591,7 @@ function home(){
     <nav class="tiles">${TILES.map(([r, ic, c, t, s], i) => `
       <a class="tile ${i === TILES.length - 1 && TILES.length % 2 ? 'wide' : ''}" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
     </nav>
+    ${FOOD_NOTICE}
     <details class="timeline"><summary>오늘의 순서</summary>
       <ol>${SCHEDULE.map(([t, s]) => `<li><time>${t}</time><span>${s}</span></li>`).join('')}</ol>
     </details>
@@ -704,12 +813,12 @@ function msgBoard(){
 /* ═══════════════ 4. 무대 신청 ═══════════════ */
 function mic(){
   phone('무대 신청', `
-    <p class="lead">축가, 축사, 깜짝 공연 모두 환영해요. 신청하면 진행자가 순서대로 불러 드릴게요. 한 팀당 3분 안팎이면 좋아요.</p>
+    <p class="lead">축가, 축사, 깜짝 공연 모두 환영해요. 축가는 큰 화면에 유튜브 노래방을 틀고 무선 마이크로 불러요. 신청하면 진행자가 순서대로 불러 드릴게요. 한 팀당 3분 안팎이면 좋아요.</p>
     <div id="form">
       <label class="field"><span>이름 (팀 이름)</span><input class="inp" id="name" maxlength="20" placeholder="예) 신부 회사 동기들" value="${esc(store.get('name') || '')}"></label>
       <div class="field"><span>무엇을?</span>
         <div class="seg" id="kind"><button type="button" data-v="축가" aria-pressed="true">축가</button><button type="button" data-v="축사" aria-pressed="false">축사</button><button type="button" data-v="깜짝 공연" aria-pressed="false">깜짝 공연</button></div></div>
-      <label class="field"><span id="dl">곡 제목</span><input class="inp" id="detail" maxlength="60" placeholder="예) 성시경 - 두 사람"></label>
+      <label class="field"><span id="dl">곡 제목</span><input class="inp" id="detail" maxlength="60" placeholder="예) 성시경 - 두 사람 (가수 - 제목으로 적어 주세요)"></label>
       <div class="field"><span>예상 시간</span>
         <div class="seg" id="min"><button type="button" data-v="3" aria-pressed="true">3분</button><button type="button" data-v="5" aria-pressed="false">5분</button><button type="button" data-v="7" aria-pressed="false">7분 이상</button></div></div>
       <button class="btn" type="button" id="send">신청하기</button>
@@ -745,7 +854,7 @@ function micBoard(){
       <div class="mrow ${r.status === 'done' ? 'is-done' : ''}">
         <div class="no">${i + 1}</div>
         <div><b>${esc(r.name)}</b><span class="chip k">${esc(r.kind)}</span><small>${esc(r.detail || '')} · 약 ${esc(r.minutes)}분</small></div>
-        <div class="acts noprint">${r.status === 'on' ? '' : `<button type="button" data-id="${esc(r.id)}" data-s="on">무대로</button>`}${r.status === 'done' ? `<button type="button" data-id="${esc(r.id)}" data-s="new">되돌리기</button>` : `<button type="button" data-id="${esc(r.id)}" data-s="done">완료</button>`}<button type="button" data-id="${esc(r.id)}" data-s="hidden">삭제</button></div>
+        <div class="acts noprint">${r.kind === '축가' && r.detail ? `<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(r.detail + ' 노래방')}" target="_blank" rel="noopener">노래방 ▶</a>` : ''}${r.status === 'on' ? '' : `<button type="button" data-id="${esc(r.id)}" data-s="on">무대로</button>`}${r.status === 'done' ? `<button type="button" data-id="${esc(r.id)}" data-s="new">되돌리기</button>` : `<button type="button" data-id="${esc(r.id)}" data-s="done">완료</button>`}<button type="button" data-id="${esc(r.id)}" data-s="hidden">삭제</button></div>
       </div>`).join('') : `<div class="empty" style="padding-top:12vh"><b>무대의 주인공을 찾습니다</b>QR을 찍고 축가 · 축사를 신청해 주세요</div>`;
     $$('.mrow button').forEach(b => b.onclick = async () => {
       if (b.dataset.s === 'on'){ const cur = rows.find(r => r.status === 'on'); if (cur) await hostPost({ a:'status', t:'mic', id:cur.id, status:'done' }); }
@@ -754,42 +863,80 @@ function micBoard(){
   }, 4000);
 }
 
-/* ═══════════════ 5. 경품 추첨 (서버 없이 이 화면에서만) ═══════════════ */
+/* ═══════════════ 5. 경품 추첨 ═══════════════
+   기본은 QR로 실제 나간 행운 번호 중에서만 추첨 (서버에 당첨 기록).
+   '번호 범위'로 바꾸면 서버 없이 이 화면에서만 추첨. */
 function draw(){
   tv(`<div class="tvwrap">
-    <header class="tvhead"><div class="ttl"><h1>행운의 번호</h1><p>입장할 때 받은 번호표를 확인하세요</p></div></header>
+    <header class="tvhead"><div class="ttl"><h1>행운의 번호</h1><p>입장할 때 받은 행운 번호를 확인하세요</p></div>${qrBox('#/', '번호 받기')}</header>
     <div class="draw">
       <div class="slot" id="slot">?</div>
+      <div class="winner" id="who"></div>
       <button class="drawbtn" type="button" id="go">추첨!</button>
       <div class="hist" id="hist"></div>
       <div class="drawset noprint">
-        <label>번호 <input type="number" id="lo" min="1" value="${esc(store.get('lo') || 1)}"></label>~
-        <input type="number" id="hi" min="1" value="${esc(store.get('hi') || 70)}">
-        <label><input type="checkbox" id="uniq" checked> 뽑힌 번호 제외</label>
+        <label><input type="radio" name="src" value="ticket" ${store.get('drawSrc') !== 'range' ? 'checked' : ''}> 입장 번호 (<span id="cnt">0</span>명)</label>
+        <label><input type="radio" name="src" value="range" ${store.get('drawSrc') === 'range' ? 'checked' : ''}> 번호 범위</label>
+        <span id="rangebox"><input type="number" id="lo" min="1" value="${esc(store.get('lo') || 1)}"> ~ <input type="number" id="hi" min="1" value="${esc(store.get('hi') || 100)}"></span>
         <button type="button" id="reset">기록 지우기</button>
       </div>
     </div>
   </div>`);
+  let tickets = [];
   let hist = []; try { hist = JSON.parse(store.get('drawn') || '[]'); } catch(e){}
-  const paint = () => $('#hist').innerHTML = hist.map((n, i) => `<span title="${i + 1}번째">${n}</span>`).join('');
-  paint();
+  const src = () => $('input[name=src]:checked').value;
+  function paint(){
+    $('#rangebox').hidden = src() !== 'range';
+    $('#cnt').textContent = tickets.length;
+    if (src() === 'ticket'){
+      const won = tickets.filter(r => r.status === 'won');
+      $('#hist').innerHTML = won.map(r => `<span>${esc(r.no)}${r.name ? ' ' + esc(r.name) : ''}</span>`).join('');
+    } else {
+      $('#hist').innerHTML = hist.map((n, i) => `<span title="${i + 1}번째">${n}</span>`).join('');
+    }
+  }
+  $$('input[name=src]').forEach(r => r.onchange = () => { store.set('drawSrc', src()); paint(); });
   $('#lo').onchange = () => store.set('lo', $('#lo').value);
   $('#hi').onchange = () => store.set('hi', $('#hi').value);
-  $('#reset').onclick = () => { if (confirm('추첨 기록을 지울까요?')){ hist = []; store.set('drawn', '[]'); paint(); $('#slot').textContent = '?'; } };
+  $('#reset').onclick = async () => {
+    if (!confirm('추첨 기록을 지울까요? 당첨된 번호가 다시 추첨 대상이 돼요.')) return;
+    if (src() === 'ticket'){
+      for (const r of tickets.filter(r => r.status === 'won')){ await hostPost({ a:'status', t:'tickets', id:r.id, status:'new' }); r.status = 'new'; }
+    } else { hist = []; store.set('drawn', '[]'); }
+    $('#slot').textContent = '?'; $('#who').textContent = ''; paint();
+  };
+  loop(async () => { tickets = (await listRows('tickets')).filter(r => r.status !== 'hidden'); paint(); }, 5000);
   let busy = false;
+  async function roll(nums, final){
+    const slot = $('#slot'); slot.className = 'slot rolling'; $('#who').textContent = '';
+    let d = 40;
+    while (d < 420){ slot.textContent = nums[Math.floor(Math.random() * nums.length)]; await sleep(d); d *= 1.09; }
+    slot.textContent = final; slot.className = 'slot hit'; confetti();
+  }
   async function go(){
     if (busy) return;
-    const lo = Math.floor(+$('#lo').value), hi = Math.floor(+$('#hi').value);
-    if (!(hi >= lo)) return toast('번호 범위를 확인해 주세요');
-    const pool = []; for (let n = lo; n <= hi; n++) if (!$('#uniq').checked || !hist.includes(n)) pool.push(n);
-    if (!pool.length) return toast('남은 번호가 없어요');
-    busy = true; $('#go').disabled = true;
-    const slot = $('#slot'); slot.className = 'slot rolling';
-    const pick = pool[crypto.getRandomValues(new Uint32Array(1))[0] % pool.length];
-    let d = 40;
-    while (d < 420){ slot.textContent = pool[Math.floor(Math.random() * pool.length)]; await sleep(d); d *= 1.09; }
-    slot.textContent = pick; slot.className = 'slot hit';
-    hist.push(pick); store.set('drawn', JSON.stringify(hist)); paint(); confetti();
+    const rand = n => crypto.getRandomValues(new Uint32Array(1))[0] % n;
+    if (src() === 'ticket'){
+      const pool = tickets.filter(r => r.status !== 'won');
+      if (!pool.length) return toast(tickets.length ? '남은 번호가 없어요' : '아직 번호를 받은 사람이 없어요');
+      try { await hostPin(); } catch(e){ return; }
+      busy = true; $('#go').disabled = true;
+      const pick = pool[rand(pool.length)];
+      try { await hostPost({ a:'status', t:'tickets', id:pick.id, status:'won' }); pick.status = 'won'; }
+      catch(e){ busy = false; $('#go').disabled = false; return; }
+      await roll(pool.map(r => r.no), pick.no);
+      $('#who').textContent = pick.name ? `${pick.name} 님 축하드려요!` : '번호 주인은 앞으로 나와 주세요!';
+      paint();
+    } else {
+      const lo = Math.floor(+$('#lo').value), hi = Math.floor(+$('#hi').value);
+      if (!(hi >= lo)) return toast('번호 범위를 확인해 주세요');
+      const pool = []; for (let n = lo; n <= hi; n++) if (!hist.includes(n)) pool.push(n);
+      if (!pool.length) return toast('남은 번호가 없어요');
+      busy = true; $('#go').disabled = true;
+      const pick = pool[rand(pool.length)];
+      await roll(pool, pick);
+      hist.push(pick); store.set('drawn', JSON.stringify(hist)); paint();
+    }
     busy = false; $('#go').disabled = false;
   }
   $('#go').onclick = go;
@@ -986,15 +1133,209 @@ function beerBoard(){
   loop(async () => { rows = await listRows('beer'); paint(); }, 4000);
 }
 
+/* ═══════════════ 8. 팀 대항 연타 레이스 ═══════════════
+   각 폰은 '이번 판에서 내가 누른 총 횟수'를 1초마다 보낸다(누적값이라 몇 번 실패해도 다음에 따라잡음).
+   서버가 팀별로 더해서 큰 화면에 보여준다. */
+const raceOffset = s => (s.now || Date.now()) - Date.now();      // 서버 시계 - 내 시계
+function raceRanks(s){
+  const order = s.totals.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]);
+  const rank = Array(s.totals.length); order.forEach(([, i], k) => rank[i] = k + 1); return rank;
+}
+
+function race(){
+  phone('연타 레이스', `<div id="rc"><p class="wait">불러오는 중…</p></div>`);
+  const dev = deviceId();
+  let s = null, offset = 0, mode = '', round = null, taps = 0, sent = -1, busy = false;
+  let my = store.get('raceTeam'); my = my == null ? -1 : Number(my);
+  const now = () => Date.now() + offset;
+  const goTime = () => s && s.status === 'go' && now() >= s.startAt;
+
+  function view(m){
+    if (m === mode) return; mode = m;
+    const rc = $('#rc');
+    if (m === 'pick'){
+      rc.innerHTML = `<p class="lead">우리 팀을 고르세요. 시작하면 화면을 마구 연타해서 우리 팀 말을 앞으로!</p>
+        <div class="teamgrid">${s.teams.map((t, i) => `<button type="button" data-i="${i}" aria-pressed="${i === my}">${esc(t)}</button>`).join('')}</div>
+        <p class="wait" id="rmsg"></p>
+        <p class="foot"><a href="#/race/screen">큰 화면</a> · <a href="#/race/host">진행자</a></p>`;
+      $$('.teamgrid button').forEach(b => b.onclick = () => { my = Number(b.dataset.i); store.set('raceTeam', my); mode = ''; tick(); });
+    } else if (m === 'pad'){
+      rc.innerHTML = `<div class="pad" id="pad"><div class="padteam">${esc(s.teams[my] || '')}</div><div class="padnum" id="cd"></div><div class="padhint" id="ph">누르세요!</div>
+        <div class="padbar"><i id="pb"></i></div><div class="padme" id="pm"></div></div>`;
+      const pad = $('#pad');
+      pad.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        if (!goTime()) return;
+        taps++; pad.classList.remove('hit'); void pad.offsetWidth; pad.classList.add('hit');
+        $('#pm').textContent = `내가 누른 횟수 ${taps}`;
+      });
+      pad.addEventListener('contextmenu', e => e.preventDefault());
+    } else if (m === 'done'){
+      const rank = raceRanks(s);
+      rc.innerHTML = `<div class="done"><div class="big">${s.winner === my ? '🏆' : '🏁'}</div>
+        <h3>${s.winner != null ? esc(s.teams[s.winner]) + ' 우승!' : '레이스 종료'}</h3>
+        <p>${my >= 0 ? `우리 팀(${esc(s.teams[my])})은 ${rank[my]}등 · 내가 누른 횟수 ${taps}` : ''}</p>
+        <button class="btn ghost" type="button" id="re">팀 다시 고르기</button></div>`;
+      $('#re').onclick = () => { my = -1; store.del('raceTeam'); mode = ''; tick(); };
+    }
+  }
+  function tick(){
+    if (!s) return;
+    if (s.round !== round){ round = s.round; taps = 0; sent = -1; }
+    if (s.status === 'done') return view('done');
+    if (my < 0 || my >= s.teams.length || s.status === 'ready'){
+      view('pick');
+      const m = $('#rmsg'); if (m) m.textContent = my >= 0 ? `${s.teams[my]} 선택 완료! 진행자가 시작하면 화면이 바뀌어요.` : '';
+      $$('.teamgrid button').forEach(b => b.setAttribute('aria-pressed', Number(b.dataset.i) === my));
+      return;
+    }
+    view('pad');
+    const left = Math.ceil((s.startAt - now()) / 1000);
+    $('#cd').textContent = left > 0 ? left : '';
+    $('#ph').textContent = left > 0 ? '준비…' : '누르세요!';
+    $('#pb').style.width = Math.min(100, (s.totals[my] || 0) / s.goal * 100) + '%';
+  }
+  async function sync(){
+    if (busy) return; busy = true;
+    try {
+      const send = my >= 0 && goTime() && taps !== sent, n = taps;
+      const j = send ? await apiPost({ a:'raceTap', device:dev, round:s.round, t:my, n }) : await apiGet('race');
+      if (send) sent = n;
+      s = j.race; offset = raceOffset(s); tick();
+    } finally { busy = false; }
+  }
+  loop(sync, 1000);
+  const t = setInterval(tick, 200); onLeave(() => clearInterval(t));
+}
+
+function raceScreen(){
+  tv(`<div class="tvwrap">
+    <header class="tvhead"><div class="ttl"><h1>팀 대항 연타 레이스</h1><p id="sub"></p></div>${qrBox('#/race', '레이스 참가')}</header>
+    <div class="lanes" id="lanes"></div>
+    <div class="cdown" id="cdown" hidden></div>
+  </div>`);
+  let s = null, offset = 0, sig = '', cheered = null, cheerAt = 0;
+  function build(){
+    $('#lanes').style.setProperty('--n', s.teams.length);
+    $('#lanes').innerHTML = s.teams.map((t, i) => `<div class="lane" data-i="${i}">
+      <div class="lname"><b>${esc(t)}</b><small></small></div>
+      <div class="track"><div class="runner"><span class="rk"></span>🏃</div><div class="flag">🏁</div></div>
+      <div class="lnum">0</div></div>`).join('');
+  }
+  function paint(){
+    const sg = JSON.stringify([s.teams, s.round]); if (sg !== sig){ sig = sg; build(); }
+    const rank = raceRanks(s);
+    $('#sub').textContent = s.status === 'ready' ? `목표 ${s.goal}번 · QR 찍고 팀을 고르세요!` : s.status === 'go' ? `목표 ${s.goal}번 · 연타!` : '레이스 종료';
+    $$('.lane').forEach(el => {
+      const i = Number(el.dataset.i), v = s.totals[i] || 0;
+      $('.runner', el).style.left = `calc(${Math.min(1, v / s.goal) * 100}% * .92)`;
+      $('.lnum', el).textContent = v;
+      $('.lname small', el).textContent = `${s.players[i] || 0}명`;
+      $('.rk', el).textContent = v > 0 && rank[i] <= 3 ? rank[i] : '';
+      el.classList.toggle('lead', v > 0 && rank[i] === 1);
+      el.classList.toggle('win', s.winner === i);
+    });
+    const cd = $('#cdown'), left = Math.ceil((s.startAt - (Date.now() + offset)) / 1000);
+    cd.classList.remove('win');
+    if (s.status === 'go' && left > 0){ cd.hidden = false; cd.textContent = left; }
+    else if (s.status === 'go' && left > -1){ cd.hidden = false; cd.textContent = 'GO!'; }
+    else if (s.status === 'done' && s.winner != null && (cheered !== s.round || Date.now() - cheerAt < 6000)){
+      if (cheered !== s.round){ cheered = s.round; cheerAt = Date.now(); confetti(); }
+      cd.hidden = false; cd.classList.add('win'); cd.innerHTML = `<small>우승</small>${esc(s.teams[s.winner])}`;
+    } else cd.hidden = true;
+  }
+  loop(async () => { s = (await apiGet('race')).race; offset = raceOffset(s); paint(); }, 700);
+  const t = setInterval(() => s && paint(), 250); onLeave(() => clearInterval(t));
+}
+
+async function raceHost(){
+  phone('레이스 진행', `<p class="wait">PIN 확인 중…</p>`);
+  try { await hostPin(); } catch(e){ location.hash = '#/race'; return; }
+  let s = (await apiGet('race')).race;
+  phone('레이스 진행', `
+    <div class="status"><div id="st"></div></div>
+    <button class="btn" type="button" id="start">시작 (3초 카운트다운)</button>
+    <button class="btn ghost" type="button" id="stop">멈추기</button>
+    <button class="btn ghost" type="button" id="reset">새 판 준비 (기록 지우기)</button>
+    <div class="field" style="margin-top:22px"><span>팀 이름 (눌러서 바로 고치기)</span><div class="teamedit" id="te"></div>
+      <div class="seg" style="margin-top:8px"><button type="button" id="add">+ 팀 추가</button><button type="button" id="del">− 마지막 팀 빼기</button></div></div>
+    <div class="field"><span>목표 횟수 (팀 합계)</span>
+      <div class="seg" id="goal">${[150, 300, 500, 800].map(g => `<button type="button" data-v="${g}" aria-pressed="${g === s.goal}">${g}</button>`).join('')}</div></div>
+    <button class="btn" type="button" id="save" style="background:var(--ink)">팀 설정 저장</button>
+    <a class="tvlink" href="#/race/screen">큰 화면 열기 →</a>`);
+  let teams = s.teams.slice();
+  const goal = segmented($('#goal'));
+  const paintTeams = () => {
+    $('#te').innerHTML = teams.map((t, i) => `<input class="inp" data-i="${i}" maxlength="12" value="${esc(t)}">`).join('');
+    $$('#te input').forEach(el => el.oninput = () => teams[Number(el.dataset.i)] = el.value);
+  };
+  paintTeams();
+  $('#add').onclick = () => { if (teams.length >= 20) return toast('최대 20팀까지예요'); teams.push(`${teams.length + 1}팀`); paintTeams(); };
+  $('#del').onclick = () => { if (teams.length <= 2) return toast('최소 2팀은 있어야 해요'); teams.pop(); paintTeams(); };
+  $('#save').onclick = () => submitWith($('#save'), async () => {
+    const clean = teams.map((t, i) => t.trim() || `${i + 1}팀`);
+    s = (await hostPost({ a:'raceSetup', teams:clean, goal:Number(goal()) })).race;
+    $('#save').disabled = false; $('#save').textContent = '팀 설정 저장'; toast('저장했어요');
+  });
+  const act = (id, a, msg) => $(id).onclick = () => submitWith($(id), async () => {
+    s = (await hostPost({ a })).race; $(id).disabled = false; $(id).textContent = $(id).dataset.t; toast(msg);
+  });
+  ['#start', '#stop', '#reset'].forEach(id => $(id).dataset.t = $(id).textContent);
+  act('#start', 'raceStart', '시작! 3초 뒤 출발'); act('#stop', 'raceStop', '멈췄어요'); act('#reset', 'raceReset', '새 판 준비 완료');
+  loop(async () => {
+    s = (await apiGet('race')).race;
+    const total = s.players.reduce((a, b) => a + b, 0);
+    $('#st').textContent = `${s.status === 'ready' ? '대기 중' : s.status === 'go' ? '진행 중' : '종료'} · 참가 ${total}명 · 목표 ${s.goal}${s.winner != null ? ' · 우승 ' + s.teams[s.winner] : ''}`;
+  }, 2000);
+}
+
+/* ═══════════════ 행운 번호 (휴대폰으로 처음 들어오면 자동 발급) ═══════════════ */
+let ticketBusy = false;
+function ticketChip(){
+  const no = store.get('ticket'); let chip = $('.ticket');
+  if (!no || document.body.classList.contains('tv')){ chip?.remove(); return; }
+  if (!chip){ chip = document.createElement('button'); chip.type = 'button'; chip.className = 'ticket'; document.body.appendChild(chip); chip.onclick = () => ticketModal(false); }
+  chip.innerHTML = `행운 번호 <b>${esc(no)}</b>`;
+}
+function ticketModal(first){
+  $('.tmodal')?.remove();
+  const el = document.createElement('div'); el.className = 'tmodal';
+  el.innerHTML = `<div class="tcard"><span class="label">Lucky Number</span>
+    <p style="margin:0">${first ? '와 주셔서 고마워요! 당신의 행운 번호는' : '나의 행운 번호'}</p>
+    <div class="no">${esc(store.get('ticket'))}</div>
+    <p>마지막 경품 추첨에 이 번호로 응모돼요.<br>화면 왼쪽 아래에서 언제든 다시 볼 수 있어요.</p>
+    <div class="row"><input class="inp" id="tname" maxlength="20" placeholder="이름 (선택) · 당첨 시 화면에 표시" value="${esc(store.get('ticketName') || '')}"><button type="button" id="tsave">저장</button></div>
+    <button class="btn ghost" type="button" id="tclose">확인</button></div>`;
+  document.body.appendChild(el);
+  $('#tclose', el).onclick = () => el.remove();
+  el.onclick = e => { if (e.target === el) el.remove(); };
+  $('#tsave', el).onclick = async () => {
+    const name = $('#tname', el).value.trim(); if (!name) return;
+    try { await apiPost({ a:'ticket', device:deviceId(), name }); store.set('ticketName', name); toast('이름을 등록했어요'); el.remove(); }
+    catch(e){ toast(e.message); }
+  };
+}
+async function ensureTicket(){
+  if (store.get('ticket')) return ticketChip();
+  if (ticketBusy || !matchMedia('(pointer:coarse)').matches) return;   // 휴대폰에서만 자동 발급
+  ticketBusy = true;
+  try {
+    const r = (await apiPost({ a:'ticket', device:deviceId() })).row;
+    store.set('ticket', r.no); ticketChip();
+    if (!document.body.classList.contains('tv')) ticketModal(true);
+  } catch(e){ console.warn(e); } finally { ticketBusy = false; }
+}
+
 /* ═══════════════ 인쇄용 QR 안내판 ═══════════════ */
 function poster(){
   document.body.className = '';
   app.innerHTML = `<div class="wrap poster">
     <span class="label">After Party</span>
     <h1 class="names">준혁<i>&amp;</i>은수</h1>
-    <p class="meta">QR을 찍으면 질문 · 사진 · 축하 메시지 · 무대 신청을 할 수 있어요</p>
+    <p class="meta">QR을 찍으면 행운 번호가 바로 나와요 · 마지막 경품 추첨에 응모돼요</p>
     <div class="code" data-qr="${esc(BASE)}"></div>
     <p class="meta">${esc(BASE.replace(/^https?:\/\//, ''))}</p>
+    <div style="text-align:left;margin-top:18px">${FOOD_NOTICE}</div>
     <p class="noprint" style="margin-top:28px"><button class="btn" type="button" onclick="print()">인쇄하기</button><a class="btn ghost" href="#/">처음으로</a></p>
   </div>`;
   mountQr();
@@ -1008,14 +1349,17 @@ const ROUTES = {
   'draw': draw, 'tp': tpRoles, 'tp/screen': tpScreen, 'tp/host': tpHost,
   'tp/groom': () => tpPlayer('groom'), 'tp/bride': () => tpPlayer('bride'),
   'beer': beer, 'beer/board': beerBoard,
+  'race': race, 'race/screen': raceScreen, 'race/host': raceHost,
   'qr': poster,
 };
 function route(){
   cleanups.forEach(f => f()); cleanups = [];
   $$('.spot').forEach(el => el.remove());
   const r = location.hash.replace(/^#\/?/, '').replace(/\/$/, '');
+  $('.tmodal')?.remove();
   (ROUTES[r] || home)();
   window.scrollTo(0, 0);
+  if (r !== 'qr') ensureTicket(); else $('.ticket')?.remove();
   if (DEMO && !$('.demo')) document.body.insertAdjacentHTML('beforeend', '<div class="demo">데모 모드 · 이 기기에서만 저장돼요 · 진행자 PIN 1114</div>');
 }
 addEventListener('hashchange', route);
