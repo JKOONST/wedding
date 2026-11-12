@@ -312,6 +312,16 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .verdict.count{ font-family:var(--f-serif); font-weight:600; color:#FFD89A; animation:hit .5s ease both; }
 @keyframes blink{ 50%{ opacity:.45; } }
 .tpstage.clickable{ cursor:pointer; }
+.nexthint{ color:var(--gold); font-weight:700; animation:blink 1.4s ease-in-out infinite; }
+.tpsel article{ max-width:980px; text-align:left; background:var(--paper-2); border:1px solid var(--line); border-radius:22px; padding:24px 26px; max-height:88vh; display:flex; flex-direction:column; }
+.tpsel h3{ margin:0 0 14px; font-family:var(--f-myeongjo); font-weight:400; font-size:28px; }
+.tpsel h3 small{ font-family:var(--f-sans); font-size:14px; color:var(--ink-3); margin-left:8px; }
+.tplist{ display:grid; grid-template-columns:1fr 1fr; gap:8px; overflow:auto; padding:2px; }
+.tplist button{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; text-align:left; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:var(--card); color:var(--ink); font-size:16px; cursor:pointer; }
+.tplist button small{ flex-basis:100%; padding-left:34px; color:var(--ink-3); font-size:12.5px; }
+.tplist button em{ flex:none; width:24px; height:24px; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; font-style:normal; font-weight:800; font-size:13px; }
+.tplist button.on{ border-color:var(--gold); background:var(--wine-tint); } .tplist button.on em{ background:var(--gold); border-color:var(--gold); color:#2A0F17; }
+.tpsel .acts{ display:flex; gap:10px; justify-content:flex-end; margin-top:16px; flex-wrap:wrap; }
 .score{ color:var(--ink-3); font-size:clamp(16px,1.5vw,22px); margin-top:10px; }
 .score b{ color:var(--gold); font-family:var(--f-serif); font-size:1.5em; }
 
@@ -1114,48 +1124,141 @@ async function tpHost(){
   }, 2000);
 }
 
+/* 큰 화면(노트북)에서 문제 묶음을 정해 두고, 클릭할 때마다 시작 → 공개 → 다음 문제 → 결과로 넘어간다.
+   묶음은 이 노트북에만 저장된다(서버 변경 없음). */
+const TP_DEFAULT = [0, 1, 3, 9, 12];            // 먼저 반한 사람 · 첫인상 · 먼저 사과 · 대천 · 10년 뒤
+function tpQueue(){
+  let q = null; try { q = JSON.parse(store.get('tpQueue') || 'null'); } catch(e){}
+  if (!q || !Array.isArray(q.items) || !q.items.length) q = { items:TP_DEFAULT.map(i => ({ q:PRESETS[i][0], options:PRESETS[i][1] })), idx:-1, active:false, done:false };
+  return q;
+}
+const tpSaveQueue = q => store.set('tpQueue', JSON.stringify(q));
+
 function tpScreen(){
   tv(`<div class="tvwrap"><header class="tvhead"><div class="ttl"><h1>텔레파시 게임</h1><p id="rd"></p></div></header>
     <div class="tpstage">
       <p class="q" id="q">곧 시작합니다</p>
-      <div class="duo">
+      <div class="duo" id="duo">
         <div class="pl"><div class="ans" id="ga">고민 중…</div><img src="../char-groom.png" alt="신랑"><b>신랑 준혁</b></div>
         <div class="pl"><div class="ans" id="ba">고민 중…</div><img src="../char-bride.png" alt="신부"><b>신부 은수</b></div>
       </div>
       <div class="verdict" id="v"></div>
       <div class="score" id="sc"></div>
     </div></div>`);
-  let sig = '', cur = null, busy = false;
-  /* 두 사람이 다 고르면 이 화면을 클릭(또는 스페이스바)해서 3·2·1 뒤에 공개 */
-  async function reveal(){
-    if (busy || !cur || cur.revealed || !(cur.groomDone && cur.brideDone)) return;
+  $('.tvtools').insertAdjacentHTML('afterbegin', '<button type="button" id="pick">문제 고르기</button>');
+  let sig = '', cur = null, busy = false, Q = tpQueue();
+
+  /* ── 문제 고르기 창 ── */
+  function picker(){
+    const chosen = Q.items.map(it => ({ ...it }));
+    const pool = PRESETS.map(([q, o]) => ({ q, options:o }));
+    chosen.forEach(c => { if (!pool.some(p => p.q === c.q)) pool.push(c); });   // 직접 쓴 문제도 목록에
+    const el = document.createElement('div'); el.className = 'spot tpsel';
+    const paint = () => {
+      el.innerHTML = `<article><h3>텔레파시 문제 고르기 <small>누른 순서대로 나와요 · 5개 추천</small></h3>
+        <div class="tplist">${pool.map((p, i) => { const k = chosen.findIndex(c => c.q === p.q);
+          return `<button type="button" data-i="${i}" class="${k >= 0 ? 'on' : ''}">${k >= 0 ? `<em>${k + 1}</em>` : '<em></em>'}${esc(p.q)}<small>${esc(p.options.join(' / '))}</small></button>`; }).join('')}</div>
+        <div class="acts"><button type="button" id="cus">+ 직접 쓰기</button><button type="button" id="clr">전부 해제</button>
+          <button type="button" class="pri" id="ok">${chosen.length}문제로 준비</button><button type="button" id="x">닫기</button></div></article>`;
+      $$('.tplist button', el).forEach(b => b.onclick = () => {
+        const p = pool[Number(b.dataset.i)], k = chosen.findIndex(c => c.q === p.q);
+        if (k >= 0) chosen.splice(k, 1); else chosen.push({ ...p });
+        paint();
+      });
+      $('#cus', el).onclick = () => {
+        const q = (prompt('질문을 입력하세요') || '').trim(); if (!q) return;
+        const o = (prompt('보기를 쉼표로 (2~4개)', '신랑, 신부') || '').split(',').map(x => x.trim()).filter(Boolean).slice(0, 4);
+        if (o.length < 2) return toast('보기는 2개 이상이어야 해요');
+        const item = { q:q.slice(0, 80), options:o.map(x => x.slice(0, 20)) }; pool.push(item); chosen.push({ ...item }); paint();
+      };
+      $('#clr', el).onclick = () => { chosen.length = 0; paint(); };
+      $('#x', el).onclick = () => el.remove();
+      $('#ok', el).onclick = () => {
+        if (!chosen.length) return toast('문제를 1개 이상 골라 주세요');
+        Q = { items:chosen, idx:-1, active:false, done:false }; tpSaveQueue(Q); el.remove(); sig = ''; paint2();
+        toast(`${chosen.length}문제 준비 완료! 화면을 눌러 시작하세요`);
+      };
+    };
+    paint(); document.body.appendChild(el); onLeave(() => el.remove());
+  }
+  $('#pick').onclick = picker;
+
+  /* ── 클릭 한 번으로 다음 단계 ── */
+  async function step(){
+    if (busy || !cur || $('.tpsel')) return;
+    const n = Q.items.length;
+    const go = async i => { await hostPost({ a:'tpSet', q:Q.items[i].q, options:Q.items[i].options }); Q.idx = i; tpSaveQueue(Q); };
     try { await hostPin(); } catch(e){ return; }
     busy = true;
-    const v = $('#v');
-    for (const n of ['3', '2', '1']){ v.className = 'verdict count'; v.textContent = n; await sleep(650); }
-    try { await hostPost({ a:'tpReveal' }); } catch(e){ busy = false; sig = ''; return; }
-    busy = false; sig = ''; await poll();
+    try {
+      if (!Q.active){                                             // 시작
+        await hostPost({ a:'tpReset' });
+        Q.active = true; Q.done = false; await go(0);
+      } else if (!cur.revealed && cur.groomDone && cur.brideDone){  // 공개
+        const v = $('#v');
+        for (const t of ['3', '2', '1']){ v.className = 'verdict count'; v.textContent = t; await sleep(650); }
+        await hostPost({ a:'tpReveal' });
+      } else if (cur.revealed && Q.idx < n - 1){                  // 다음 문제
+        await go(Q.idx + 1);
+      } else if (cur.revealed){                                   // 결과
+        Q.active = false; Q.done = true; tpSaveQueue(Q);
+      }
+    } catch(e){} finally { busy = false; sig = ''; await poll(); }
   }
-  $('.tpstage').addEventListener('click', reveal);
-  const key = e => { if ((e.code === 'Space' || e.code === 'Enter') && e.target === document.body){ e.preventDefault(); reveal(); } };
+  $('.tpstage').addEventListener('click', step);
+  const key = e => { if ((e.code === 'Space' || e.code === 'Enter') && e.target === document.body){ e.preventDefault(); step(); } };
   document.addEventListener('keydown', key); onLeave(() => document.removeEventListener('keydown', key));
-  async function poll(){
-    const s = (await apiGet('tp')).tp; cur = s;
-    if (busy) return;
-    const sg = JSON.stringify(s); if (sg === sig) return; const first = !sig; sig = sg;
-    $('#rd').textContent = s.round ? `Round ${s.round}` : '';
-    $('#q').textContent = s.round ? s.q : '곧 시작합니다';
+
+  function paint2(){
+    const s = cur; if (!s) return;
+    const n = Q.items.length, v = $('#v');
+    $('.tpstage').classList.remove('clickable');
+    // 결과 화면
+    if (Q.done){
+      $('#rd').textContent = '결과 발표';
+      $('#duo').hidden = true;
+      $('#q').textContent = `${s.played}문제 중 ${s.score}개 통했다!`;
+      const r = s.played ? s.score / s.played : 0;
+      v.className = 'verdict yes'; v.textContent = r === 1 ? '천생연분 인증!' : r >= .6 ? '텔레파시 부부 합격!' : '앞으로 맞춰 갈 날이 많아요!';
+      $('#sc').innerHTML = `텔레파시 지수 <b>${s.score}</b> / ${s.played}`;
+      return;
+    }
+    $('#duo').hidden = false;
+    // 시작 전
+    if (!Q.active){
+      $('#rd').textContent = `${n}문제 준비됨`;
+      $('#q').textContent = '두 사람, 얼마나 통할까요?';
+      $('#ga').className = $('#ba').className = 'ans'; $('#ga').textContent = $('#ba').textContent = '대기 중';
+      v.className = 'verdict ready'; v.textContent = `화면을 눌러 시작 ▶`;
+      $('#sc').textContent = '';
+      $('.tpstage').classList.add('clickable');
+      return;
+    }
+    $('#rd').textContent = `${Q.idx + 1} / ${n}번째 문제`;
+    $('#q').textContent = s.q;
     const box = (el, done, ans) => {
       el.className = 'ans' + (s.revealed ? ' shown' : done ? ' ready' : '');
       el.textContent = s.revealed ? (ans != null ? s.options[ans] : '무응답') : done ? '선택 완료 ✓' : '고민 중…';
     };
     box($('#ga'), s.groomDone, s.groom); box($('#ba'), s.brideDone, s.bride);
     const hit = s.revealed && s.groom != null && s.groom === s.bride;
-    const ready = s.round && !s.revealed && s.groomDone && s.brideDone;
-    $('#v').className = 'verdict' + (s.revealed ? (hit ? ' yes' : ' no') : ready ? ' ready' : '');
-    $('#v').textContent = s.revealed ? (hit ? '통했다!' : '땡!') : ready ? '둘 다 골랐어요! 화면을 눌러 공개 ▶' : '';
-    $('.tpstage').classList.toggle('clickable', !!ready);
-    $('#sc').innerHTML = s.played ? `텔레파시 지수 <b>${s.score}</b> / ${s.played}` : '';
+    const ready = !s.revealed && s.groomDone && s.brideDone;
+    if (s.revealed){
+      v.className = 'verdict ' + (hit ? 'yes' : 'no'); v.textContent = hit ? '통했다!' : '땡!';
+      $('#sc').innerHTML = `텔레파시 지수 <b>${s.score}</b> / ${s.played} · <span class="nexthint">${Q.idx < n - 1 ? '화면을 눌러 다음 문제 ▶' : '화면을 눌러 결과 보기 ▶'}</span>`;
+      $('.tpstage').classList.add('clickable');
+    } else {
+      v.className = 'verdict' + (ready ? ' ready' : ''); v.textContent = ready ? '둘 다 골랐어요! 화면을 눌러 공개 ▶' : '';
+      $('#sc').innerHTML = s.played ? `텔레파시 지수 <b>${s.score}</b> / ${s.played}` : '';
+      if (ready) $('.tpstage').classList.add('clickable');
+    }
+    return hit;
+  }
+  async function poll(){
+    const s = (await apiGet('tp')).tp; cur = s;
+    if (busy) return;
+    const sg = JSON.stringify([s, Q.idx, Q.active, Q.done]); if (sg === sig) return; const first = !sig; sig = sg;
+    const hit = paint2();
     if (hit && !first) confetti();
   }
   loop(poll, 1500);
