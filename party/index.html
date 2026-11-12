@@ -628,10 +628,10 @@ const TILES = [
   ['/beer','beer','c7','맥주 빨리 마시기','신랑 측 vs 신부 측 신청'],
 ];
 const SCHEDULE = [
-  ['13:30','입장 · 행운 번호 받기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
+  ['13:30','입장 · 입장권 받기'], ['13:50','신랑신부 인사 · 건배'], ['14:00','식사 · 자유 시간'],
   ['14:25','연애 탐구영역 퀴즈쇼'], ['14:50','무엇이든 물어봐'], ['15:05','텔레파시 게임'],
   ['15:15','웨딩로드 레이스 (팀 연타)'], ['15:25','맥주 빨리 마시기 대회'], ['15:35','무대 (노래방 축가 · 축사)'],
-  ['15:55','경품 추첨 · 단체사진'], ['16:05','마무리 인사'],
+  ['15:55','청첩장 선물 · 입장권 추첨 · 단체사진'], ['16:05','마무리 인사'],
 ];
 const QUIZ_URL = 'https://quizn.show/quz/play/tryPinForm.do?showSeq=878244';
 const FOOD_NOTICE = `<section class="notice">
@@ -662,7 +662,7 @@ function home(){
       <a class="tile ${i === TILES.length - 1 && TILES.length % 2 ? 'wide' : ''}" href="#${r}"><div class="ic ${c}">${ICON[ic]}</div><b>${t}</b><span>${s}</span></a>`).join('')}
     </nav>
     ${FOOD_NOTICE}
-    <details class="timeline"><summary>오늘의 순서</summary>
+    <details class="timeline" open><summary>오늘의 순서</summary>
       <ol>${SCHEDULE.map(([t, s]) => `<li><time>${t}</time><span>${s}</span></li>`).join('')}</ol>
     </details>
     <p class="foot">준혁 &amp; 은수의 결혼 2부에 와 주셔서 고맙습니다<br><a href="../">청첩장 보기</a> · <a href="#/qr">QR 안내판</a></p>
