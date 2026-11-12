@@ -308,6 +308,10 @@ textarea.inp{ min-height:120px; resize:vertical; line-height:1.55; }
 .pl b{ font-family:var(--f-myeongjo); font-weight:400; font-size:clamp(18px,1.8vw,26px); color:var(--ink-2); }
 .verdict{ font-family:var(--f-myeongjo); font-size:clamp(46px,7vw,110px); margin:3vh 0 0; min-height:1.3em; }
 .verdict.yes{ color:#FFD89A; animation:hit .7s ease both; } .verdict.no{ color:var(--ink-3); animation:hit .7s ease both; }
+.verdict.ready{ font-family:var(--f-sans); font-weight:700; font-size:clamp(20px,2.4vw,34px); color:var(--gold); animation:blink 1.4s ease-in-out infinite; }
+.verdict.count{ font-family:var(--f-serif); font-weight:600; color:#FFD89A; animation:hit .5s ease both; }
+@keyframes blink{ 50%{ opacity:.45; } }
+.tpstage.clickable{ cursor:pointer; }
 .score{ color:var(--ink-3); font-size:clamp(16px,1.5vw,22px); margin-top:10px; }
 .score b{ color:var(--gold); font-family:var(--f-serif); font-size:1.5em; }
 
@@ -1121,9 +1125,23 @@ function tpScreen(){
       <div class="verdict" id="v"></div>
       <div class="score" id="sc"></div>
     </div></div>`);
-  let sig = '';
-  loop(async () => {
-    const s = (await apiGet('tp')).tp;
+  let sig = '', cur = null, busy = false;
+  /* 두 사람이 다 고르면 이 화면을 클릭(또는 스페이스바)해서 3·2·1 뒤에 공개 */
+  async function reveal(){
+    if (busy || !cur || cur.revealed || !(cur.groomDone && cur.brideDone)) return;
+    try { await hostPin(); } catch(e){ return; }
+    busy = true;
+    const v = $('#v');
+    for (const n of ['3', '2', '1']){ v.className = 'verdict count'; v.textContent = n; await sleep(650); }
+    try { await hostPost({ a:'tpReveal' }); } catch(e){ busy = false; sig = ''; return; }
+    busy = false; sig = ''; await poll();
+  }
+  $('.tpstage').addEventListener('click', reveal);
+  const key = e => { if ((e.code === 'Space' || e.code === 'Enter') && e.target === document.body){ e.preventDefault(); reveal(); } };
+  document.addEventListener('keydown', key); onLeave(() => document.removeEventListener('keydown', key));
+  async function poll(){
+    const s = (await apiGet('tp')).tp; cur = s;
+    if (busy) return;
     const sg = JSON.stringify(s); if (sg === sig) return; const first = !sig; sig = sg;
     $('#rd').textContent = s.round ? `Round ${s.round}` : '';
     $('#q').textContent = s.round ? s.q : '곧 시작합니다';
@@ -1133,11 +1151,14 @@ function tpScreen(){
     };
     box($('#ga'), s.groomDone, s.groom); box($('#ba'), s.brideDone, s.bride);
     const hit = s.revealed && s.groom != null && s.groom === s.bride;
-    $('#v').className = 'verdict' + (s.revealed ? (hit ? ' yes' : ' no') : '');
-    $('#v').textContent = s.revealed ? (hit ? '통했다!' : '땡!') : '';
+    const ready = s.round && !s.revealed && s.groomDone && s.brideDone;
+    $('#v').className = 'verdict' + (s.revealed ? (hit ? ' yes' : ' no') : ready ? ' ready' : '');
+    $('#v').textContent = s.revealed ? (hit ? '통했다!' : '땡!') : ready ? '둘 다 골랐어요! 화면을 눌러 공개 ▶' : '';
+    $('.tpstage').classList.toggle('clickable', !!ready);
     $('#sc').innerHTML = s.played ? `텔레파시 지수 <b>${s.score}</b> / ${s.played}` : '';
     if (hit && !first) confetti();
-  }, 1500);
+  }
+  loop(poll, 1500);
 }
 
 /* ═══════════════ 7. 맥주 빨리 마시기 대회 ═══════════════ */
